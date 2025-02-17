@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11960c31abca8544964defe45dc91b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickname: 
+  nickname: dctfgujk
   baseHp: 20
   baseAttack: 20
   baseDefense: 20
@@ -163,6 +163,7 @@ MonoBehaviour:
   drops:
   - {fileID: 11400000, guid: e941b78d9792d8743a83e7ae14e8cc2c, type: 2}
   - {fileID: 11400000, guid: 25723f9b0110e0f44a560b7a04be2833, type: 2}
+  movesDescription: []
 --- !u!4 &468014114
 Transform:
   m_ObjectHideFlags: 0

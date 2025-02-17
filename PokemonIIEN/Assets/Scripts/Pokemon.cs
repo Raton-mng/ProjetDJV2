@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Items;
+using Moves;
 using UnityEngine;
 
 public class Pokemon : MonoBehaviour
@@ -26,10 +27,12 @@ public class Pokemon : MonoBehaviour
 
     [SerializeField] private List<int> dropQuantities;
     [SerializeField] private List<ItemOnAlly> drops;
+    
     public Dictionary<IItem, int> Drops { get; private set; }
 
-    public List<Move> Moves;
-    
+    [SerializeField] private List<MoveDescription> movesDescription;
+    public List<Move> Moves { get  ; private set; }
+
     private void Awake()
     {
         CurrentHp = baseHp;
@@ -41,6 +44,12 @@ public class Pokemon : MonoBehaviour
         for (int i = 0; i < drops.Count; i++)
         {
             Drops.Add(drops[i], dropQuantities[i]);
+        }
+
+        Moves = new List<Move>();
+        foreach (MoveDescription mvd in movesDescription)
+        {
+            Moves.Add(mvd.CreateMove());
         }
     }
 
