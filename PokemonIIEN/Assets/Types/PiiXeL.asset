@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ac29eb1b279c7438b66f4e54c7d304, type: 3}
+  m_Name: PiiXeL
+  m_EditorClassIdentifier: 
+  strongAgainst:
+  - {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
+  - {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
+  - {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
+  weakAgainst:
+  - {fileID: 11400000, guid: 1817d13560dd7164ea8f705ad12db106, type: 2}
+  - {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
