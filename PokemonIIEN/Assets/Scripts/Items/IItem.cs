@@ -1,4 +1,8 @@
+using System;
+using UnityEngine;
+
 namespace Items
 {
-    public interface IItem{}
+    [Serializable]
+    public abstract class Item : ScriptableObject{}
 }

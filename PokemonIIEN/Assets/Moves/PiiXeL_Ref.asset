@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: PiiXeL_Ref
   m_EditorClassIdentifier: Assembly-CSharp:Moves:AttackDescription
-  moveType: {fileID: 0}
-  targets: 0
-  power: 0
+  moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
+  targets: 1
+  power: 40

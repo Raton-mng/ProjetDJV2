@@ -26,9 +26,9 @@ public class Pokemon : MonoBehaviour
     public List<Type> Types => types;
 
     [SerializeField] private List<int> dropQuantities;
-    [SerializeField] private List<ItemOnAlly> drops;
+    [SerializeField] private List<Item> drops;
     
-    public Dictionary<IItem, int> Drops { get; private set; }
+    public Dictionary<Item, int> Drops { get; private set; }
 
     [SerializeField] private List<MoveDescription> movesDescription;
     public List<Move> Moves { get  ; private set; }
@@ -40,7 +40,7 @@ public class Pokemon : MonoBehaviour
         CurrentDefense = baseDefense;
         CurrentSpeed = baseSpeed;
 
-        Drops = new Dictionary<IItem, int>();
+        Drops = new Dictionary<Item, int>();
         for (int i = 0; i < drops.Count; i++)
         {
             Drops.Add(drops[i], dropQuantities[i]);
