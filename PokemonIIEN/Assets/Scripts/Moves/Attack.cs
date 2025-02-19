@@ -8,11 +8,12 @@ namespace Moves
 
         private int _basePower;
         
-        public Attack(PossibleTargets targets, Type type, int power)
+        public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon)
         {
             Targets = targets;
-            Type = type;
+            MoveType = type;
             _basePower = power;
+            AssignedPokemon = assignedPokemon;
         }
 
         public override void DoSomething(List<Pokemon> targets)
@@ -27,13 +28,10 @@ namespace Moves
     [CreateAssetMenu(fileName = "Attack", menuName = "Game/MoveDescription/Attack")]
     public class AttackDescription : MoveDescription
     {
-        public Type moveType;
-        public PossibleTargets targets;
         public int power;
-        
-        public override Move CreateMove()
+        public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new Attack(targets, moveType, power);
+            return new Attack(targets, moveType, power, assignedPokemon);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace Moves
     public enum PossibleTargets
     {
         Me,
+        AllAllies,
         SingleTarget,
         AllEnemies,
         All
@@ -13,14 +14,17 @@ namespace Moves
 
     public abstract class Move
     {
+        protected Pokemon AssignedPokemon;
         public PossibleTargets Targets;
-        public Type Type;
+        protected Type MoveType;
 
         public abstract void DoSomething(List<Pokemon> targets);
     }
 
     public abstract class MoveDescription : ScriptableObject
     {
-        public abstract Move CreateMove();
+        public Type moveType;
+        public PossibleTargets targets;
+        public abstract Move CreateMove(Pokemon assignedPokemon);
     }
 }
