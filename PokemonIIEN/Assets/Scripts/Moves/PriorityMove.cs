@@ -7,7 +7,7 @@ namespace Moves
         public int Priority;
     }
     
-    public abstract class PriorityMoveDescription : ScriptableObject
+    public abstract class PriorityMoveDescription : MoveDescription
     {
         [Range(-6, 6)] public int priority;
     }
