@@ -14,7 +14,7 @@ namespace Moves
 
     public abstract class Move
     {
-        protected Pokemon AssignedPokemon;
+        public Pokemon AssignedPokemon;
         public PossibleTargets Targets;
         protected Type MoveType;
 

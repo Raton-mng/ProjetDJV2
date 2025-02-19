@@ -45,5 +45,10 @@ namespace Moves
 
             return false;
         }
+
+        public void EndBuff()
+        {
+            ApplyBuff(-1);
+        }
     }
 }

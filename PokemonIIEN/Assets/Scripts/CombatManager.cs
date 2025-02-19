@@ -19,7 +19,7 @@ public class CombatManager : MonoBehaviour
     public Dictionary<Pokemon, List<BuffPassive>> PokemonOnField;
     
     //liste des pokemons qui doivent encore jouer
-    private List<Pokemon> _yetToPlayThisTurn;
+    private List<Move> _movesThisTurn;
     
     //differentes sous-partie du plateau
     public List<Pokemon> allies;
@@ -33,22 +33,29 @@ public class CombatManager : MonoBehaviour
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
 
-    private Pokemon getNextPokemonToPlay()
+    private Move GetNextMoveToPlay()
     {
-        Pokemon nextPokemon = null;
+        Move nextMove = null;
         int currentMaxSpeed = 0;
-        foreach (Pokemon pokemon in _yetToPlayThisTurn)
+        int currentMaxPriority = 0;
+        foreach (Move move in _movesThisTurn)
         {
-            int speed = pokemon.CurrentSpeed;
-            if (speed >= currentMaxSpeed)
+            if (move.AssignedPokemon.CurrentHp == 0) continue;
+            
+            int priority = move is PriorityMove ? ((PriorityMove) move).Priority : 0;
+            int speed = move.AssignedPokemon.CurrentSpeed;
+            if (priority >= currentMaxPriority)
             {
-                nextPokemon = pokemon;
-                currentMaxSpeed = speed;
+                if (priority > currentMaxPriority || speed >= currentMaxSpeed)
+                {
+                    nextMove = move;
+                    currentMaxSpeed = speed;
+                }
             }
         }
 
-        _yetToPlayThisTurn.Remove(nextPokemon);
-        return nextPokemon;
+        _movesThisTurn.Remove(nextMove);
+        return nextMove;
     }
 
     private void StartTurn()
@@ -82,11 +89,25 @@ public class CombatManager : MonoBehaviour
             return;
         }
 
-        _yetToPlayThisTurn = new List<Pokemon>(PokemonOnField.Keys);
+        _movesThisTurn = GetMovesOfThisTurn();
+        //pas fini
     }
 
     private void EndCombat(bool hasWon)
     {
-        
+        foreach (var pokemonsBuff in PokemonOnField)
+        {
+            foreach (BuffPassive buff in pokemonsBuff.Value)
+            {
+                buff.EndBuff();
+            }
+        }
+        //pas fini
+        throw new NotImplementedException();
+    }
+
+    private List<Move> GetMovesOfThisTurn()
+    {
+        throw new NotImplementedException();
     }
 }
