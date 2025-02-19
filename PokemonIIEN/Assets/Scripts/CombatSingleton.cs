@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Moves;
 using UnityEngine;
 
 public class CombatSingleton : MonoBehaviour
@@ -12,9 +14,48 @@ public class CombatSingleton : MonoBehaviour
         CurrentCombat = Instantiate(combatManager);
     }
 
-    public void NewCombat()
+    //cette fonction est lancée quand on sait qu'il y a suffisament de pokemon pas ko
+    public void NewCombat(List<Trainer> enemies, int pokemonsPerEnemy, List<Trainer> allies, int pokemonsPerAllies, Player player, int pokemonsForPlayer)
     {
         Destroy(combatManager);
         CurrentCombat = Instantiate(combatManager);
+        
+        //initiation des listes de pokemon du combat
+        Dictionary<Pokemon, List<BuffPassive>> pokemonOnField = new Dictionary<Pokemon, List<BuffPassive>>();
+        
+        List<Pokemon> enemyPokemons = new List<Pokemon>();
+        for (int i = 0; i < pokemonsPerEnemy; i++)
+        {
+            foreach (Trainer trainer in enemies)
+            {
+                Pokemon pokemon = trainer.GetNiemeNonKoPokemon(i);
+                enemyPokemons.Add(pokemon);
+                pokemonOnField.Add(pokemon, new List<BuffPassive>());
+            }
+        }
+        CurrentCombat.ennemies = enemyPokemons;
+        
+        List<Pokemon> allyPokemons = new List<Pokemon>();
+        for (int i = 0; i < pokemonsPerAllies; i++)
+        {
+            foreach (Trainer trainer in allies)
+            {
+                Pokemon pokemon = trainer.GetNiemeNonKoPokemon(i);
+                allyPokemons.Add(pokemon);
+                pokemonOnField.Add(pokemon, new List<BuffPassive>());
+            }
+        }
+        CurrentCombat.allies = allyPokemons;
+        
+        List<Pokemon> playerPokemon = new List<Pokemon>();
+        for (int i = 0; i < pokemonsForPlayer; i++)
+        {
+            Pokemon pokemon = player.GetNiemeNonKoPokemon(i);
+            allyPokemons.Add(pokemon);
+            pokemonOnField.Add(pokemon, new List<BuffPassive>());
+        }
+        CurrentCombat.playerPokemons = playerPokemon;
+
+        CurrentCombat.PokemonOnField = pokemonOnField;
     }
 }
