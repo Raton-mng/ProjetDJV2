@@ -22,7 +22,7 @@ namespace Moves
         }
     }
 
-    [CreateAssetMenu(fileName = "PriorityAttack", menuName = "Game/MoveDescription/PriorityPriorityAttack")]
+    [CreateAssetMenu(fileName = "PriorityAttack", menuName = "Game/MoveDescription/PriorityAttack")]
     public class PriorityAttackDescription : PriorityMoveDescription
     {
         public int power;
