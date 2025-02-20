@@ -33,6 +33,46 @@ public class CombatManager : MonoBehaviour
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
 
+    public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
+    {
+        List<Pokemon> list;
+        switch (possibleTargets)
+        {
+            case PossibleTargets.Me :
+                list = new List<Pokemon>();
+                list.Add(me);
+                break;
+            
+            case PossibleTargets.AllAllies :
+                if (ennemies.Contains(me))
+                    list = new List<Pokemon>(ennemies);
+                else
+                {
+                    list = new List<Pokemon>(allies);
+                    list.AddRange(playerPokemons);
+                }
+                break;
+            
+            case PossibleTargets.SingleTarget :
+                throw new NotImplementedException();
+                break;
+            
+            case PossibleTargets.AllEnemies :
+                if (ennemies.Contains(me))
+                {
+                    list = new List<Pokemon>(allies);
+                    list.AddRange(playerPokemons);
+                }
+                else
+                    list = new List<Pokemon>(ennemies);
+                break;
+            default:
+                list = new List<Pokemon>(PokemonOnField.Keys);
+                break;
+        }
+        return list;
+    } 
+
     private Move GetNextMoveToPlay()
     {
         Move nextMove = null;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,13 +6,13 @@ namespace Moves
 {
     public class Attack : Move
     {
-        private int _basePower;
+        protected int BasePower;
         
         public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon)
         {
             Targets = targets;
             MoveType = type;
-            _basePower = power;
+            BasePower = power;
             AssignedPokemon = assignedPokemon;
         }
 
@@ -19,7 +20,7 @@ namespace Moves
         {
             foreach (Pokemon target in targets)
             {
-                target.HpChange(-_basePower);
+                throw new NotImplementedException();
             }
         }
     }

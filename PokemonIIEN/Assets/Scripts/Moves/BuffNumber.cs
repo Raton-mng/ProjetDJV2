@@ -12,4 +12,10 @@ namespace Moves
         [Range(-4, 4)] public int defenseBuff;
         [Range(-4, 4)] public int speedBuff;
     }
+
+    [Serializable]
+    public class TargetedBuffNumber : BuffNumber
+    {
+        public PossibleTargets target;
+    }
 }
