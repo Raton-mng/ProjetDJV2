@@ -37,7 +37,7 @@ namespace Moves
             
             //si la fonction est appelée, c'est qu'il reste encore du duration car quand il tombe à zero, le buff est retiré de la liste.
             _duration -= 1;
-            if (_duration == 0)
+            if (_duration <= 0)
             {
                 ApplyBuff(-1);
                 return true;

@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: GameJam
+  m_Name: Firewall
   m_EditorClassIdentifier: Assembly-CSharp:Moves:BuffDescription
-  moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
+  moveType: {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
   buffs:
   - turnsBeforeStart: 0
-    duration: 2
-    attackBuff: 2
-    defenseBuff: 2
-    speedBuff: 2
-    target: 1
-  - turnsBeforeStart: 2
-    duration: 1
-    attackBuff: -1
-    defenseBuff: -1
-    speedBuff: -1
+    duration: 4
+    attackBuff: 0
+    defenseBuff: 1
+    speedBuff: 0
     target: 1

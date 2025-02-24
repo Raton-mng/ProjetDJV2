@@ -3,9 +3,16 @@ using UnityEngine;
 
 namespace Moves
 {
-    public class PriorityAttack : PriorityMove
+    public class PriorityAttack : Move, IPriorityMove
     {
+        private int _priority;
         protected int BasePower;
+        protected PossibleTargets Targets;
+
+        public int GetPriority()
+        {
+            return _priority;
+        }
 
         public PriorityAttack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, int priority)
         {
@@ -13,7 +20,7 @@ namespace Moves
             MoveType = type;
             BasePower = power;
             AssignedPokemon = assignedPokemon;
-            Priority = priority;
+            _priority = priority;
         }
 
         public override void DoSomething()
@@ -42,6 +49,7 @@ namespace Moves
     public class PriorityAttackDescription : PriorityMoveDescription
     {
         public int power;
+        public PossibleTargets targets;
         public override Move CreateMove(Pokemon assignedPokemon)
         {
             return new PriorityAttack(targets, moveType, power, assignedPokemon, priority );

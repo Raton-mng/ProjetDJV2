@@ -15,7 +15,6 @@ namespace Moves
     public abstract class Move
     {
         public Pokemon AssignedPokemon;
-        protected PossibleTargets Targets;
         protected Type MoveType;
 
         public abstract void DoSomething();
@@ -24,7 +23,6 @@ namespace Moves
     public abstract class MoveDescription : ScriptableObject
     {
         public Type moveType;
-        public PossibleTargets targets;
         public abstract Move CreateMove(Pokemon assignedPokemon);
     }
 }

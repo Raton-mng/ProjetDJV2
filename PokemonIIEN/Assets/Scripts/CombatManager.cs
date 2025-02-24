@@ -82,7 +82,7 @@ public class CombatManager : MonoBehaviour
         {
             if (move.AssignedPokemon.CurrentHp == 0) continue;
             
-            int priority = move is PriorityMove ? ((PriorityMove) move).Priority : 0;
+            int priority = move is IPriorityMove ? ((IPriorityMove) move).GetPriority() : 0;
             int speed = move.AssignedPokemon.CurrentSpeed;
             if (priority >= currentMaxPriority)
             {

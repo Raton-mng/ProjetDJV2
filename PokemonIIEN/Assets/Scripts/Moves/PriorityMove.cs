@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Moves
 {
-    public abstract class PriorityMove : Move
+    public interface IPriorityMove
     {
-        public int Priority;
+        public int GetPriority();
     }
     
     public abstract class PriorityMoveDescription : MoveDescription

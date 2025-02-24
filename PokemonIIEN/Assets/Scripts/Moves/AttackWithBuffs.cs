@@ -44,7 +44,7 @@ namespace Moves
         }
     }
 
-    [CreateAssetMenu(fileName = "AttackWithBuffsDescription", menuName = "Game/MoveDescription/AttackWithBuffsDescription")]
+    [CreateAssetMenu(fileName = "AttackWithBuffs", menuName = "Game/MoveDescription/AttackWithBuffs")]
     public class AttackWithBuffsDescription : AttackDescription
     {
         public List<TargetedBuffNumber> buffsBeforeMove;

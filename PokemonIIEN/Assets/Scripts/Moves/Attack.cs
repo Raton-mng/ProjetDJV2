@@ -7,6 +7,7 @@ namespace Moves
     public class Attack : Move
     {
         protected int BasePower;
+        protected PossibleTargets Targets;
         
         public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon)
         {
@@ -41,6 +42,7 @@ namespace Moves
     [CreateAssetMenu(fileName = "Attack", menuName = "Game/MoveDescription/Attack")]
     public class AttackDescription : MoveDescription
     {
+        public PossibleTargets targets;
         public int power;
         public override Move CreateMove(Pokemon assignedPokemon)
         {

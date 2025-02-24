@@ -5,24 +5,23 @@ namespace Moves
 {
     public class BuffMove : Move
     {
-        private List<BuffNumber> _buffs;
+        private List<TargetedBuffNumber> _buffs;
         
         public override void DoSomething()
         {
-            List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, Targets);
-            foreach (Pokemon target in buffTargets)
+            foreach (TargetedBuffNumber buff in _buffs)
             {
-                foreach (BuffNumber buff in _buffs)
-                {
+                List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, buff.target);
+                foreach (Pokemon target in buffTargets)
+                { 
                     CombatSingleton.CurrentCombat.AddBuff(target, new BuffPassive(buff, target));
                 }
             }
         }
 
-        public BuffMove(Pokemon assignedPokemon, PossibleTargets targets, Type type, List<BuffNumber> buffs)
+        public BuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs)
         {
             AssignedPokemon = assignedPokemon;
-            Targets = targets;
             MoveType = type;
             
             _buffs = buffs;
@@ -32,11 +31,11 @@ namespace Moves
     [CreateAssetMenu(fileName = "Buff", menuName = "Game/MoveDescription/Buff")]
     public class BuffDescription : MoveDescription
     {
-        public List<BuffNumber> buffs;
+        public List<TargetedBuffNumber> buffs;
         
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new BuffMove(assignedPokemon, targets, moveType, buffs);
+            return new BuffMove(assignedPokemon, moveType, buffs);
         }
     }
 }

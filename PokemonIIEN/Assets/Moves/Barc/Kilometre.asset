@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: GameJam
+  m_Name: Kilometre
   m_EditorClassIdentifier: Assembly-CSharp:Moves:BuffDescription
-  moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
+  moveType: {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
   buffs:
   - turnsBeforeStart: 0
-    duration: 2
+    duration: 3
     attackBuff: 2
-    defenseBuff: 2
-    speedBuff: 2
-    target: 1
-  - turnsBeforeStart: 2
-    duration: 1
-    attackBuff: -1
     defenseBuff: -1
-    speedBuff: -1
+    speedBuff: 1
     target: 1

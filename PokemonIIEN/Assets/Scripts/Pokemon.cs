@@ -118,6 +118,6 @@ public class Pokemon : MonoBehaviour
 
     public void DealDamage(int damage)
     {
-        CurrentHp = Mathf.Max(0, CurrentHp - (damage / CurrentDefense));
+        CurrentHp = Mathf.Max(0, CurrentHp - (damage /  (2 * CurrentDefense)));
     }
 }
