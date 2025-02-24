@@ -21,7 +21,7 @@ public class CombatSingleton : MonoBehaviour
         CurrentCombat = Instantiate(combatManager);
         
         //initiation des listes de pokemon du combat
-        Dictionary<Pokemon, List<BuffPassive>> pokemonOnField = new Dictionary<Pokemon, List<BuffPassive>>();
+        Dictionary<Pokemon, List<IPassiveMove>> pokemonOnField = new Dictionary<Pokemon, List<IPassiveMove>>();
         
         List<Pokemon> enemyPokemons = new List<Pokemon>();
         for (int i = 0; i < pokemonsPerEnemy; i++)
@@ -30,7 +30,7 @@ public class CombatSingleton : MonoBehaviour
             {
                 Pokemon pokemon = trainer.GetNiemeNonKoPokemon(i);
                 enemyPokemons.Add(pokemon);
-                pokemonOnField.Add(pokemon, new List<BuffPassive>());
+                pokemonOnField.Add(pokemon, new List<IPassiveMove>());
             }
         }
         CurrentCombat.ennemies = enemyPokemons;
@@ -42,7 +42,7 @@ public class CombatSingleton : MonoBehaviour
             {
                 Pokemon pokemon = trainer.GetNiemeNonKoPokemon(i);
                 allyPokemons.Add(pokemon);
-                pokemonOnField.Add(pokemon, new List<BuffPassive>());
+                pokemonOnField.Add(pokemon, new List<IPassiveMove>());
             }
         }
         CurrentCombat.allies = allyPokemons;
@@ -52,7 +52,7 @@ public class CombatSingleton : MonoBehaviour
         {
             Pokemon pokemon = player.GetNiemeNonKoPokemon(i);
             allyPokemons.Add(pokemon);
-            pokemonOnField.Add(pokemon, new List<BuffPassive>());
+            pokemonOnField.Add(pokemon, new List<IPassiveMove>());
         }
         CurrentCombat.playerPokemons = playerPokemon;
 

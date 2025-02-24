@@ -14,7 +14,7 @@ namespace Moves
                 List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, buff.target);
                 foreach (Pokemon target in buffTargets)
                 { 
-                    CombatSingleton.CurrentCombat.AddBuff(target, new BuffPassive(buff, target));
+                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
                 }
             }
         }

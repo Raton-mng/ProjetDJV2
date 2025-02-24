@@ -23,7 +23,7 @@ namespace Moves
                 List<Pokemon> beforeTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, buff.target);
                 foreach (Pokemon target in beforeTargets)
                 {
-                    CombatSingleton.CurrentCombat.AddBuff(target, new BuffPassive(buff, target));
+                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
                 }
             }
             
@@ -38,7 +38,7 @@ namespace Moves
                 List<Pokemon> beforeTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, buff.target);
                 foreach (Pokemon target in beforeTargets)
                 {
-                    CombatSingleton.CurrentCombat.AddBuff(target, new BuffPassive(buff, target));
+                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
                 }
             }
         }

@@ -16,7 +16,7 @@ public enum StatusToPlayer
 
 public class CombatManager : MonoBehaviour
 {
-    public Dictionary<Pokemon, List<BuffPassive>> PokemonOnField;
+    public Dictionary<Pokemon, List<IPassiveMove>> PokemonOnField;
     
     //liste des pokemons qui doivent encore jouer
     private List<Move> _movesThisTurn;
@@ -26,9 +26,9 @@ public class CombatManager : MonoBehaviour
     public List<Pokemon> ennemies;
     public List<Pokemon> playerPokemons;
 
-    public void AddBuff(Pokemon target, BuffPassive buff)
+    public void AddPassiveMove(Pokemon target, IPassiveMove buff)
     {
-        if (PokemonOnField.TryGetValue(target, out List<BuffPassive> currentList))
+        if (PokemonOnField.TryGetValue(target, out List<IPassiveMove> currentList))
             currentList.Add(buff);
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
@@ -139,7 +139,7 @@ public class CombatManager : MonoBehaviour
         {
             foreach (BuffPassive buff in pokemonsBuff.Value)
             {
-                buff.EndBuff();
+                buff.EndMove();
             }
         }
         //pas fini

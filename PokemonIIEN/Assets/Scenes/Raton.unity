@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11960c31abca8544964defe45dc91b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nickname: dctfgujk
+  nickname: Raton
   baseHp: 100
   baseAttack: 100
   baseDefense: 100

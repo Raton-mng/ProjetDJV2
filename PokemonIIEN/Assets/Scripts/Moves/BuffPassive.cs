@@ -1,6 +1,6 @@
 namespace Moves
 {
-    public class BuffPassive
+    public class BuffPassive : IPassiveMove
     {
         private BuffNumber _buffs;
         private Pokemon _assignedPokemon;
@@ -46,7 +46,7 @@ namespace Moves
             return false;
         }
 
-        public void EndBuff()
+        public void EndMove()
         {
             ApplyBuff(-1);
         }
