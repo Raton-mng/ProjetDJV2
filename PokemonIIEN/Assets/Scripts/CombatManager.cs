@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Moves;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 //chaque pokemon aura sera un de ces 4 types TODO : le rajouter dans la classe Pokemon
 //sert à l'identification sur le terrain et savoir qu'est ce qu'on peut faire avec chacun
