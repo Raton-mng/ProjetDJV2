@@ -15,10 +15,10 @@ namespace Moves
     public abstract class Move
     {
         public Pokemon AssignedPokemon;
-        public PossibleTargets Targets;
+        protected PossibleTargets Targets;
         protected Type MoveType;
 
-        public abstract void DoSomething(List<Pokemon> targets);
+        public abstract void DoSomething();
     }
 
     public abstract class MoveDescription : ScriptableObject

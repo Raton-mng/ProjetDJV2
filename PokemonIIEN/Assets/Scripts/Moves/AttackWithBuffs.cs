@@ -16,7 +16,7 @@ namespace Moves
             _buffsAfterMove = buffsAfterMove;
         }
         
-        public override void DoSomething(List<Pokemon> targets)
+        public override void DoSomething()
         {
             foreach (TargetedBuffNumber buff in _buffsBeforeMove)
             {
@@ -27,9 +27,10 @@ namespace Moves
                 }
             }
             
-            foreach (Pokemon target in targets)
+            List<Pokemon> attackTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, Targets);
+            foreach (Pokemon target in attackTargets)
             {
-                throw new NotImplementedException();
+                target.DealDamage(Damage(target));
             }
             
             foreach (TargetedBuffNumber buff in _buffsAfterMove)

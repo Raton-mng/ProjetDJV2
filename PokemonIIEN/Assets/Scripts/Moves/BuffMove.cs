@@ -7,9 +7,10 @@ namespace Moves
     {
         private List<BuffNumber> _buffs;
         
-        public override void DoSomething(List<Pokemon> targets)
+        public override void DoSomething()
         {
-            foreach (Pokemon target in targets)
+            List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, Targets);
+            foreach (Pokemon target in buffTargets)
             {
                 foreach (BuffNumber buff in _buffs)
                 {

@@ -5,20 +5,36 @@ namespace Moves
 {
     public class PriorityAttack : PriorityMove
     {
-        private int _basePower;
+        protected int BasePower;
 
         public PriorityAttack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, int priority)
         {
             Targets = targets;
             MoveType = type;
-            _basePower = power;
+            BasePower = power;
             AssignedPokemon = assignedPokemon;
             Priority = priority;
         }
 
-        public override void DoSomething(List<Pokemon> targets)
+        public override void DoSomething()
         {
+            List<Pokemon> attackTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, Targets);
+            foreach (Pokemon target in attackTargets)
+            {
+                target.DealDamage(Damage(target));
+            }
+        }
+        
+        protected int Damage(Pokemon target)
+        {
+            int avantage = 0;
+            foreach (Type targetType in target.Types)
+            {
+                if (MoveType.strongAgainst.Contains(targetType)) avantage++;
+                else if (MoveType.weakAgainst.Contains(targetType)) avantage--;
+            }
             
+            return BasePower * AssignedPokemon.CurrentAttack * avantage;
         }
     }
 

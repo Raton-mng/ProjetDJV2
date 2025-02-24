@@ -16,12 +16,25 @@ namespace Moves
             AssignedPokemon = assignedPokemon;
         }
 
-        public override void DoSomething(List<Pokemon> targets)
+        public override void DoSomething()
         {
-            foreach (Pokemon target in targets)
+            List<Pokemon> attackTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, Targets);
+            foreach (Pokemon target in attackTargets)
             {
-                throw new NotImplementedException();
+                target.DealDamage(Damage(target));
             }
+        }
+
+        protected int Damage(Pokemon target)
+        {
+            int avantage = 0;
+            foreach (Type targetType in target.Types)
+            {
+                if (MoveType.strongAgainst.Contains(targetType)) avantage++;
+                else if (MoveType.weakAgainst.Contains(targetType)) avantage--;
+            }
+            
+            return BasePower * AssignedPokemon.CurrentAttack * avantage;
         }
     }
 

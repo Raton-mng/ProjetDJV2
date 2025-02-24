@@ -14,9 +14,6 @@ public class Pokemon : MonoBehaviour
     [SerializeField] private int baseDefense;
     [SerializeField] private int baseSpeed;
     public int BaseHp => baseHp;
-    /*public int BaseAttack => baseAttack;
-    public int BaseDefense => baseDefense;
-    public int BaseSpeed => baseSpeed;*/
     
     //stat effective du pokemon après buff/debuff (capé)
     public int CurrentHp { get; private set; }
@@ -117,5 +114,10 @@ public class Pokemon : MonoBehaviour
             int actualPositiveBoost = Mathf.Max(4, _boostSpeed);
             CurrentSpeed = Mathf.FloorToInt(_boostSpeed * (1 + 0.5f * actualPositiveBoost));
         }
+    }
+
+    public void DealDamage(int damage)
+    {
+        CurrentHp = Mathf.Max(0, CurrentHp - (damage / CurrentDefense));
     }
 }
