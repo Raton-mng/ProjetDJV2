@@ -5,19 +5,19 @@ namespace Moves
 {
     public class HealMove : Move
     {
-        private List<TargetedHealNumber> _heals;
+        protected List<TargetedHealNumber> Heals;
 
         public HealMove(Pokemon assignedPokemon, Type type, List<TargetedHealNumber> heals)
         {
             AssignedPokemon = assignedPokemon;
             MoveType = type;
             
-            _heals = heals;
+            Heals = heals;
         }
         
         public override void DoSomething()
         {
-            foreach (TargetedHealNumber heal in _heals)
+            foreach (TargetedHealNumber heal in Heals)
             {
                 int healValue = GetHealValue(heal);
                 List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, heal.target);
@@ -28,7 +28,7 @@ namespace Moves
             }
         }
 
-        private int GetHealValue(HealNumber heal)
+        protected int GetHealValue(HealNumber heal)
         {
             return heal.fixedValue
                    + AssignedPokemon.CurrentHp * heal.hpPercentage / 100
@@ -38,6 +38,7 @@ namespace Moves
         }
     }
 
+    [CreateAssetMenu(fileName = "Heal", menuName = "Game/MoveDescription/Heal")]
     public class HealDescription : MoveDescription
     {
         public List<TargetedHealNumber> heals;
