@@ -12,5 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Election
   m_EditorClassIdentifier: Assembly-CSharp:Moves:BuffHealDescription
-  moveType: {fileID: 0}
-  buffsHeals: []
+  moveType: {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
+  buffsHeals:
+  - turnsBeforeStart: 0
+    duration: 5
+    attackBuff: 1
+    defenseBuff: 1
+    speedBuff: 1
+    turnsBeforeHealStart: 0
+    healDuration: 1
+    fixedValue: 0
+    hpPercentage: -25
+    attackPercentage: 0
+    defensePercentage: 0
+    speedPercentage: 0
+    target: 0

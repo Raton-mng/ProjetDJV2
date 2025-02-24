@@ -122,67 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &468014112
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 468014114}
-  - component: {fileID: 468014113}
-  m_Layer: 0
-  m_Name: PokeTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &468014113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468014112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d11960c31abca8544964defe45dc91b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nickname: Raton
-  baseHp: 100
-  baseAttack: 100
-  baseDefense: 100
-  baseSpeed: 100
-  types:
-  - {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
-  - {fileID: 11400000, guid: a2228d00f00135d4cbba2f344fef0662, type: 2}
-  dropQuantities: 0200000001000000
-  drops:
-  - {fileID: 11400000, guid: e941b78d9792d8743a83e7ae14e8cc2c, type: 2}
-  - {fileID: 11400000, guid: 25723f9b0110e0f44a560b7a04be2833, type: 2}
-  movesDescription:
-  - {fileID: 11400000, guid: 46e1f14236724b946a587a932c0a5ee2, type: 2}
-  - {fileID: 11400000, guid: 3a387715623239b409ffcc6e87898e19, type: 2}
-  - {fileID: 11400000, guid: c5db73c01f2620d439c5aafde062be6e, type: 2}
-  - {fileID: 11400000, guid: 5600b244918f51b4fa9a62f94fd31ac4, type: 2}
---- !u!4 &468014114
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468014112}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195764557
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,4 +314,3 @@ SceneRoots:
   m_Roots:
   - {fileID: 1195764560}
   - {fileID: 1825621944}
-  - {fileID: 468014114}

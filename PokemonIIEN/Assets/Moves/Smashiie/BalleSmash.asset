@@ -12,5 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: BalleSmash
   m_EditorClassIdentifier: Assembly-CSharp:Moves:BuffHealDescription
-  moveType: {fileID: 0}
-  buffsHeals: []
+  moveType: {fileID: 11400000, guid: 1817d13560dd7164ea8f705ad12db106, type: 2}
+  buffsHeals:
+  - turnsBeforeStart: 0
+    duration: 1
+    attackBuff: 4
+    defenseBuff: 0
+    speedBuff: 0
+    turnsBeforeHealStart: 0
+    healDuration: 1
+    fixedValue: 0
+    hpPercentage: -25
+    attackPercentage: 0
+    defensePercentage: 0
+    speedPercentage: 0
+    target: 0
