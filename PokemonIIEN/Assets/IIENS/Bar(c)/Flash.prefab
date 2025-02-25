@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3724867273205271263
+--- !u!1001 &6177571458650653346
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -50,60 +50,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3765483597078796321, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: m_Name
-      value: Fischer
+      value: Flash
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseHp
-      value: 120
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: nickname
-      value: Fischer
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
-      propertyPath: baseSpeed
-      value: 95
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
-      propertyPath: baseAttack
-      value: 60
+      value: Flash
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseDefense
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
-      propertyPath: types.Array.size
-      value: 2
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: types.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
-    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
-      propertyPath: types.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
+      objectReference: {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: movesDescription.Array.size
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: movesDescription.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 239bce951f828bd43979217735051f78, type: 2}
+      objectReference: {fileID: 11400000, guid: f6c17b063e3f8334d89d6a8d37fc1138, type: 2}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: movesDescription.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 7f31b5410ca598549848de3bdcf68123, type: 2}
-    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
-      propertyPath: movesDescription.Array.data[2]
-      value: 
-      objectReference: {fileID: 11400000, guid: e47cf9fe74d924e40a2fffa1917cafcf, type: 2}
-    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
-      propertyPath: movesDescription.Array.data[3]
-      value: 
-      objectReference: {fileID: 11400000, guid: 92b5a33d99dcdf5439cf01bc1407fe75, type: 2}
+      objectReference: {fileID: 11400000, guid: 4bd0fe6c174a5e34e9ef830e83090725, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
