@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a5072cc121eefdd4b8166394c0ac4c97, type: 3}
   m_Name: TournoiSerieux
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:AttackWithBuffsDescription
-  moveType: {fileID: 11400000, guid: 1817d13560dd7164ea8f705ad12db106, type: 2}
-  targets: 3
+  m_EditorClassIdentifier: 
+  moveType: {fileID: 0}
+  targets: 0
   power: 90
   buffsBeforeMove: []
   buffsAfterMove:

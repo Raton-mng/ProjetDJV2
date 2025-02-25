@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a5072cc121eefdd4b8166394c0ac4c97, type: 3}
   m_Name: CashPrize
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:AttackWithBuffsDescription
+  m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
   targets: 3
   power: 60
@@ -20,6 +20,6 @@ MonoBehaviour:
   - turnsBeforeStart: 0
     duration: 1
     attackBuff: 1
-    defenseBuff: 1
-    speedBuff: 0
+    defenseBuff: 0
+    speedBuff: 1
     target: 0

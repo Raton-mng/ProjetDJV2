@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: a5072cc121eefdd4b8166394c0ac4c97, type: 3}
   m_Name: ClePerdue
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:AttackWithBuffsDescription
-  moveType: {fileID: 0}
+  m_EditorClassIdentifier: 
+  moveType: {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
   targets: 2
-  power: 70
+  power: 75
   buffsBeforeMove: []
   buffsAfterMove:
   - turnsBeforeStart: 0
     duration: 1
-    attackBuff: -1
+    attackBuff: 0
     defenseBuff: 0
-    speedBuff: 0
+    speedBuff: -1
     target: 2

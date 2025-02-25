@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,17 +26,6 @@ namespace Moves
             MoveType = type;
             
             _buffs = buffs;
-        }
-    }
-
-    [CreateAssetMenu(fileName = "Buff", menuName = "Game/MoveDescription/Buff")]
-    public class BuffDescription : MoveDescription
-    {
-        public List<TargetedBuffNumber> buffs;
-        
-        public override Move CreateMove(Pokemon assignedPokemon)
-        {
-            return new BuffMove(assignedPokemon, moveType, buffs);
         }
     }
 }

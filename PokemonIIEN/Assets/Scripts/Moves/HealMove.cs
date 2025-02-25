@@ -37,15 +37,4 @@ namespace Moves
                    + AssignedPokemon.CurrentSpeed * heal.speedPercentage / 100;
         }
     }
-
-    [CreateAssetMenu(fileName = "Heal", menuName = "Game/MoveDescription/Heal")]
-    public class HealDescription : MoveDescription
-    {
-        public List<TargetedHealNumber> heals;
-        
-        public override Move CreateMove(Pokemon assignedPokemon)
-        {
-            return new HealMove(assignedPokemon, moveType, heals);
-        }
-    }
 }

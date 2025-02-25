@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 4d5641ed3fd57b9479ba0f784cac299b, type: 3}
   m_Name: BonnePioche
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:PriorityBuffDescription
+  m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: a2228d00f00135d4cbba2f344fef0662, type: 2}
-  priority: 3
+  priority: 2
   buffs:
   - turnsBeforeStart: 0
     duration: 1

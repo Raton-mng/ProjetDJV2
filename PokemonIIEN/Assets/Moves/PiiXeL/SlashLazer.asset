@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 781b85b6de347b74dab5c8d6933df855, type: 3}
   m_Name: SlashLazer
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:PriorityAttackDescription
+  m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
-  targets: 2
   priority: 1
   power: 40
+  targets: 2
