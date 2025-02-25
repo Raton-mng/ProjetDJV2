@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 58349153f5a0f4744be3486f1def475c, type: 3}
   m_Name: Election
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:BuffHealDescription
+  m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
   buffsHeals:
   - turnsBeforeStart: 0

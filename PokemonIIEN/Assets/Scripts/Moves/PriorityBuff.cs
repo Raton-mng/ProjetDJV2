@@ -17,15 +17,4 @@ namespace Moves
             _priority = priority;
         }
     }
-
-    [CreateAssetMenu(fileName = "PriorityBuff", menuName = "Game/MoveDescription/PriorityBuff")]
-    public class PriorityBuffDescription : PriorityMoveDescription
-    {
-        public List<TargetedBuffNumber> buffs;
-        
-        public override Move CreateMove(Pokemon assignedPokemon)
-        {
-            return new PriorityBuffMove(assignedPokemon, moveType, buffs, priority);
-        }
-    }
 }

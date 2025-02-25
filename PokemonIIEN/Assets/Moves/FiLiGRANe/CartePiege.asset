@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 781b85b6de347b74dab5c8d6933df855, type: 3}
   m_Name: CartePiege
-  m_EditorClassIdentifier: Assembly-CSharp:Moves:PriorityAttackDescription
+  m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: a2228d00f00135d4cbba2f344fef0662, type: 2}
-  priority: -1
+  priority: -2
   power: 100
   targets: 2

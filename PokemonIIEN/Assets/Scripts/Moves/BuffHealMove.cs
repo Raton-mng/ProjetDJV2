@@ -37,15 +37,4 @@ namespace Moves
                    + AssignedPokemon.CurrentSpeed * heal.speedPercentage / 100;
         }
     }
-
-    [CreateAssetMenu(fileName = "BuffHeal", menuName = "Game/MoveDescription/BuffHeal")]
-    public class BuffHealDescription : MoveDescription
-    {
-        public List<TargetedBuffHealNumber> buffsHeals;
-        
-        public override Move CreateMove(Pokemon assignedPokemon)
-        {
-            return new BuffHealMove(assignedPokemon, moveType, buffsHeals);
-        }
-    }
 }
