@@ -6,19 +6,22 @@ using UnityEngine;
 public class CombatSingleton : MonoBehaviour
 {
     [SerializeField] private CombatManager combatManager;
+    [SerializeField] private CombatUI combatUI;
 
     public static CombatManager CurrentCombat;
 
-    private void Awake()
+    /*private void Awake()
     {
-        CurrentCombat = Instantiate(combatManager);
-    }
+        //CurrentCombat = Instantiate(combatManager);
+    }*/
 
     //cette fonction est lancée quand on sait qu'il y a suffisament de pokemon pas ko
     public void NewCombat(List<Trainer> enemies, int pokemonsPerEnemy, List<Trainer> allies, int pokemonsPerAllies, Player player, int pokemonsForPlayer)
     {
-        Destroy(combatManager);
+        Destroy(CurrentCombat);
         CurrentCombat = Instantiate(combatManager);
+        CombatUI currentUI = Instantiate(combatUI);
+        CurrentCombat.ui = currentUI;
         
         //initiation des listes de pokemon du combat
         Dictionary<Pokemon, List<IPassiveMove>> pokemonOnField = new Dictionary<Pokemon, List<IPassiveMove>>();

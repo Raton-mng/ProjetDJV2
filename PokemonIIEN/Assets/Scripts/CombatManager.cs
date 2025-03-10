@@ -21,10 +21,13 @@ public class CombatManager : MonoBehaviour
     private List<Move> _movesThisTurn;
     
     //differentes sous-partie du plateau
-    public List<Pokemon> allies;
-    public List<Pokemon> ennemies;
-    public List<Pokemon> playerPokemons;
+    [HideInInspector] public List<Pokemon> allies;
+    [HideInInspector] public List<Pokemon> ennemies;
+    [HideInInspector] public List<Pokemon> playerPokemons;
 
+    [HideInInspector] public CombatUI ui;
+    private bool _isSelectingMove = false;
+    
     public void AddPassiveMove(Pokemon target, IPassiveMove buff)
     {
         if (PokemonOnField.TryGetValue(target, out List<IPassiveMove> currentList))
@@ -32,8 +35,10 @@ public class CombatManager : MonoBehaviour
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
 
-    public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
+    public IEnumerator<List<Pokemon>> GetTargets(Pokemon me, PossibleTargets possibleTargets)
     {
+        //a la base je voulais faire comme assertable avec AsyncOperationHandle mais j'y suis pas encore arriver attention (s'il faut remettre en fonction normale)
+        _isSelectingMove = true;
         List<Pokemon> list;
         switch (possibleTargets)
         {
@@ -53,7 +58,10 @@ public class CombatManager : MonoBehaviour
                 break;
             
             case PossibleTargets.SingleTarget :
-                throw new NotImplementedException();
+                list = new List<Pokemon>();
+                StartCoroutine(ui.SelectSinglePokemon());
+                while (!ui.hasSelected) yield return null;
+                list.Add(ui.currentSelectedPokemon);
                 break;
             
             case PossibleTargets.AllEnemies :
@@ -69,7 +77,8 @@ public class CombatManager : MonoBehaviour
                 list = new List<Pokemon>(PokemonOnField.Keys);
                 break;
         }
-        return list;
+        _isSelectingMove = false;
+        yield return list;
     } 
 
     private Move GetNextMoveToPlay()
@@ -136,9 +145,9 @@ public class CombatManager : MonoBehaviour
     {
         foreach (var pokemonsBuff in PokemonOnField)
         {
-            foreach (BuffPassive buff in pokemonsBuff.Value)
+            foreach (IPassiveMove pMove in pokemonsBuff.Value)
             {
-                buff.EndMove();
+                pMove.EndMove();
             }
         }
         //pas fini
