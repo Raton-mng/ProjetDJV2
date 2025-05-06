@@ -35,7 +35,7 @@ public class CombatManager : MonoBehaviour
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
 
-    public IEnumerator<List<Pokemon>> GetTargets(Pokemon me, PossibleTargets possibleTargets)
+    public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
     {
         //a la base je voulais faire comme assertable avec AsyncOperationHandle mais j'y suis pas encore arriver attention (s'il faut remettre en fonction normale)
         _isSelectingMove = true;
@@ -59,9 +59,10 @@ public class CombatManager : MonoBehaviour
             
             case PossibleTargets.SingleTarget :
                 list = new List<Pokemon>();
-                StartCoroutine(ui.SelectSinglePokemon());
+                /*StartCoroutine(ui.SelectSinglePokemon());
                 while (!ui.hasSelected) yield return null;
-                list.Add(ui.currentSelectedPokemon);
+                list.Add(ui.currentSelectedPokemon);*/
+                await ui.Test();
                 break;
             
             case PossibleTargets.AllEnemies :
@@ -78,7 +79,7 @@ public class CombatManager : MonoBehaviour
                 break;
         }
         _isSelectingMove = false;
-        yield return list;
+        return list;
     } 
 
     private Move GetNextMoveToPlay()
