@@ -16,7 +16,7 @@ public class CombatSingleton : MonoBehaviour
     }*/
 
     //cette fonction est lancée quand on sait qu'il y a suffisament de pokemon pas ko
-    public void NewCombat(List<Trainer> enemies, int pokemonsPerEnemy, List<Trainer> allies, int pokemonsPerAllies, Player player, int pokemonsForPlayer)
+    public void NewCombat(Trainer enemy, Player player)
     {
         Destroy(CurrentCombat);
         CurrentCombat = Instantiate(combatManager);
@@ -26,38 +26,13 @@ public class CombatSingleton : MonoBehaviour
         //initiation des listes de pokemon du combat
         Dictionary<Pokemon, List<IPassiveMove>> pokemonOnField = new Dictionary<Pokemon, List<IPassiveMove>>();
         
-        List<Pokemon> enemyPokemons = new List<Pokemon>();
-        for (int i = 0; i < pokemonsPerEnemy; i++)
-        {
-            foreach (Trainer trainer in enemies)
-            {
-                Pokemon pokemon = trainer.GetNiemeNonKoPokemon(i);
-                enemyPokemons.Add(pokemon);
-                pokemonOnField.Add(pokemon, new List<IPassiveMove>());
-            }
-        }
-        CurrentCombat.ennemies = enemyPokemons;
+        Pokemon enemyPokemon = enemy.GetNiemeNonKoPokemon(0);
+        pokemonOnField.Add(enemyPokemon, new List<IPassiveMove>());
+        CurrentCombat.enemyPokemon = enemyPokemon;
         
-        List<Pokemon> allyPokemons = new List<Pokemon>();
-        for (int i = 0; i < pokemonsPerAllies; i++)
-        {
-            foreach (Trainer trainer in allies)
-            {
-                Pokemon pokemon = trainer.GetNiemeNonKoPokemon(i);
-                allyPokemons.Add(pokemon);
-                pokemonOnField.Add(pokemon, new List<IPassiveMove>());
-            }
-        }
-        CurrentCombat.allies = allyPokemons;
-        
-        List<Pokemon> playerPokemon = new List<Pokemon>();
-        for (int i = 0; i < pokemonsForPlayer; i++)
-        {
-            Pokemon pokemon = player.GetNiemeNonKoPokemon(i);
-            allyPokemons.Add(pokemon);
-            pokemonOnField.Add(pokemon, new List<IPassiveMove>());
-        }
-        CurrentCombat.playerPokemons = playerPokemon;
+        Pokemon playerPokemon = player.GetNiemeNonKoPokemon(0);
+        pokemonOnField.Add(playerPokemon, new List<IPassiveMove>());
+        CurrentCombat.playerPokemon = playerPokemon;
 
         CurrentCombat.PokemonOnField = pokemonOnField;
     }

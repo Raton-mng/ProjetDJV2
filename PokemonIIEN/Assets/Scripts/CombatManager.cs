@@ -3,27 +3,16 @@ using System.Collections.Generic;
 using Moves;
 using UnityEngine;
 
-//chaque pokemon aura sera un de ces 4 types TODO : le rajouter dans la classe Pokemon
-//sert à l'identification sur le terrain et savoir qu'est ce qu'on peut faire avec chacun
-public enum StatusToPlayer
-{
-    Owned,
-    Ally,
-    Wild,
-    EnemyOwned
-}
-
 public class CombatManager : MonoBehaviour
 {
     public Dictionary<Pokemon, List<IPassiveMove>> PokemonOnField;
     
     //liste des pokemons qui doivent encore jouer
-    private List<Move> _movesThisTurn;
+    private List<Move> _movesThisTurn; //the move of the player this turn
     
     //differentes sous-partie du plateau
-    [HideInInspector] public List<Pokemon> allies;
-    [HideInInspector] public List<Pokemon> ennemies;
-    [HideInInspector] public List<Pokemon> playerPokemons;
+    [HideInInspector] public Pokemon playerPokemon;
+    [HideInInspector] public Pokemon enemyPokemon;
 
     [HideInInspector] public CombatUI ui;
     private bool _isSelectingMove = false;
@@ -36,6 +25,11 @@ public class CombatManager : MonoBehaviour
     }
 
     public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
+    {
+        throw new NotImplementedException();
+    }
+    
+    /*public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
     {
         //a la base je voulais faire comme assertable avec AsyncOperationHandle mais j'y suis pas encore arriver attention (s'il faut remettre en fonction normale)
         _isSelectingMove = true;
@@ -61,7 +55,7 @@ public class CombatManager : MonoBehaviour
                 list = new List<Pokemon>();
                 /*StartCoroutine(ui.SelectSinglePokemon());
                 while (!ui.hasSelected) yield return null;
-                list.Add(ui.currentSelectedPokemon);*/
+                list.Add(ui.currentSelectedPokemon);/
                 await ui.Test();
                 break;
             
@@ -80,7 +74,7 @@ public class CombatManager : MonoBehaviour
         }
         _isSelectingMove = false;
         return list;
-    } 
+    }*/
 
     private Move GetNextMoveToPlay()
     {
@@ -109,34 +103,12 @@ public class CombatManager : MonoBehaviour
 
     private void StartTurn()
     {
-        bool hasWon = true;
-        foreach (Pokemon enemy in ennemies)
-        {
-            if (enemy.CurrentHp != 0)
-            {
-                hasWon = false;
-                break;
-            }
-        }
-        if (hasWon)
-        {
+        if (enemyPokemon.CurrentHp <= 0)
             EndCombat(true);
-            return;
-        }
 
-        foreach (Pokemon ally in allies)
-        {
-            if (ally.CurrentHp != 0)
-            {
-                hasWon = true;
-                break;
-            }
-        }
-        if (!hasWon)
-        {
+
+        if (playerPokemon.CurrentHp <= 0)
             EndCombat(false);
-            return;
-        }
 
         _movesThisTurn = GetMovesOfThisTurn();
         //pas fini

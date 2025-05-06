@@ -20,8 +20,8 @@ public class CombatUI : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    public async Task<List<Pokemon>> Test()
+    /*public async Task<List<Pokemon>> Test()
     {
         //return Task.Run(SelectSinglePokemon);
-    }
+    }*/
 }

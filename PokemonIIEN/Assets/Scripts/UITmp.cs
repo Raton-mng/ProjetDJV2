@@ -6,14 +6,10 @@ public class UITmp : MonoBehaviour
 {
     [SerializeField] private CombatSingleton cs;
     [SerializeField] private Player player;
-    [SerializeField] private List<Trainer> enemyTrainers;
-    [SerializeField] private List<Trainer> allyTrainers;
-    [SerializeField] private int pokemonsPerEnemy;
-    [SerializeField] private int pokemonsPerAllies;
-    [SerializeField] private int pokemonsForPlayer;
+    [SerializeField] private Trainer enemyTrainer;
 
     public void StartCombat()
     {
-        cs.NewCombat(enemyTrainers, pokemonsPerEnemy, allyTrainers, pokemonsPerAllies, player, pokemonsForPlayer);
+        cs.NewCombat(enemyTrainer, player);
     }
 }
