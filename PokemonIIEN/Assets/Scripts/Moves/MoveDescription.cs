@@ -6,9 +6,7 @@ namespace Moves
     public enum PossibleTargets
     {
         Me,
-        AllAllies,
-        SingleTarget,
-        AllEnemies,
+        Enemy,
         All
     }
 

@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Moves;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CombatManager : MonoBehaviour
 {
@@ -26,13 +28,6 @@ public class CombatManager : MonoBehaviour
 
     public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
     {
-        throw new NotImplementedException();
-    }
-    
-    /*public List<Pokemon> GetTargets(Pokemon me, PossibleTargets possibleTargets)
-    {
-        //a la base je voulais faire comme assertable avec AsyncOperationHandle mais j'y suis pas encore arriver attention (s'il faut remettre en fonction normale)
-        _isSelectingMove = true;
         List<Pokemon> list;
         switch (possibleTargets)
         {
@@ -41,40 +36,17 @@ public class CombatManager : MonoBehaviour
                 list.Add(me);
                 break;
             
-            case PossibleTargets.AllAllies :
-                if (ennemies.Contains(me))
-                    list = new List<Pokemon>(ennemies);
-                else
-                {
-                    list = new List<Pokemon>(allies);
-                    list.AddRange(playerPokemons);
-                }
-                break;
-            
-            case PossibleTargets.SingleTarget :
+            case PossibleTargets.Enemy :
                 list = new List<Pokemon>();
-                /*StartCoroutine(ui.SelectSinglePokemon());
-                while (!ui.hasSelected) yield return null;
-                list.Add(ui.currentSelectedPokemon);/
-                await ui.Test();
-                break;
-            
-            case PossibleTargets.AllEnemies :
-                if (ennemies.Contains(me))
-                {
-                    list = new List<Pokemon>(allies);
-                    list.AddRange(playerPokemons);
-                }
-                else
-                    list = new List<Pokemon>(ennemies);
+                list.Add(enemyPokemon);
                 break;
             default:
                 list = new List<Pokemon>(PokemonOnField.Keys);
                 break;
         }
-        _isSelectingMove = false;
+
         return list;
-    }*/
+    }
 
     private Move GetNextMoveToPlay()
     {
@@ -101,7 +73,7 @@ public class CombatManager : MonoBehaviour
         return nextMove;
     }
 
-    private void StartTurn()
+    private IEnumerator StartTurn()
     {
         if (enemyPokemon.CurrentHp <= 0)
             EndCombat(true);
@@ -109,8 +81,9 @@ public class CombatManager : MonoBehaviour
 
         if (playerPokemon.CurrentHp <= 0)
             EndCombat(false);
-
+        
         _movesThisTurn = GetMovesOfThisTurn();
+        yield return new WaitUntil(() => !_isSelectingMove);
         //pas fini
     }
 
@@ -130,5 +103,72 @@ public class CombatManager : MonoBehaviour
     private List<Move> GetMovesOfThisTurn()
     {
         throw new NotImplementedException();
+        List<Move> movesThisTurn = new List<Move>();
+        //il faut que le joueur choisisse son option ici
+        
+        movesThisTurn.Add(GetEnemyMove());
+        return movesThisTurn;
+    }
+
+    private Move GetEnemyMove()
+    {
+        //description IA : 3 type de move :
+        //  - attaque
+        //  - buff
+        //  - heal
+        //Si l'ennemie a moins de 50% de sa vie, il va essayer de se heal s'il en a un.
+        //Sinon, il choisi aléatoirement entre se buffer et attaquer avec son attaque la plus forte face à l'ennemie
+        
+        List<Move> buffMoves = new List<Move>();
+        List<Move> healMoves = new List<Move>();
+        List<Attack> attacks = new List<Attack>();
+        foreach (Move enemyPokemonMove in enemyPokemon.Moves)
+        {
+            if (enemyPokemonMove is BuffMove) buffMoves.Add(enemyPokemonMove);
+            switch (enemyPokemonMove)
+            {
+                case HealMove _ :
+                    healMoves.Add(enemyPokemonMove);
+                    break;
+                case Attack attack :
+                    attacks.Add(attack);
+                    break;
+                default: // sinon c'est un buff (ou soin/self dégats + buff)
+                    buffMoves.Add(enemyPokemonMove);
+                    break;
+            }
+        }
+
+        if (healMoves.Count > 0 && enemyPokemon.CurrentHp <= enemyPokemon.BaseHp / 2)
+        {
+            return healMoves[Random.Range(0, healMoves.Count)];
+        }
+
+        if (attacks.Count > 0)
+        {
+            if (buffMoves.Count > 0)
+            {
+                Comparer<Attack> selectBestAttack = Comparer<Attack>.Create((x, y) => y.Damage(playerPokemon).CompareTo(x.Damage(playerPokemon))); //ordre décroissant de dégat
+                attacks.Sort(selectBestAttack);
+                
+                if (Random.Range(0, 2) == 0) //on choisit une attaque
+                    return attacks[0];
+                
+                //sinon on choisit un buff
+                return buffMoves[Random.Range(0, buffMoves.Count)];
+            }
+            
+            //si que attaque, alors on buff
+            return attacks[0];
+        }
+        
+        //sinon on a pas d'attaque (normalement on fera pas de pokemon comme ça)
+        if (buffMoves.Count > 0)
+            return buffMoves[Random.Range(0, buffMoves.Count)];
+
+        //sinon il n'a que des soins (encore moins probable)
+        return healMoves[Random.Range(0, healMoves.Count)];
+        
+        //et enfin si ça marche pas c'est que le pokemon n'a pas d'attaque et donc est bugué
     }
 }

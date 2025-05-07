@@ -26,7 +26,7 @@ namespace Moves
             }
         }
 
-        protected int Damage(Pokemon target)
+        public int Damage(Pokemon target)
         {
             int avantage = 0;
             foreach (Type targetType in target.Types)
