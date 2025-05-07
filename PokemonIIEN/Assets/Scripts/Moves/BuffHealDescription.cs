@@ -10,7 +10,7 @@ namespace Moves
         
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new BuffHealMove(assignedPokemon, moveType, buffsHeals);
+            return new BuffHealMove(assignedPokemon, moveType, buffsHeals, moveName);
         }
     }
 }

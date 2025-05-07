@@ -176,12 +176,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cs: {fileID: 1150756618}
   player: {fileID: 313928915}
-  enemyTrainers:
-  - {fileID: 1989834180}
-  allyTrainers: []
-  pokemonsPerEnemy: 1
-  pokemonsPerAllies: 0
-  pokemonsForPlayer: 1
+  enemyTrainer: {fileID: 1989834180}
 --- !u!114 &186494683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +303,7 @@ MonoBehaviour:
   party:
   - {fileID: 2922915828935186387, guid: d6a0ca8872ccb814b943511bb2388f7b, type: 3}
   - {fileID: 6550677185803805312, guid: 231ded615e10fe64ca1d6c67d02c3994, type: 3}
+  moveSpeed: 0
 --- !u!4 &313928916
 Transform:
   m_ObjectHideFlags: 0
@@ -959,6 +955,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CombatManagerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3452074237961947953, guid: e0172d0108d6cbd4798bd8ccc9413c90, type: 3}
+      propertyPath: canva
+      value: 
+      objectReference: {fileID: 376180800}
+    - target: {fileID: 3452074237961947953, guid: e0172d0108d6cbd4798bd8ccc9413c90, type: 3}
+      propertyPath: combatUI
+      value: 
+      objectReference: {fileID: 8981085581702145521, guid: 638fba8de01be204ca60af515495f1bb, type: 3}
     - target: {fileID: 5834325198191394561, guid: e0172d0108d6cbd4798bd8ccc9413c90, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -1,27 +1,49 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using Moves;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatUI : MonoBehaviour
 {
     //differentes sous-partie du plateau
-    [HideInInspector] public List<Pokemon> allies;
-    [HideInInspector] public List<Pokemon> ennemies;
-    [HideInInspector] public List<Pokemon> playerPokemons;
+    [HideInInspector] public Pokemon enemyPokemon;
+    [HideInInspector] public Pokemon playerPokemon;
+    [HideInInspector] public CombatManager combatManager;
 
-    public bool hasSelected;
-    public Pokemon currentSelectedPokemon;
-
-    public List<Pokemon> SelectSinglePokemon()
+    [SerializeField] public Button moveButton;
+    private List<GameObject> _buttons;
+    
+    public void Something()
     {
-        hasSelected = false;
-        throw new NotImplementedException();
+        _buttons = new List<GameObject>();
+        
+        foreach (Move move in playerPokemon.Moves)
+        {
+            Button button = Instantiate(moveButton, transform);
+            button.GetComponentInChildren<TextMeshProUGUI>().text = move.moveName;
+            button.onClick.AddListener(() => SelectMove(move));
+            _buttons.Add(button.gameObject);
+            button.gameObject.SetActive(false);
+        }
     }
 
-    /*public async Task<List<Pokemon>> Test()
+    public void ChooseMove()
     {
-        //return Task.Run(SelectSinglePokemon);
-    }*/
+        foreach (GameObject button in _buttons)
+        {
+            button.SetActive(true);
+        }
+    }
+
+    private void SelectMove(Move move)
+    {
+        combatManager.selectedMove = move;
+        foreach (GameObject button in _buttons)
+        {
+            button.SetActive(false);
+        }
+    }
 }

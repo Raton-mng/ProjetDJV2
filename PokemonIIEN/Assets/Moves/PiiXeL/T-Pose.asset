@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: T-Pose
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
-  targets: 3
+  moveName: T-Pose
+  targets: 1
   power: 85

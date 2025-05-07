@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Election
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
+  moveName: Election
   buffsHeals:
   - turnsBeforeStart: 0
     duration: 5

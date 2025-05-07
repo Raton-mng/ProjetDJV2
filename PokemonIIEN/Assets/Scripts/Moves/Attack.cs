@@ -9,8 +9,9 @@ namespace Moves
         protected int BasePower;
         protected PossibleTargets Targets;
         
-        public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon)
+        public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, string thisMoveName)
         {
+            moveName = thisMoveName;
             Targets = targets;
             MoveType = type;
             BasePower = power;

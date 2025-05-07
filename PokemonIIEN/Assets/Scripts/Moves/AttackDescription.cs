@@ -9,7 +9,7 @@ namespace Moves
         public int power;
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new Attack(targets, moveType, power, assignedPokemon);
+            return new Attack(targets, moveType, power, assignedPokemon, moveName);
         }
     }
 }

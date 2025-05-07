@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CashPrize
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
-  targets: 3
+  moveName: Cash Prize
+  targets: 1
   power: 60
   buffsBeforeMove: []
   buffsAfterMove:

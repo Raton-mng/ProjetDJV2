@@ -9,16 +9,20 @@ public class CombatManager : MonoBehaviour
 {
     public Dictionary<Pokemon, List<IPassiveMove>> PokemonOnField;
     
-    //liste des pokemons qui doivent encore jouer
-    private List<Move> _movesThisTurn; //the move of the player this turn
-    
     //differentes sous-partie du plateau
     [HideInInspector] public Pokemon playerPokemon;
     [HideInInspector] public Pokemon enemyPokemon;
 
     [HideInInspector] public CombatUI ui;
-    private bool _isSelectingMove = false;
-    
+    private List<Move> _movesThisTurn = new List<Move>();
+    public Move selectedMove;
+
+    private IEnumerator Start()
+    {
+        yield return new WaitForSeconds(1);
+        StartCoroutine(StartTurn());
+    }
+
     public void AddPassiveMove(Pokemon target, IPassiveMove buff)
     {
         if (PokemonOnField.TryGetValue(target, out List<IPassiveMove> currentList))
@@ -82,9 +86,17 @@ public class CombatManager : MonoBehaviour
         if (playerPokemon.CurrentHp <= 0)
             EndCombat(false);
         
-        _movesThisTurn = GetMovesOfThisTurn();
-        yield return new WaitUntil(() => !_isSelectingMove);
+        _movesThisTurn.Clear();
+        selectedMove = null;
+        //add enemy's move
+        _movesThisTurn.Add(GetEnemyMove());
+        //add player's move
+        ui.ChooseMove();
+        yield return new WaitUntil(() => selectedMove != null);
+        _movesThisTurn.Add(selectedMove);
+        
         //pas fini
+        throw new NotImplementedException();
     }
 
     private void EndCombat(bool hasWon)
@@ -98,16 +110,6 @@ public class CombatManager : MonoBehaviour
         }
         //pas fini
         throw new NotImplementedException();
-    }
-
-    private List<Move> GetMovesOfThisTurn()
-    {
-        throw new NotImplementedException();
-        List<Move> movesThisTurn = new List<Move>();
-        //il faut que le joueur choisisse son option ici
-        
-        movesThisTurn.Add(GetEnemyMove());
-        return movesThisTurn;
     }
 
     private Move GetEnemyMove()

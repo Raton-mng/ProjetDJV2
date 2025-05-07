@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Pinte
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
-  targets: 2
+  moveName: Pinte
+  targets: 1
   power: 60
   buffsBeforeMove:
   - turnsBeforeStart: 0
@@ -27,5 +28,5 @@ MonoBehaviour:
     attackBuff: 0
     defenseBuff: -1
     speedBuff: 0
-    target: 0
+    target: 1
   buffsAfterMove: []

@@ -20,12 +20,13 @@ namespace Moves
             }
         }
 
-        public BuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs)
+        public BuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs, string thisMoveName)
         {
             AssignedPokemon = assignedPokemon;
             MoveType = type;
             
             _buffs = buffs;
+            moveName = thisMoveName;
         }
     }
 }

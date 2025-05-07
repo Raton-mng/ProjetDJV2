@@ -10,7 +10,7 @@ namespace Moves
         private List<TargetedBuffNumber> _buffsAfterMove;
 
         public AttackWithBuffs(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon,
-            List<TargetedBuffNumber> buffsBeforeMove, List<TargetedBuffNumber> buffsAfterMove) : base(targets, type, power, assignedPokemon)
+            List<TargetedBuffNumber> buffsBeforeMove, List<TargetedBuffNumber> buffsAfterMove, string thisMoveName) : base(targets, type, power, assignedPokemon, thisMoveName)
         {
             _buffsBeforeMove = buffsBeforeMove;
             _buffsAfterMove = buffsAfterMove;

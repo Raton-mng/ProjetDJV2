@@ -13,6 +13,7 @@ namespace Moves
     public abstract class MoveDescription : ScriptableObject
     {
         public Type moveType;
+        public string moveName;
         public abstract Move CreateMove(Pokemon assignedPokemon);
     }
 }

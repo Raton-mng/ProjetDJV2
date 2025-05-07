@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: GameJam
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
+  moveName: Game Jam
   buffs:
   - turnsBeforeStart: 0
     duration: 2
     attackBuff: 2
     defenseBuff: 2
     speedBuff: 2
-    target: 1
+    target: 0
   - turnsBeforeStart: 2
     duration: 1
     attackBuff: -1
     defenseBuff: -1
     speedBuff: -1
-    target: 1
+    target: 0

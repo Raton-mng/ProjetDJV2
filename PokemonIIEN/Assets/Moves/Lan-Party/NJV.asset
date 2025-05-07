@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: NJV
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
+  moveName: NJV
   priority: -1
   buffs:
   - turnsBeforeStart: 0
@@ -20,7 +21,7 @@ MonoBehaviour:
     attackBuff: 1
     defenseBuff: 0
     speedBuff: 0
-    target: 4
+    target: 2
   - turnsBeforeStart: 0
     duration: 2
     attackBuff: 0

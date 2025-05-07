@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Restock
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
+  moveName: Restock
   buffs:
   - turnsBeforeStart: 0
     duration: 2
     attackBuff: 0
     defenseBuff: 1
     speedBuff: 1
-    target: 1
+    target: 0

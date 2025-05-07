@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TournoiFun
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 1817d13560dd7164ea8f705ad12db106, type: 2}
-  targets: 3
+  moveName: Tournoi Fun
+  targets: 1
   power: 50
   buffsBeforeMove: []
   buffsAfterMove:
@@ -22,4 +23,4 @@ MonoBehaviour:
     attackBuff: 1
     defenseBuff: 0
     speedBuff: 0
-    target: 1
+    target: 0

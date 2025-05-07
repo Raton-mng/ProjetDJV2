@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ChoCho
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
+  moveName: ChoCho
   buffsHeals:
   - turnsBeforeStart: 0
     duration: 1
@@ -26,7 +27,7 @@ MonoBehaviour:
     attackPercentage: 0
     defensePercentage: 0
     speedPercentage: 0
-    target: 2
+    target: 0
   - turnsBeforeStart: 0
     duration: 0
     attackBuff: 0
@@ -39,4 +40,4 @@ MonoBehaviour:
     attackPercentage: 100
     defensePercentage: 0
     speedPercentage: 0
-    target: 2
+    target: 0

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShutDown
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
-  targets: 3
+  moveName: Shut Down
+  targets: 1
   power: 100
   buffsBeforeMove: []
   buffsAfterMove:

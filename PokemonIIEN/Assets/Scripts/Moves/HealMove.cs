@@ -7,12 +7,14 @@ namespace Moves
     {
         protected List<TargetedHealNumber> Heals;
 
-        public HealMove(Pokemon assignedPokemon, Type type, List<TargetedHealNumber> heals)
+        public HealMove(Pokemon assignedPokemon, Type type, List<TargetedHealNumber> heals, string thisMoveName)
         {
             AssignedPokemon = assignedPokemon;
             MoveType = type;
             
             Heals = heals;
+
+            moveName = thisMoveName;
         }
         
         public override void DoSomething()

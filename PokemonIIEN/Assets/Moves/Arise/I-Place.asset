@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: I-Place
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
+  moveName: I-Place
   buffs:
   - turnsBeforeStart: 0
     duration: 2
     attackBuff: 1
     defenseBuff: 0
     speedBuff: 0
-    target: 4
+    target: 2
   - turnsBeforeStart: 0
     duration: 2
     attackBuff: 0

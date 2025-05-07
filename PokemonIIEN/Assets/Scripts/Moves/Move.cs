@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace Moves
 {
     public abstract class Move
-     {
+    {
+         public string moveName;
          public Pokemon AssignedPokemon;
          protected Type MoveType;
      

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 93ac29eb1b279c7438b66f4e54c7d304, type: 3}
-  m_Name: Barc
+  m_Name: Bar(C)
   m_EditorClassIdentifier: 
   strongAgainst:
   - {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}

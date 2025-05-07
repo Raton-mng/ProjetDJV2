@@ -11,5 +11,6 @@ public class UITmp : MonoBehaviour
     public void StartCombat()
     {
         cs.NewCombat(enemyTrainer, player);
+        gameObject.SetActive(false);
     }
 }
