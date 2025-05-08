@@ -38,10 +38,13 @@ public class CombatSingleton : MonoBehaviour
         CurrentCombat.playerPokemon = playerPokemon;
 
         CurrentCombat.PokemonOnField = pokemonOnField;
-
+        
         currentUI.playerPokemon = playerPokemon;
         currentUI.enemyPokemon = enemyPokemon;
         currentUI.combatManager = CurrentCombat;
         currentUI.Something();
+        
+
+        StartCoroutine(CurrentCombat.CombatLoop());
     }
 }

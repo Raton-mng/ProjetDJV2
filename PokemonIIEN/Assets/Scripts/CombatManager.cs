@@ -17,11 +17,7 @@ public class CombatManager : MonoBehaviour
     private List<Move> _movesThisTurn = new List<Move>();
     public Move selectedMove;
 
-    private IEnumerator Start()
-    {
-        yield return new WaitForSeconds(1);
-        StartCoroutine(StartTurn());
-    }
+    private bool _finishingCombat;
 
     public void AddPassiveMove(Pokemon target, IPassiveMove buff)
     {
@@ -42,7 +38,10 @@ public class CombatManager : MonoBehaviour
             
             case PossibleTargets.Enemy :
                 list = new List<Pokemon>();
-                list.Add(enemyPokemon);
+                if (me == playerPokemon)
+                    list.Add(enemyPokemon);
+                else
+                    list.Add(playerPokemon);
                 break;
             default:
                 list = new List<Pokemon>(PokemonOnField.Keys);
@@ -77,26 +76,39 @@ public class CombatManager : MonoBehaviour
         return nextMove;
     }
 
-    private IEnumerator StartTurn()
+    public IEnumerator CombatLoop()
     {
-        if (enemyPokemon.CurrentHp <= 0)
-            EndCombat(true);
+        while (enemyPokemon.CurrentHp > 0 && playerPokemon.CurrentHp > 0)
+        {
+            selectedMove = null;
+            //add enemy's move
+            _movesThisTurn.Add(GetEnemyMove());
+            //add player's move
+            ui.ChooseMove();
+            yield return new WaitUntil(() => selectedMove != null);
+            _movesThisTurn.Add(selectedMove);
 
+            foreach (Move move in _movesThisTurn)
+            {
+                print(move.moveName);
+            }
 
-        if (playerPokemon.CurrentHp <= 0)
-            EndCombat(false);
+            int j = _movesThisTurn.Count;
+            for (int i = 0; i < j; i++)
+            {
+                Move move = GetNextMoveToPlay();
+                if (move == null) continue;
+                move.DoSomething();
+                print(move.AssignedPokemon + " did : " + move.moveName);
+            }
+            
+            print("player Hp : " + playerPokemon.CurrentHp);
+            print("enemy Hp : " + enemyPokemon.CurrentHp);
+            //pas fini ?
+            //throw new NotImplementedException();
+        }
         
-        _movesThisTurn.Clear();
-        selectedMove = null;
-        //add enemy's move
-        _movesThisTurn.Add(GetEnemyMove());
-        //add player's move
-        ui.ChooseMove();
-        yield return new WaitUntil(() => selectedMove != null);
-        _movesThisTurn.Add(selectedMove);
-        
-        //pas fini
-        throw new NotImplementedException();
+        EndCombat(enemyPokemon.CurrentHp <= 0);
     }
 
     private void EndCombat(bool hasWon)
