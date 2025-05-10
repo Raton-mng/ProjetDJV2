@@ -41,7 +41,7 @@ public class Player : Trainer
     private void CheckTouchingGround()
     {
         _touchingGround = Physics.Raycast(transform.position, Vector3.down, 1.1f);
-        Debug.Log(_touchingGround);
+        //Debug.Log(_touchingGround);
     }
     
     public void Move(Vector2 direction, float speed)
