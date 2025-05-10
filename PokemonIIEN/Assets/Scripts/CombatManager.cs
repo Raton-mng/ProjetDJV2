@@ -18,7 +18,6 @@ public class CombatManager : MonoBehaviour
 
     private CombatUI _ui;
     private List<Move> _movesThisTurn;
-    public Move selectedMove;
 
     private bool _finishingCombat;
 
@@ -107,13 +106,13 @@ public class CombatManager : MonoBehaviour
         while (_enemyPokemon.CurrentHp > 0 && PlayerPokemon.CurrentHp > 0)
         {
             _movesThisTurn.Clear();
-            selectedMove = null;
             //add enemy's move
             _movesThisTurn.Add(GetEnemyMove());
             //add player's move
+            _ui.selectedMove = null;
             _ui.ChooseMove();
-            yield return new WaitUntil(() => selectedMove != null);
-            _movesThisTurn.Add(selectedMove);
+            yield return new WaitUntil(() => _ui.selectedMove != null);
+            _movesThisTurn.Add(_ui.selectedMove);
 
             int j = _movesThisTurn.Count;
             print(j);
@@ -147,20 +146,20 @@ public class CombatManager : MonoBehaviour
 
         if (_enemyPokemon.CurrentHp <= 0)
         {
-            Pokemon nextEnemy = _enemy.GetNiemeNonKoPokemon(0);
-            print(nextEnemy);
-            if (nextEnemy == null)
+            Pokemon nextEnemyPokemon = _enemy.GetNiemeNonKoPokemon(0);
+            print(nextEnemyPokemon);
+            if (nextEnemyPokemon == null)
             {
                 EndCombat(true);
             }
             else
             {
-                _pokemonOnField.Remove(_enemyPokemon); _pokemonOnField.Add(nextEnemy, new List<IPassiveMove>());
-                _enemyPokemon = nextEnemy;
-                StartCoroutine(CombatLoop());
+                _pokemonOnField.Remove(_enemyPokemon); _pokemonOnField.Add(nextEnemyPokemon, new List<IPassiveMove>());
+                _enemyPokemon = nextEnemyPokemon;
+                _ui.UpdateEnemyPokemon(nextEnemyPokemon);
             }
         }
-        else
+        if (PlayerPokemon.CurrentHp <= 0)
         {
             Pokemon nextPlayerPokemon = _player.GetNiemeNonKoPokemon(0);
             print(nextPlayerPokemon);
@@ -172,10 +171,11 @@ public class CombatManager : MonoBehaviour
             {
                 _pokemonOnField.Remove(PlayerPokemon); _pokemonOnField.Add(nextPlayerPokemon, new List<IPassiveMove>());
                 PlayerPokemon = nextPlayerPokemon;
-                _ui.UpdatePokemons();
-                StartCoroutine(CombatLoop());
+                _ui.UpdatePlayerPokemon(nextPlayerPokemon);
             }
         }
+        
+        if (PlayerPokemon != null && _enemyPokemon != null) StartCoroutine(CombatLoop());
     }
 
     private void EndCombat(bool hasWon)
@@ -220,7 +220,7 @@ public class CombatManager : MonoBehaviour
             }
         }
 
-        if (healMoves.Count > 0 && _enemyPokemon.CurrentHp <= _enemyPokemon.BaseHp / 2)
+        if (healMoves.Count > 0 && _enemyPokemon.HpPourcentage() <= 0.5f)
         {
             return healMoves[Random.Range(0, healMoves.Count)];
         }

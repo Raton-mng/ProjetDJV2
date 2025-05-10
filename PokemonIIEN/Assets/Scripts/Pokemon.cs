@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Items;
 using Moves;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Pokemon : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class Pokemon : MonoBehaviour
     [SerializeField] private int baseAttack;
     [SerializeField] private int baseDefense;
     [SerializeField] private int baseSpeed;
-    public int BaseHp => baseHp;
     
     //stat effective du pokemon après buff/debuff (capé)
     public int CurrentHp { get; private set; }
@@ -35,6 +35,8 @@ public class Pokemon : MonoBehaviour
 
     [SerializeField] private List<MoveDescription> movesDescription;
     public List<Move> Moves { get  ; private set; }
+
+    public UnityEvent<float> hpChanged = new UnityEvent<float>();
 
     private void Awake()
     {
@@ -62,7 +64,7 @@ public class Pokemon : MonoBehaviour
 
     public void HpChange(int value)
     {
-        CurrentHp = Mathf.Clamp(CurrentHp + value, 1, BaseHp);
+        CurrentHp = Mathf.Clamp(CurrentHp + value, 1, baseHp);
     }
 
     public void BoostAttack(int incrementValue)
@@ -123,5 +125,11 @@ public class Pokemon : MonoBehaviour
     {
         print((damage /  (2 * CurrentDefense)));
         CurrentHp = Mathf.Max(0,  Mathf.FloorToInt(CurrentHp - (damage /  (2 * CurrentDefense))));
+        hpChanged.Invoke(HpPourcentage());
+    }
+
+    public float HpPourcentage()
+    {
+        return CurrentHp / (float) baseHp;
     }
 }

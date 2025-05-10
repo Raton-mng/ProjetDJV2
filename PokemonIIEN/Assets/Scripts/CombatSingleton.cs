@@ -7,9 +7,6 @@ public class CombatSingleton : MonoBehaviour
 {
     [SerializeField] private CombatManager combatManager;
     [SerializeField] private CombatUI combatUI;
-    
-    //temp :
-    [SerializeField] private Transform canva;
 
     public static CombatManager CurrentCombat;
 
@@ -23,14 +20,9 @@ public class CombatSingleton : MonoBehaviour
     {
         Destroy(CurrentCombat);
         CurrentCombat = Instantiate(combatManager);
-        CombatUI currentUI = Instantiate(combatUI, canva);
+        CombatUI currentUI = Instantiate(combatUI);
         
-        Pokemon enemyPokemon = enemy.GetNiemeNonKoPokemon(0);
-        Pokemon playerPokemon = player.GetNiemeNonKoPokemon(0);
-        currentUI.playerPokemon = playerPokemon;
-        currentUI.enemyPokemon = enemyPokemon;
-        currentUI.combatManager = CurrentCombat;
-        currentUI.Initialize();
+        currentUI.Initialize(player.GetNiemeNonKoPokemon(0), enemy.GetNiemeNonKoPokemon(0));
         
         CurrentCombat.Initialize(player, enemy, currentUI);
         
