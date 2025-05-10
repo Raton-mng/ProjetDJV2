@@ -12,11 +12,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
   m_Name: Group D
   m_EditorClassIdentifier: 
-  m_GroupName: Packed Assets
+  m_GroupName: Group D
   m_Data:
     m_SerializedData: []
   m_GUID: 341e414ac47c84f0098bbef15c1ca668
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 2676fb95663e9a34391164055c59f488
+    m_Address: Assets/IIENS/PiiXeL
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 74d3048269a29364c9c92429a21eeb94
+    m_Address: Assets/Types/Bakaclub.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7bc1f621c6c56ab4da75e63f4788bb16
+    m_Address: Assets/IIENS/Bakaclub
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: acc23ef1891510741a4a3652ccd5c88e
+    m_Address: Assets/Types/PiiXeL.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 510db3f095faf4338ae82055e6a0c515, type: 2}
   m_SchemaSet:

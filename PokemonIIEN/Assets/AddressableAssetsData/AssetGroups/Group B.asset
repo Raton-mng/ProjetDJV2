@@ -16,7 +16,43 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: e942915c031304aa499bc6e22ed26e9f
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 1817d13560dd7164ea8f705ad12db106
+    m_Address: Assets/Types/SMASHiie.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1bfcd35d1b89a9248895e967e5ff92f3
+    m_Address: Assets/IIENS/Smashiie
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 58c06f5c4e3ce5648a9a961791eced27
+    m_Address: Assets/Types/SiieSTE.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4b0c4d7b68ad7049afcb02b213aca39
+    m_Address: Assets/IIENS/I-TV
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ab930e1313f64fb4a966030b5ad54316
+    m_Address: Assets/IIENS/Siieste
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b1e6d601515e8114aa4c5035f1fb0806
+    m_Address: Assets/Types/I-TV.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 510db3f095faf4338ae82055e6a0c515, type: 2}
   m_SchemaSet:

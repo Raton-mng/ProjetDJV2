@@ -16,7 +16,43 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 8f697b484063f41fdbd859b6d323608e
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 02fea25412ef55c4888ad9548ff1b0b4
+    m_Address: Assets/Types/LanPartiie.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40b537c0451799747aa781f612c9e2de
+    m_Address: Assets/Types/BDE.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 427b5961f88e8d541a3fbf92babfffc9
+    m_Address: Assets/IIENS/BDE
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a2228d00f00135d4cbba2f344fef0662
+    m_Address: Assets/Types/FiLiGRANe.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Type
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d19d7e04936bec64f94692ccf85cfe88
+    m_Address: Assets/IIENS/Fililgrane
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df88d83008ba42248b4a9a495a6079d8
+    m_Address: Assets/IIENS/Lan-party
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - IIEN
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 510db3f095faf4338ae82055e6a0c515, type: 2}
   m_SchemaSet:
