@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class Player : Trainer
 {
-    [SerializeField] float moveSpeed;
+    [SerializeField] private float moveSpeed;
     private InputAction _moveAction;
     private Rigidbody _rigidbody;
     private Camera _camera;
+    private bool _isMoving;
+    private bool _touchingGround;
 
     private void Start()
     {
@@ -15,11 +17,31 @@ public class Player : Trainer
         _camera = Camera.main;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        CheckTouchingGround();
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
         Move(moveValue, moveSpeed);
+        if (moveValue != Vector2.zero)
+        {
+            _isMoving = true;
+        }
+        else
+        {
+            if (_isMoving && _touchingGround)
+            {
+                _rigidbody.velocity = Vector3.zero;//attempt to avoid weird behaviors when stopping on slopes
+            }
+
+            _isMoving = false;
+        }
         //Debug.Log(moveValue);
+    }
+
+    private void CheckTouchingGround()
+    {
+        _touchingGround = Physics.Raycast(transform.position, Vector3.down, 1.1f);
+        Debug.Log(_touchingGround);
     }
     
     public void Move(Vector2 direction, float speed)
