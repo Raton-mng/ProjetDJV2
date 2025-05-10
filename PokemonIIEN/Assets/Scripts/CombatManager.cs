@@ -7,21 +7,47 @@ using Random = UnityEngine.Random;
 
 public class CombatManager : MonoBehaviour
 {
-    public Dictionary<Pokemon, List<IPassiveMove>> PokemonOnField;
+    private Dictionary<Pokemon, List<IPassiveMove>> _pokemonOnField;
     
     //differentes sous-partie du plateau
-    [HideInInspector] public Pokemon playerPokemon;
-    [HideInInspector] public Pokemon enemyPokemon;
+    private Player _player;
+    private Trainer _enemy;
+    
+    public Pokemon PlayerPokemon { get; private set; }
+    private Pokemon _enemyPokemon;
 
-    [HideInInspector] public CombatUI ui;
-    private List<Move> _movesThisTurn = new List<Move>();
+    private CombatUI _ui;
+    private List<Move> _movesThisTurn;
     public Move selectedMove;
 
     private bool _finishingCombat;
 
+    public void Initialize(Player player, Trainer enemyTrainer, CombatUI combatUI)
+    {
+        _player = player;
+        _enemy = enemyTrainer;
+        
+        PlayerPokemon = _player.GetNiemeNonKoPokemon(0);
+        _enemyPokemon = _enemy.GetNiemeNonKoPokemon(0);
+        _ui = combatUI;
+
+        //initiation des listes de pokemon du combat
+        _pokemonOnField = new Dictionary<Pokemon, List<IPassiveMove>>();
+        _pokemonOnField.Add(PlayerPokemon, new List<IPassiveMove>());
+        _pokemonOnField.Add(_enemyPokemon, new List<IPassiveMove>());
+        
+        if (PlayerPokemon == null || _enemyPokemon == null)
+        {
+            print("ERROR IN STARTING COMBAT : no pokemon available");
+            throw new ArgumentNullException();
+        }
+        
+        _movesThisTurn = new List<Move>();
+    }
+
     public void AddPassiveMove(Pokemon target, IPassiveMove buff)
     {
-        if (PokemonOnField.TryGetValue(target, out List<IPassiveMove> currentList))
+        if (_pokemonOnField.TryGetValue(target, out List<IPassiveMove> currentList))
             currentList.Add(buff);
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
@@ -38,13 +64,13 @@ public class CombatManager : MonoBehaviour
             
             case PossibleTargets.Enemy :
                 list = new List<Pokemon>();
-                if (me == playerPokemon)
-                    list.Add(enemyPokemon);
+                if (me == PlayerPokemon)
+                    list.Add(_enemyPokemon);
                 else
-                    list.Add(playerPokemon);
+                    list.Add(PlayerPokemon);
                 break;
             default:
-                list = new List<Pokemon>(PokemonOnField.Keys);
+                list = new List<Pokemon>(_pokemonOnField.Keys);
                 break;
         }
 
@@ -78,42 +104,83 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator CombatLoop()
     {
-        while (enemyPokemon.CurrentHp > 0 && playerPokemon.CurrentHp > 0)
+        while (_enemyPokemon.CurrentHp > 0 && PlayerPokemon.CurrentHp > 0)
         {
+            _movesThisTurn.Clear();
             selectedMove = null;
             //add enemy's move
             _movesThisTurn.Add(GetEnemyMove());
             //add player's move
-            ui.ChooseMove();
+            _ui.ChooseMove();
             yield return new WaitUntil(() => selectedMove != null);
             _movesThisTurn.Add(selectedMove);
 
-            foreach (Move move in _movesThisTurn)
-            {
-                print(move.moveName);
-            }
-
             int j = _movesThisTurn.Count;
+            print(j);
             for (int i = 0; i < j; i++)
             {
                 Move move = GetNextMoveToPlay();
+                print(move);
                 if (move == null) continue;
                 move.DoSomething();
-                print(move.AssignedPokemon + " did : " + move.moveName);
             }
-            
-            print("player Hp : " + playerPokemon.CurrentHp);
-            print("enemy Hp : " + enemyPokemon.CurrentHp);
+
+            foreach (var pokemonPassifs in _pokemonOnField)
+            {
+                List<IPassiveMove> toRemove = new List<IPassiveMove>();
+                foreach (IPassiveMove passif in pokemonPassifs.Value)
+                {
+                    if (passif.DecrementDurations())
+                    {
+                        toRemove.Add(passif);
+                    }
+                }
+
+                foreach (IPassiveMove passif in toRemove)
+                {
+                    pokemonPassifs.Value.Remove(passif);
+                }
+            }
             //pas fini ?
             //throw new NotImplementedException();
         }
-        
-        EndCombat(enemyPokemon.CurrentHp <= 0);
+
+        if (_enemyPokemon.CurrentHp <= 0)
+        {
+            Pokemon nextEnemy = _enemy.GetNiemeNonKoPokemon(0);
+            print(nextEnemy);
+            if (nextEnemy == null)
+            {
+                EndCombat(true);
+            }
+            else
+            {
+                _pokemonOnField.Remove(_enemyPokemon); _pokemonOnField.Add(nextEnemy, new List<IPassiveMove>());
+                _enemyPokemon = nextEnemy;
+                StartCoroutine(CombatLoop());
+            }
+        }
+        else
+        {
+            Pokemon nextPlayerPokemon = _player.GetNiemeNonKoPokemon(0);
+            print(nextPlayerPokemon);
+            if (nextPlayerPokemon == null)
+            {
+                EndCombat(false);
+            }
+            else
+            {
+                _pokemonOnField.Remove(PlayerPokemon); _pokemonOnField.Add(nextPlayerPokemon, new List<IPassiveMove>());
+                PlayerPokemon = nextPlayerPokemon;
+                _ui.UpdatePokemons();
+                StartCoroutine(CombatLoop());
+            }
+        }
     }
 
     private void EndCombat(bool hasWon)
     {
-        foreach (var pokemonsBuff in PokemonOnField)
+        foreach (var pokemonsBuff in _pokemonOnField)
         {
             foreach (IPassiveMove pMove in pokemonsBuff.Value)
             {
@@ -136,7 +203,7 @@ public class CombatManager : MonoBehaviour
         List<Move> buffMoves = new List<Move>();
         List<Move> healMoves = new List<Move>();
         List<Attack> attacks = new List<Attack>();
-        foreach (Move enemyPokemonMove in enemyPokemon.Moves)
+        foreach (Move enemyPokemonMove in _enemyPokemon.Moves)
         {
             if (enemyPokemonMove is BuffMove) buffMoves.Add(enemyPokemonMove);
             switch (enemyPokemonMove)
@@ -153,18 +220,17 @@ public class CombatManager : MonoBehaviour
             }
         }
 
-        if (healMoves.Count > 0 && enemyPokemon.CurrentHp <= enemyPokemon.BaseHp / 2)
+        if (healMoves.Count > 0 && _enemyPokemon.CurrentHp <= _enemyPokemon.BaseHp / 2)
         {
             return healMoves[Random.Range(0, healMoves.Count)];
         }
 
         if (attacks.Count > 0)
         {
+            Comparer<Attack> selectBestAttack = Comparer<Attack>.Create((x, y) => y.Damage(PlayerPokemon).CompareTo(x.Damage(PlayerPokemon))); //ordre décroissant de dégat
+            attacks.Sort(selectBestAttack);
             if (buffMoves.Count > 0)
             {
-                Comparer<Attack> selectBestAttack = Comparer<Attack>.Create((x, y) => y.Damage(playerPokemon).CompareTo(x.Damage(playerPokemon))); //ordre décroissant de dégat
-                attacks.Sort(selectBestAttack);
-                
                 if (Random.Range(0, 2) == 0) //on choisit une attaque
                     return attacks[0];
                 

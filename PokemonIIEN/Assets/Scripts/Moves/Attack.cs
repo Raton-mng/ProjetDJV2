@@ -27,13 +27,13 @@ namespace Moves
             }
         }
 
-        public int Damage(Pokemon target)
+        public float Damage(Pokemon target)
         {
-            int avantage = 0;
+            float avantage = 1;
             foreach (Type targetType in target.Types)
             {
-                if (MoveType.strongAgainst.Contains(targetType)) avantage++;
-                else if (MoveType.weakAgainst.Contains(targetType)) avantage--;
+                if (MoveType.strongAgainst.Contains(targetType)) avantage *= 2;
+                else if (MoveType.weakAgainst.Contains(targetType)) avantage /= 2;
             }
             
             return BasePower * AssignedPokemon.CurrentAttack * avantage;

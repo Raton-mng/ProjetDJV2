@@ -62,7 +62,7 @@ public class Pokemon : MonoBehaviour
 
     public void HpChange(int value)
     {
-        throw new NotImplementedException();
+        CurrentHp = Mathf.Clamp(CurrentHp + value, 1, BaseHp);
     }
 
     public void BoostAttack(int incrementValue)
@@ -77,9 +77,10 @@ public class Pokemon : MonoBehaviour
         }
         else
         {
-            int actualPositiveBoost = Mathf.Max(4, _boostAttack);
+            int actualPositiveBoost = Mathf.Min(4, _boostAttack);
             CurrentAttack = Mathf.FloorToInt(baseAttack * (1 + 0.5f * actualPositiveBoost));
         }
+        print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostAttack : " + _boostAttack);
     }
     
     public void BoostDefense(int incrementValue)
@@ -90,13 +91,14 @@ public class Pokemon : MonoBehaviour
         if (_boostDefense < 0)
         {
             int actualNegativeBoost = Mathf.Min(4, -_boostDefense);
-            CurrentDefense = Mathf.FloorToInt(_boostDefense / (1 + 0.5f * actualNegativeBoost));
+            CurrentDefense = Mathf.FloorToInt(baseDefense / (1 + 0.5f * actualNegativeBoost));
         }
         else
         {
-            int actualPositiveBoost = Mathf.Max(4, _boostDefense);
-            CurrentDefense = Mathf.FloorToInt(_boostDefense * (1 + 0.5f * actualPositiveBoost));
+            int actualPositiveBoost = Mathf.Min(4, _boostDefense);
+            CurrentDefense = Mathf.FloorToInt(baseDefense * (1 + 0.5f * actualPositiveBoost));
         }
+        print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostDefense : " + _boostDefense);
     }
     
     public void BoostSpeed(int incrementValue)
@@ -107,17 +109,19 @@ public class Pokemon : MonoBehaviour
         if (_boostSpeed < 0)
         {
             int actualNegativeBoost = Mathf.Min(4, -_boostSpeed);
-            CurrentSpeed = Mathf.FloorToInt(_boostSpeed / (1 + 0.5f * actualNegativeBoost));
+            CurrentSpeed = Mathf.FloorToInt(baseSpeed / (1 + 0.5f * actualNegativeBoost));
         }
         else
         {
-            int actualPositiveBoost = Mathf.Max(4, _boostSpeed);
-            CurrentSpeed = Mathf.FloorToInt(_boostSpeed * (1 + 0.5f * actualPositiveBoost));
+            int actualPositiveBoost = Mathf.Min(4, _boostSpeed);
+            CurrentSpeed = Mathf.FloorToInt(baseSpeed * (1 + 0.5f * actualPositiveBoost));
         }
+        print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostSpeed : " + _boostSpeed);
     }
 
-    public void DealDamage(int damage)
+    public void DealDamage(float damage)
     {
-        CurrentHp = Mathf.Max(0, CurrentHp - (damage /  (2 * CurrentDefense)));
+        print((damage /  (2 * CurrentDefense)));
+        CurrentHp = Mathf.Max(0,  Mathf.FloorToInt(CurrentHp - (damage /  (2 * CurrentDefense))));
     }
 }

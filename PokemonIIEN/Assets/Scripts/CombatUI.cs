@@ -15,8 +15,20 @@ public class CombatUI : MonoBehaviour
 
     [SerializeField] public Button moveButton;
     private List<GameObject> _buttons;
+
+    public void UpdatePokemons()
+    {
+        foreach (GameObject button in _buttons)
+        {
+            Destroy(button);
+        }
+
+        playerPokemon = combatManager.PlayerPokemon;
+        
+        Initialize();
+    }
     
-    public void Something()
+    public void Initialize()
     {
         _buttons = new List<GameObject>();
         
