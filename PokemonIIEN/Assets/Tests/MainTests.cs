@@ -1,25 +1,46 @@
 using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using UnityEngine.TestTools.Utils;
 
 public class MainTests
 {
-    // A Test behaves as an ordinary method
-    [Test]
-    public void MainTestsSimplePasses()
-    {
-        // Use the Assert class to test conditions
-    }
+    private Player _character;
+    private Player _characterPrefab;
 
-    // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-    // `yield return null;` to skip a frame.
-    [UnityTest]
-    public IEnumerator MainTestsWithEnumeratorPasses()
+    [UnitySetUp]
+    public IEnumerator SetUp()
     {
-        // Use the Assert class to test conditions.
-        // Use yield to skip a frame.
+        SceneManager.LoadScene("Tests/Scenes/VseauTest");
+
         yield return null;
+
+        if (!_characterPrefab)
+        {
+            var loadHandle = Addressables.LoadAssetAsync<GameObject>("Assets/Player/Player.prefab");
+            yield return loadHandle;
+            _characterPrefab = loadHandle.Result.GetComponent<Player>();
+        }
+
+        _character = GameObject.Instantiate(_characterPrefab);
+    }
+    
+    [UnityTest]
+    public IEnumerator CharacterControllerMove()
+    {
+        var speed = 17f;
+        float timer = 0;
+        
+        while (timer < 1)
+        {
+            _character.Move(Vector2.up, speed);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        Assert.That(_character.transform.position, Is.EqualTo(Vector3.forward * speed).Using(new Vector3EqualityComparer(0.5f)));
     }
 }
