@@ -53,6 +53,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - IIEN
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2c496f3726334540b757186e517eb1b
+    m_Address: Assets/Buildings/PokemonCenter.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df88d83008ba42248b4a9a495a6079d8
     m_Address: Assets/IIENS/Lan-party
     m_ReadOnly: 0

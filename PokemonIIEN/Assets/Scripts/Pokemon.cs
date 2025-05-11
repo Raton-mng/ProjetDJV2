@@ -58,6 +58,11 @@ public class Pokemon : MonoBehaviour
         hpChanged.Invoke(HpPourcentage());
     }
 
+    public void HealToMax()
+    {
+        HpChange(baseHp);
+    }
+
     public void BoostAttack(int incrementValue)
     {
         if (incrementValue == 0) return;

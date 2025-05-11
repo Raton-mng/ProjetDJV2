@@ -36,4 +36,12 @@ public class Trainer : Enemy
         print("no non-KO remaining Pokemon, what to do ?");
         return null;
     }
+
+    public void HealAllPokemons()
+    {
+        foreach (var pokemon in party)
+        {
+            pokemon.HealToMax();
+        }
+    }
 }

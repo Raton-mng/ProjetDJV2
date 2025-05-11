@@ -11,13 +11,22 @@ public class Player : Trainer
     private Camera _camera;
     private bool _isMoving;
     private bool _touchingGround;
-    private bool _inTest;
+    public bool inTest;
+    public Transform respawnPoint;
 
     private void Start()
     {
+        respawnPoint = transform;// purely to avoid null reference exception
+        Cursor.visible = false;
         _moveAction = InputSystem.actions.FindAction("Move");
         _rigidbody = GetComponent<Rigidbody>();
         _camera = Camera.main;
+    }
+    
+    public void Respawn()
+    {
+        transform.position = respawnPoint.position;
+        _rigidbody.velocity = Vector3.zero;
     }
 
     public void AddNewPokemon(Pokemon pokemon)
@@ -54,7 +63,7 @@ public class Player : Trainer
     {
         CheckTouchingGround();
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-        if(!_inTest) Move(moveValue, moveSpeed);
+        if(!inTest) Move(moveValue, moveSpeed);
         if (moveValue != Vector2.zero)
         {
             _isMoving = true;
@@ -77,9 +86,8 @@ public class Player : Trainer
         //Debug.Log(_touchingGround);
     }
     
-    public void Move(Vector2 direction, float speed, bool isTest = false)
+    public void Move(Vector2 direction, float speed)
     {
-        if(isTest) _inTest = true;
         var rotation = transform.rotation;
         var angles = rotation.eulerAngles;
         angles.y = _camera.transform.rotation.eulerAngles.y;

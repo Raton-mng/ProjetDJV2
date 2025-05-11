@@ -26,6 +26,7 @@ public class MainTests
         }
 
         _character = GameObject.Instantiate(_characterPrefab);
+        _character.inTest = true;
     }
     
     [UnityTest]
@@ -35,7 +36,7 @@ public class MainTests
 
         while (timer < 1f)
         {
-            _character.Move(Vector2.up, 20, true);
+            _character.Move(Vector2.up, 20);
             timer += Time.deltaTime;
             yield return null;
         }
