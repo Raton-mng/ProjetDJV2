@@ -20,7 +20,7 @@ namespace Moves
 
         public override void DoSomething()
         {
-            List<Pokemon> attackTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, Targets);
+            List<Pokemon> attackTargets = CombatSingleton.Instance.currentCombat.GetTargets(AssignedPokemon, Targets);
             foreach (Pokemon target in attackTargets)
             {
                 target.DealDamage(Damage(target));

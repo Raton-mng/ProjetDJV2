@@ -19,13 +19,14 @@ namespace Moves
         
         public override void DoSomething()
         {
+            CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
             foreach (TargetedHealNumber heal in Heals)
             {
                 int healValue = GetHealValue(heal);
-                List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, heal.target);
+                List<Pokemon> buffTargets = currentCombat.GetTargets(AssignedPokemon, heal.target);
                 foreach (Pokemon target in buffTargets)
                 { 
-                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new HealPassive(healValue, heal.turnsBeforeStart, heal.duration, target));
+                    currentCombat.AddPassiveMove(target, new HealPassive(healValue, heal.turnsBeforeStart, heal.duration, target));
                 }
             }
         }

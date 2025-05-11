@@ -10,10 +10,10 @@ public class CombatManager : MonoBehaviour
     private Dictionary<Pokemon, List<IPassiveMove>> _pokemonOnField;
     
     //differentes sous-partie du plateau
-    private Player _player;
-    private Trainer _enemy;
-    
-    public Pokemon PlayerPokemon { get; private set; }
+    public Player Player { get; private set; }
+    private Enemy _enemy;
+
+    private Pokemon _playerPokemon;
     private Pokemon _enemyPokemon;
 
     private CombatUI _ui;
@@ -21,21 +21,21 @@ public class CombatManager : MonoBehaviour
 
     private bool _finishingCombat;
 
-    public void Initialize(Player player, Trainer enemyTrainer, CombatUI combatUI)
+    public void Initialize(Player player, Enemy enemyTrainer, CombatUI combatUI)
     {
-        _player = player;
+        Player = player;
         _enemy = enemyTrainer;
         
-        PlayerPokemon = _player.GetNiemeNonKoPokemon(0);
-        _enemyPokemon = _enemy.GetNiemeNonKoPokemon(0);
+        _playerPokemon = Player.GetNonKoPokemon();
+        _enemyPokemon = _enemy.GetNonKoPokemon();
         _ui = combatUI;
 
         //initiation des listes de pokemon du combat
         _pokemonOnField = new Dictionary<Pokemon, List<IPassiveMove>>();
-        _pokemonOnField.Add(PlayerPokemon, new List<IPassiveMove>());
+        _pokemonOnField.Add(_playerPokemon, new List<IPassiveMove>());
         _pokemonOnField.Add(_enemyPokemon, new List<IPassiveMove>());
         
-        if (PlayerPokemon == null || _enemyPokemon == null)
+        if (_playerPokemon == null || _enemyPokemon == null)
         {
             print("ERROR IN STARTING COMBAT : no pokemon available");
             throw new ArgumentNullException();
@@ -63,10 +63,10 @@ public class CombatManager : MonoBehaviour
             
             case PossibleTargets.Enemy :
                 list = new List<Pokemon>();
-                if (me == PlayerPokemon)
+                if (me == _playerPokemon)
                     list.Add(_enemyPokemon);
                 else
-                    list.Add(PlayerPokemon);
+                    list.Add(_playerPokemon);
                 break;
             default:
                 list = new List<Pokemon>(_pokemonOnField.Keys);
@@ -104,11 +104,8 @@ public class CombatManager : MonoBehaviour
     public IEnumerator CombatLoop()
     {
         //print("startLoop");
-        int jk = 0;
-        while (_enemyPokemon.CurrentHp > 0 && PlayerPokemon.CurrentHp > 0)
+        while (_enemyPokemon.CurrentHp > 0 && _playerPokemon.CurrentHp > 0)
         {
-            //print("siofhnjdSdfvdxkdfv dmfk,v    : " + jk);
-            jk++;
             _movesThisTurn.Clear();
             //add enemy's move
             _movesThisTurn.Add(GetEnemyMove());
@@ -150,48 +147,39 @@ public class CombatManager : MonoBehaviour
             //throw new NotImplementedException();
         }
 
-        bool continueLoop = true;
         if (_enemyPokemon.CurrentHp <= 0)
         {
-            Pokemon nextEnemyPokemon = _enemy.GetNiemeNonKoPokemon(0);
+            Pokemon nextEnemyPokemon = _enemy.GetNonKoPokemon();
             //print(nextEnemyPokemon);
-            if (nextEnemyPokemon == null)
-            {
-                EndCombat(true);
-                continueLoop = false;
-            }
-            else
-            {
+            if (nextEnemyPokemon != null) {
                 _pokemonOnField.Remove(_enemyPokemon); _pokemonOnField.Add(nextEnemyPokemon, new List<IPassiveMove>());
-                _enemyPokemon = nextEnemyPokemon;
                 _ui.UpdateEnemyPokemon(nextEnemyPokemon);
             }
+            _enemyPokemon = nextEnemyPokemon;
         }
-        if (PlayerPokemon.CurrentHp <= 0)
+        if (_playerPokemon.CurrentHp <= 0)
         {
-            Pokemon nextPlayerPokemon = _player.GetNiemeNonKoPokemon(0);
+            Pokemon nextPlayerPokemon = Player.GetNonKoPokemon();
             //print(nextPlayerPokemon);
-            if (nextPlayerPokemon == null)
+            if (nextPlayerPokemon != null)
             {
-                EndCombat(false);
-                continueLoop = false;
-            }
-            else
-            {
-                _pokemonOnField.Remove(PlayerPokemon); _pokemonOnField.Add(nextPlayerPokemon, new List<IPassiveMove>());
-                PlayerPokemon = nextPlayerPokemon;
+                _pokemonOnField.Remove(_playerPokemon); _pokemonOnField.Add(nextPlayerPokemon, new List<IPassiveMove>());
                 _ui.UpdatePlayerPokemon(nextPlayerPokemon);
             }
+            _playerPokemon = nextPlayerPokemon;
         }
 
-        if (continueLoop)
+        if (_enemyPokemon != null && _playerPokemon != null)
         {
-            //print("dfhbvdkfjvnjslnvgbh");
             StartCoroutine(CombatLoop());
+        }
+        else
+        {
+            EndCombat();
         }
     }
 
-    private void EndCombat(bool hasWon)
+    private void EndCombat()
     {
         foreach (var pokemonsBuff in _pokemonOnField)
         {
@@ -200,11 +188,24 @@ public class CombatManager : MonoBehaviour
                 pMove.EndMove();
             }
         }
-        //pas fini
+
+        if (_enemyPokemon == null)
+        {
+            Player.AddItems(_enemy.Items);
+
+            _enemy.wasBeaten = true;
+        }
+
+        if (_playerPokemon == null)
+        {
+            //TODO Respawn Player
+        }
+            
+            
         Destroy(_ui.gameObject);
         Destroy(gameObject);
         Time.timeScale = 1;
-        print(hasWon);
+        //pas fini
     }
 
     private Move GetEnemyMove()
@@ -243,7 +244,7 @@ public class CombatManager : MonoBehaviour
 
         if (attacks.Count > 0)
         {
-            Comparer<Attack> selectBestAttack = Comparer<Attack>.Create((x, y) => y.Damage(PlayerPokemon).CompareTo(x.Damage(PlayerPokemon))); //ordre décroissant de dégat
+            Comparer<Attack> selectBestAttack = Comparer<Attack>.Create((x, y) => y.Damage(_playerPokemon).CompareTo(x.Damage(_playerPokemon))); //ordre décroissant de dégat
             attacks.Sort(selectBestAttack);
             if (buffMoves.Count > 0)
             {

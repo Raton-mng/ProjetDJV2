@@ -4,5 +4,5 @@ using UnityEngine;
 namespace Items
 {
     [Serializable]
-    public abstract class Item : ScriptableObject{}
+    public abstract class PokeItem : ScriptableObject{}
 }

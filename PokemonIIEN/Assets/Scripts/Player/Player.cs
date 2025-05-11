@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Items;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +20,36 @@ public class Player : Trainer
         _camera = Camera.main;
     }
 
+    public void AddNewPokemon(Pokemon pokemon)
+    {
+        if (instantiatedParty.Count >= 6)
+        {
+            print("Can't Add, PC not implemented yet");
+            return;
+        }
+        
+        instantiatedParty.Add(pokemon);
+    }
+
+    public void AddItems(Dictionary<PokeItem, int> rewards)
+    {
+        foreach (var item in rewards)
+        {
+            PokeItem itemType = item.Key;
+            int itemAmount = item.Value;
+            
+            if (Items.ContainsKey(itemType))
+                Items[itemType] += itemAmount;
+            else
+                Items.Add(itemType, itemAmount);
+        }
+
+        foreach (var item in Items)
+        {
+            print(item);
+        }
+    }
+    
     private void FixedUpdate()
     {
         CheckTouchingGround();

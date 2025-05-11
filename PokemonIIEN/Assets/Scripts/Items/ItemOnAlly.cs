@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Items
 {
-    public abstract class ItemOnAlly : Item
+    public abstract class ItemOnAlly : PokeItem
     {
-        public abstract void UseOnAlly(Pokemon allyPokemon);
+        public abstract bool UseOnAlly(Pokemon allyPokemon); //return value indicates whether or not you can use the item 
     }
 }

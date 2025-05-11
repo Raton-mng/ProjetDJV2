@@ -17,14 +17,15 @@ namespace Moves
         
         public override void DoSomething()
         {
+            CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
             foreach (TargetedBuffHealNumber buffHeal in _buffsHeals)
             {
                 int healValue = GetHealValue(buffHeal);
-                List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, buffHeal.target);
+                List<Pokemon> buffTargets = currentCombat.GetTargets(AssignedPokemon, buffHeal.target);
                 foreach (Pokemon target in buffTargets)
                 { 
-                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new BuffPassive(buffHeal, target));
-                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new HealPassive(healValue, buffHeal.turnsBeforeStart, buffHeal.healDuration, target));
+                    currentCombat.AddPassiveMove(target, new BuffPassive(buffHeal, target));
+                    currentCombat.AddPassiveMove(target, new HealPassive(healValue, buffHeal.turnsBeforeStart, buffHeal.healDuration, target));
                 }
             }
         }

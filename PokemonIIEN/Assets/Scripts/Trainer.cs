@@ -1,39 +1,39 @@
 using System;
 using System.Collections.Generic;
+using Items;
 using UnityEngine;
 
-public class Trainer : MonoBehaviour
+public class Trainer : Enemy
 {
-    public List<Pokemon> party;
-    private List<Pokemon> _instantiatedParty;
+    [SerializeField] private List<Pokemon> party;
+    protected List<Pokemon> instantiatedParty;
 
     private void Awake()
     {
-        _instantiatedParty = new List<Pokemon>();
+        base.Awake();
+        
+        instantiatedParty = new List<Pokemon>();
         
         foreach (Pokemon pokemon in party)
         {
             Pokemon instantiatedPokemon = Instantiate(pokemon);
             instantiatedPokemon.gameObject.SetActive(false);
-            _instantiatedParty.Add(instantiatedPokemon);
+            instantiatedParty.Add(instantiatedPokemon);
         }
     }
 
-    public Pokemon GetNiemeNonKoPokemon(int n)
+    public override Pokemon GetNonKoPokemon()
     {
-        int i = -1;
-        while (n >= 0)
+        int i = 0;
+        while (i < instantiatedParty.Count)
         {
+            Pokemon pokemon = instantiatedParty[i];
+            if (pokemon.CurrentHp != 0) return pokemon;
+
             i++;
-            if (i >= _instantiatedParty.Count)
-            {
-                print("no non-KO remaining Pokemon, what to do ?");
-                return null;
-            }
-            
-            if (_instantiatedParty[i].CurrentHp != 0) n -= 1;
         }
 
-        return _instantiatedParty[i];
+        print("no non-KO remaining Pokemon, what to do ?");
+        return null;
     }
 }

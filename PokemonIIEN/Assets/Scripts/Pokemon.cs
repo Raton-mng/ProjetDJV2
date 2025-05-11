@@ -29,10 +29,6 @@ public class Pokemon : MonoBehaviour
     [SerializeField] private List<Type> types;
     public List<Type> Types => types;
 
-    [SerializeField] private List<int> dropQuantities;
-    [SerializeField] private List<Item> drops;
-    public Dictionary<Item, int> Drops { get; private set; }
-
     [SerializeField] private List<MoveDescription> movesDescription;
     public List<Move> Moves { get  ; private set; }
 
@@ -48,12 +44,6 @@ public class Pokemon : MonoBehaviour
         _boostAttack = 0;
         _boostDefense = 0;
         _boostSpeed = 0;
-
-        Drops = new Dictionary<Item, int>();
-        for (int i = 0; i < drops.Count; i++)
-        {
-            Drops.Add(drops[i], dropQuantities[i]);
-        }
 
         Moves = new List<Move>();
         foreach (MoveDescription mvd in movesDescription)

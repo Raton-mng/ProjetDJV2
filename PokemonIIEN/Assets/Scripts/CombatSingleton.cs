@@ -10,7 +10,7 @@ public class CombatSingleton : MonoBehaviour
     [SerializeField] private CombatManager combatManager;
     [SerializeField] private CombatUI combatUI;
 
-    public static CombatManager CurrentCombat;
+    public CombatManager currentCombat;
 
     private void Awake()
     {
@@ -25,25 +25,23 @@ public class CombatSingleton : MonoBehaviour
     }
 
     //cette fonction est lancée quand on sait qu'il y a suffisament de pokemon pas ko
-    public void NewCombat(Trainer enemy, Player player)
+    public void NewCombat(Enemy enemy, Player player)
     {
-        Pokemon playerPoke = player.GetNiemeNonKoPokemon(0);
-        Pokemon enemyPoke = enemy.GetNiemeNonKoPokemon(0);
-        if (playerPoke == null || enemyPoke == null)
+        Pokemon playerPoke = player.GetNonKoPokemon();
+        Pokemon enemyPoke = enemy.GetNonKoPokemon();
+        if (playerPoke == null || enemy.wasBeaten)
         {
             print("Can't Start");
             return;
         }
         
         Time.timeScale = 0;
-        Destroy(CurrentCombat);
-        CurrentCombat = Instantiate(combatManager);
+        currentCombat = Instantiate(combatManager);
         CombatUI currentUI = Instantiate(combatUI);
         
         currentUI.Initialize(playerPoke, enemyPoke);
+        currentCombat.Initialize(player, enemy, currentUI);
         
-        CurrentCombat.Initialize(player, enemy, currentUI);
-        
-        StartCoroutine(CurrentCombat.CombatLoop());
+        StartCoroutine(currentCombat.CombatLoop());
     }
 }

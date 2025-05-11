@@ -10,12 +10,13 @@ namespace Moves
         
         public override void DoSomething()
         {
+            CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
             foreach (TargetedBuffNumber buff in _buffs)
             {
-                List<Pokemon> buffTargets = CombatSingleton.CurrentCombat.GetTargets(AssignedPokemon, buff.target);
+                List<Pokemon> buffTargets = currentCombat.GetTargets(AssignedPokemon, buff.target);
                 foreach (Pokemon target in buffTargets)
                 { 
-                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
+                    currentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
                 }
             }
         }

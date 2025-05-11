@@ -7,9 +7,10 @@ namespace Items
     {
         public int healValue;
 
-        public override void UseOnAlly(Pokemon allyPokemon)
+        public override bool UseOnAlly(Pokemon allyPokemon)
         {
             allyPokemon.HpChange(healValue);
+            return true;
         }
     }
 }
