@@ -12,7 +12,7 @@ public class MainTests
     private Player _characterPrefab;
 
     [UnitySetUp]
-    public IEnumerator SetUp()
+    public IEnumerator Setup()
     {
         SceneManager.LoadScene("Tests/Scenes/VseauTest");
 
@@ -31,16 +31,15 @@ public class MainTests
     [UnityTest]
     public IEnumerator CharacterControllerMove()
     {
-        var speed = 17f;
-        float timer = 0;
-        
-        while (timer < 1)
+        float timer = 0f;
+
+        while (timer < 1f)
         {
-            _character.Move(Vector2.up, speed);
+            _character.Move(Vector2.up, 20, true);
             timer += Time.deltaTime;
             yield return null;
         }
 
-        Assert.That(_character.transform.position, Is.EqualTo(Vector3.forward * speed).Using(new Vector3EqualityComparer(0.5f)));
+        Assert.That(_character.transform.position, Is.EqualTo(new Vector3(-57, 1, -10)).Using(new Vector3EqualityComparer(0.5f)));
     }
 }

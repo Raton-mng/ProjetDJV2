@@ -9,6 +9,7 @@ public class Player : Trainer
     private Camera _camera;
     private bool _isMoving;
     private bool _touchingGround;
+    private bool _inTest;
 
     private void Start()
     {
@@ -21,7 +22,7 @@ public class Player : Trainer
     {
         CheckTouchingGround();
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-        Move(moveValue, moveSpeed);
+        if(!_inTest) Move(moveValue, moveSpeed);
         if (moveValue != Vector2.zero)
         {
             _isMoving = true;
@@ -44,8 +45,9 @@ public class Player : Trainer
         //Debug.Log(_touchingGround);
     }
     
-    public void Move(Vector2 direction, float speed)
+    public void Move(Vector2 direction, float speed, bool isTest = false)
     {
+        if(isTest) _inTest = true;
         var rotation = transform.rotation;
         var angles = rotation.eulerAngles;
         angles.y = _camera.transform.rotation.eulerAngles.y;
