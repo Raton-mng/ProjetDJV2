@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Moves
 {
     public class HealPassive : IPassiveMove
@@ -19,7 +21,13 @@ namespace Moves
         
         private void ApplyHeal()
         {
+            if (_assignedPokemon.CurrentHp <= 0)
+            {
+                Debug.Log("nope");
+                return;
+            }
             _assignedPokemon.HpChange(_healValue);
+            Debug.Log("iiiiiiiiiiiiih");
         }
 
         public bool DecrementDurations()
@@ -33,6 +41,7 @@ namespace Moves
             if (_duration > 0)
             {
                 _duration -= 1;
+                Debug.Log(_duration);
                 ApplyHeal();
                 return false;
             }

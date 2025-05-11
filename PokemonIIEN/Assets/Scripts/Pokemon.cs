@@ -65,6 +65,7 @@ public class Pokemon : MonoBehaviour
     public void HpChange(int value)
     {
         CurrentHp = Mathf.Clamp(CurrentHp + value, 1, baseHp);
+        hpChanged.Invoke(HpPourcentage());
     }
 
     public void BoostAttack(int incrementValue)
@@ -100,7 +101,7 @@ public class Pokemon : MonoBehaviour
             int actualPositiveBoost = Mathf.Min(4, _boostDefense);
             CurrentDefense = Mathf.FloorToInt(baseDefense * (1 + 0.5f * actualPositiveBoost));
         }
-        print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostDefense : " + _boostDefense);
+        //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostDefense : " + _boostDefense);
     }
     
     public void BoostSpeed(int incrementValue)
@@ -118,12 +119,11 @@ public class Pokemon : MonoBehaviour
             int actualPositiveBoost = Mathf.Min(4, _boostSpeed);
             CurrentSpeed = Mathf.FloorToInt(baseSpeed * (1 + 0.5f * actualPositiveBoost));
         }
-        print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostSpeed : " + _boostSpeed);
+        //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostSpeed : " + _boostSpeed);
     }
 
     public void DealDamage(float damage)
     {
-        print((damage /  (2 * CurrentDefense)));
         CurrentHp = Mathf.Max(0,  Mathf.FloorToInt(CurrentHp - (damage /  (2 * CurrentDefense))));
         hpChanged.Invoke(HpPourcentage());
     }

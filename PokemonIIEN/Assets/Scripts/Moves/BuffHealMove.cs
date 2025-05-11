@@ -24,7 +24,7 @@ namespace Moves
                 foreach (Pokemon target in buffTargets)
                 { 
                     CombatSingleton.CurrentCombat.AddPassiveMove(target, new BuffPassive(buffHeal, target));
-                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new HealPassive(healValue, buffHeal.turnsBeforeStart, buffHeal.duration, target));
+                    CombatSingleton.CurrentCombat.AddPassiveMove(target, new HealPassive(healValue, buffHeal.turnsBeforeStart, buffHeal.healDuration, target));
                 }
             }
         }

@@ -143,6 +143,8 @@ public class CombatManager : MonoBehaviour
                 {
                     pokemonPassifs.Value.Remove(passif);
                 }
+                
+                //print(_enemyPokemon.CurrentHp);
             }
             //pas fini ?
             //throw new NotImplementedException();
@@ -202,6 +204,7 @@ public class CombatManager : MonoBehaviour
         Destroy(_ui.gameObject);
         Destroy(gameObject);
         Time.timeScale = 1;
+        print(hasWon);
     }
 
     private Move GetEnemyMove()
