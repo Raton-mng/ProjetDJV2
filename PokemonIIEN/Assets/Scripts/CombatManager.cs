@@ -103,8 +103,12 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator CombatLoop()
     {
+        //print("startLoop");
+        int jk = 0;
         while (_enemyPokemon.CurrentHp > 0 && PlayerPokemon.CurrentHp > 0)
         {
+            //print("siofhnjdSdfvdxkdfv dmfk,v    : " + jk);
+            jk++;
             _movesThisTurn.Clear();
             //add enemy's move
             _movesThisTurn.Add(GetEnemyMove());
@@ -115,11 +119,11 @@ public class CombatManager : MonoBehaviour
             _movesThisTurn.Add(_ui.selectedMove);
 
             int j = _movesThisTurn.Count;
-            print(j);
+            //print(j);
             for (int i = 0; i < j; i++)
             {
                 Move move = GetNextMoveToPlay();
-                print(move);
+                //print(move);
                 if (move == null) continue;
                 move.DoSomething();
             }
@@ -144,13 +148,15 @@ public class CombatManager : MonoBehaviour
             //throw new NotImplementedException();
         }
 
+        bool continueLoop = true;
         if (_enemyPokemon.CurrentHp <= 0)
         {
             Pokemon nextEnemyPokemon = _enemy.GetNiemeNonKoPokemon(0);
-            print(nextEnemyPokemon);
+            //print(nextEnemyPokemon);
             if (nextEnemyPokemon == null)
             {
                 EndCombat(true);
+                continueLoop = false;
             }
             else
             {
@@ -162,10 +168,11 @@ public class CombatManager : MonoBehaviour
         if (PlayerPokemon.CurrentHp <= 0)
         {
             Pokemon nextPlayerPokemon = _player.GetNiemeNonKoPokemon(0);
-            print(nextPlayerPokemon);
+            //print(nextPlayerPokemon);
             if (nextPlayerPokemon == null)
             {
                 EndCombat(false);
+                continueLoop = false;
             }
             else
             {
@@ -174,8 +181,12 @@ public class CombatManager : MonoBehaviour
                 _ui.UpdatePlayerPokemon(nextPlayerPokemon);
             }
         }
-        
-        if (PlayerPokemon != null && _enemyPokemon != null) StartCoroutine(CombatLoop());
+
+        if (continueLoop)
+        {
+            //print("dfhbvdkfjvnjslnvgbh");
+            StartCoroutine(CombatLoop());
+        }
     }
 
     private void EndCombat(bool hasWon)
@@ -188,7 +199,9 @@ public class CombatManager : MonoBehaviour
             }
         }
         //pas fini
-        throw new NotImplementedException();
+        Destroy(_ui.gameObject);
+        Destroy(gameObject);
+        Time.timeScale = 1;
     }
 
     private Move GetEnemyMove()

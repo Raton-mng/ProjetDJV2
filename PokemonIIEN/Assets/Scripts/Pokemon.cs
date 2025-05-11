@@ -82,7 +82,7 @@ public class Pokemon : MonoBehaviour
             int actualPositiveBoost = Mathf.Min(4, _boostAttack);
             CurrentAttack = Mathf.FloorToInt(baseAttack * (1 + 0.5f * actualPositiveBoost));
         }
-        print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostAttack : " + _boostAttack);
+        //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostAttack : " + _boostAttack);
     }
     
     public void BoostDefense(int incrementValue)
