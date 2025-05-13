@@ -135,7 +135,7 @@ Transform:
   m_GameObject: {fileID: 8652424040512174737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40.74587, y: 1.3726465, z: 3.3}
+  m_LocalPosition: {x: 0, y: 1.3726465, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -254,5 +254,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba961570e772af645b5e6cdbb81613c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  party: []
+  rewardsItems: []
+  rewardsAmount: 
+  wasBeaten: 0
+  party:
+  - {fileID: 614550011255509660, guid: cf2edacfdcefa634ab66c10d421cc041, type: 3}
+  - {fileID: 2922915828935186387, guid: d6a0ca8872ccb814b943511bb2388f7b, type: 3}
   moveSpeed: 17.52
+  inTest: 0
+  respawnPoint: {fileID: 0}

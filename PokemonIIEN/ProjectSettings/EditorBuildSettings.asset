@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tests/Scenes/VseauTest.unity
     guid: b2641ca6bbaa145c7907afe3437e02f9
+  - enabled: 1
+    path: Assets/Tests/Scenes/RatonTest.unity
+    guid: 54b3fdbdbc8884aaa8d92cab4fbff26a
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ce1f175cf63b243d98398f3150716b3e, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: b60b521725b434bee808ccfb851edea1, type: 2}

@@ -17,6 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: e942915c031304aa499bc6e22ed26e9f
   m_SerializeEntries:
+  - m_GUID: 13fd17a65eb4c5842976745674293c26
+    m_Address: Assets/Enemies
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1817d13560dd7164ea8f705ad12db106
     m_Address: Assets/Types/SMASHiie.asset
     m_ReadOnly: 0

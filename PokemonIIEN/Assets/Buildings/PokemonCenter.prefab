@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokeCenterCanvas: {fileID: 1618405831555477647}
-  respawnPoint: {fileID: 0}
+  respawnPoint: {fileID: 9041274555704341386}
 --- !u!1 &7022078487717016540
 GameObject:
   m_ObjectHideFlags: 0
