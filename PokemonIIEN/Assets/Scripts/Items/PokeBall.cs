@@ -23,6 +23,7 @@ namespace Items
                         Pokemon newPartyMember = Instantiate(pokemon.GetNonKoPokemon(), player.transform);
                         currentCombat.Player.AddNewPokemon(newPartyMember);
                         newPartyMember.HealToMax();
+                        pokemon.OnDefeat();
                         currentCombat.EndCombat();
                     }
                     return true;

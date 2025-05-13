@@ -113,6 +113,8 @@ public class CombatUI : MonoBehaviour
 
     public void ChooseAction()
     {
+        if (_currentUI == null) return; //fix de la fin de combat après capture pour pas se casser la tête
+        
         _currentUI.SetActive(false);
         mainUI.SetActive(true);
         _currentUI = mainUI;

@@ -35,7 +35,7 @@ public class TallGrass : MonoBehaviour
     private void Update()
     {
         // A chaque metre parcouru, 1 chance sur 4 d'avoir une rencontre sauvage
-        if (_isInside && Vector3.Distance(_knownPlayerPosition, _player.transform.position) >= 1)
+        if (_isInside && Vector3.Distance(_knownPlayerPosition, _player.transform.position) >= 4)
         {
             if (Random.Range(0, 4) == 0)
             {

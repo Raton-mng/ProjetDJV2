@@ -60,7 +60,8 @@ public class Pokemon : MonoBehaviour
 
     public void HealToMax()
     {
-        print("a");
+        print(gameObject);
+        print(transform.parent.gameObject);
         print(CurrentHp);
         HpChange(baseHp);
         print(CurrentHp);

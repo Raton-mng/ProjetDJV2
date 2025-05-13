@@ -41,7 +41,7 @@ public class Trainer : Enemy
 
     public void HealAllPokemons()
     {
-        foreach (var pokemon in party)
+        foreach (var pokemon in instantiatedParty)
         {
             pokemon.HealToMax();
         }
