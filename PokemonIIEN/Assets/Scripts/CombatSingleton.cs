@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Moves;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CombatSingleton : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CombatSingleton : MonoBehaviour
     [SerializeField] private CombatUI combatUI;
 
     public CombatManager currentCombat;
+    public UnityEvent onCombatStart;
 
     private void Awake()
     {
@@ -28,6 +30,7 @@ public class CombatSingleton : MonoBehaviour
     public void NewCombat(Enemy enemy, Player player)
     {
         Cursor.visible = true;
+        onCombatStart.Invoke();
         
         Pokemon playerPoke = player.GetNonKoPokemon();
         Pokemon enemyPoke = enemy.GetNonKoPokemon();

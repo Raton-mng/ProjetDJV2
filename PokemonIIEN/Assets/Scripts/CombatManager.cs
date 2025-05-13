@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Moves;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class CombatManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class CombatManager : MonoBehaviour
     
     //differentes sous-partie du plateau
     public Player Player { get; private set; }
+    public static UnityEvent onVictory;
+    public static UnityEvent onDefeat;
     private Enemy _enemy;
 
     private Pokemon _playerPokemon;
@@ -189,10 +192,12 @@ public class CombatManager : MonoBehaviour
             Player.AddItems(_enemy.items);
 
             _enemy.OnDefeat();
+            onDefeat.Invoke();
         }
         if (_playerPokemon == null)
         {
             Player.Respawn();
+            onVictory.Invoke();
             if (_enemy is Trainer trainer)
                 trainer.HealAllPokemons();
         }   
