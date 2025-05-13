@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 882608371031279525}
   - component: {fileID: 7117501669695110397}
   - component: {fileID: 549051219142743637}
+  - component: {fileID: 338050202388341238}
   m_Layer: 0
   m_Name: PokemonCenter
   m_TagString: Untagged
@@ -449,11 +450,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1.1, y: 1.1, z: 1.3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &549051219142743637
 MonoBehaviour:
@@ -469,6 +470,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokeCenterCanvas: {fileID: 1618405831555477647}
   respawnPoint: {fileID: 9041274555704341386}
+--- !u!65 &338050202388341238
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5477433541725436841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.99999994, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7022078487717016540
 GameObject:
   m_ObjectHideFlags: 0

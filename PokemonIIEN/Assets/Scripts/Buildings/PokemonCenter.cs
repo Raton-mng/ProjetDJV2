@@ -8,7 +8,7 @@ public class PokemonCenter : MonoBehaviour
     private bool _inDelay;
     private float _interactionDelay = 4f;
     
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent<Player>(out var player) && !_inDelay)
         {
