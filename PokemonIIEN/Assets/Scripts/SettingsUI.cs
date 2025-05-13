@@ -19,8 +19,6 @@ public class SettingsUI : MonoBehaviour
         mainSlider.onValueChanged.AddListener(SetMainVolume);
         musicSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxSlider.onValueChanged.AddListener(SetSFXVolume);
-
-        gameObject.SetActive(false);
     }
 
     private void SetMainVolume(float value)
@@ -36,10 +34,5 @@ public class SettingsUI : MonoBehaviour
     private void SetSFXVolume(float value)
     {
         audioMixer.SetFloat("SFXVolume", Mathf.Log(value) * 20f);
-    }
-
-    private void ToggleSettings(bool isPaused)
-    {
-        gameObject.SetActive(isPaused);
     }
 }

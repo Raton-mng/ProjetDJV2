@@ -6,7 +6,7 @@ public class PokemonCenter : MonoBehaviour
     [SerializeField] private GameObject pokeCenterCanvas;
     public Transform respawnPoint;
     private bool _inDelay;
-    private float _interactionDelay = 1f;
+    private float _interactionDelay = 4f;
     
     private void OnCollisionEnter(Collision other)
     {

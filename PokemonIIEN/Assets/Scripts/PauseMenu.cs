@@ -7,6 +7,15 @@ public class PauseMenu : MonoBehaviour
     private InputAction _pauseAction;
 
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private GameObject settingsUI;
+
+    public void SwitchPanel()
+    {
+        pauseUI.SetActive(!pauseUI.activeSelf);
+        //Debug.Log(settingsUI.activeSelf);
+        settingsUI.SetActive(!settingsUI.activeSelf);
+        //Debug.Log(settingsUI.activeSelf);
+    }
 
     private void Start()
     {
@@ -20,6 +29,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        if (pauseUI.activeSelf || settingsUI.activeSelf)
+        {
+            Unpause();
+            return;
+        }
         pauseUI.SetActive(true);
         Time.timeScale = 0;
     }
@@ -27,6 +41,7 @@ public class PauseMenu : MonoBehaviour
     public void Unpause()
     {
         pauseUI.SetActive(false);
+        settingsUI.SetActive(false);
         Time.timeScale = 1;
     }
 }
