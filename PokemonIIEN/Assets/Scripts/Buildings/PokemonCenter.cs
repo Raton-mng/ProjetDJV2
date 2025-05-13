@@ -16,6 +16,7 @@ public class PokemonCenter : MonoBehaviour
             if (respawnPoint != null) player.respawnPoint = respawnPoint;
             player.HealAllPokemons();
             pokeCenterCanvas.SetActive(true);
+            OverWorldUI.Instance.UpdateTeam();
             Cursor.visible = true;
             Time.timeScale = 0;
         }

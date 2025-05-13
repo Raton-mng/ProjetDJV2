@@ -40,18 +40,13 @@ public class OverWorldUI : MonoBehaviour
         for (pokemonIndex = 0; pokemonIndex < list.Count; pokemonIndex++)
         {
             Pokemon pokemon = list[pokemonIndex];
-            if (pokemon.CurrentHp == 0)
-            {
-                pokemonsUI[pokemonIndex].SetActive(false);
-                continue;
-            }
             
             pokemonsUI[pokemonIndex].SetActive(true);
             pokemonsName[pokemonIndex].text = pokemon.nickname;
             pokemonsHp[pokemonIndex].anchorMax = new(pokemon.HpPourcentage(), pokemonsHp[pokemonIndex].anchorMax.y);
         }
 
-        for (int i = pokemonIndex + 1; i < pokemonsUI.Count; i++)
+        for (int i = pokemonIndex; i < pokemonsUI.Count; i++)
         {
             pokemonsUI[i].SetActive(false);
         }
@@ -60,7 +55,10 @@ public class OverWorldUI : MonoBehaviour
         Pokemon mainPokemon = player.GetNonKoPokemon();
         for (int i = 0; i < list.Count; i++)
         {
-            if (mainPokemon == list[i]) cursor.position = new Vector3(cursor.position.x, 440 - 125 * i, cursor.position.z); //à rendre meilleur
+            if (mainPokemon == list[i]) {
+                cursor.anchoredPosition3D = new Vector3(cursor.anchoredPosition3D.x, 440 - 125 * i, cursor.anchoredPosition3D.z); //à rendre meilleur
+                break;
+            }
         }
     }
 }

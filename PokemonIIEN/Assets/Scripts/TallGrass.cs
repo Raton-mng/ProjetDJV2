@@ -15,7 +15,8 @@ public class TallGrass : MonoBehaviour
     
     private Player _player;
     private bool _isInside;
-    private Vector3 _knownPlayerPosition;
+    private Vector3 _previousPlayerPosition;
+    private float _walkedDistance;
     
     // prefab d'un gameObject vide avec la classe wildPokemon à instancier
     [SerializeField] private WildPokemon encounterPrefab;
@@ -35,15 +36,21 @@ public class TallGrass : MonoBehaviour
     private void Update()
     {
         // A chaque metre parcouru, 1 chance sur 4 d'avoir une rencontre sauvage
-        if (_isInside && Vector3.Distance(_knownPlayerPosition, _player.transform.position) >= 4)
+        if (_isInside)
         {
-            if (Random.Range(0, 4) == 0)
-            {
-                int pokeNumber = Random.Range(0, possibleEncounters.Count);
-                StartEncounter(possibleEncounters[pokeNumber], _player);
-            }
+            _walkedDistance += Vector3.Distance(_previousPlayerPosition, _player.transform.position);
+            _previousPlayerPosition = _player.transform.position;
 
-            _knownPlayerPosition = _player.transform.position;
+            if (_walkedDistance >= 4)
+            {
+                if (Random.Range(0, 4) == 0)
+                {
+                    int pokeNumber = Random.Range(0, possibleEncounters.Count);
+                    StartEncounter(possibleEncounters[pokeNumber], _player);
+                }
+
+                _walkedDistance = 0;
+            }
         }
     }
 
