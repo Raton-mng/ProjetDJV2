@@ -195,11 +195,10 @@ public class CombatManager : MonoBehaviour
             Player.Respawn();
             if (_enemy is Trainer trainer)
                 trainer.HealAllPokemons();
-        }
-            
-            
-        Destroy(_ui.gameObject);
+        }   
+        
         Destroy(gameObject);
+        Destroy(_ui.gameObject);
         Time.timeScale = 1;
         Cursor.visible = false;
         //pas fini ?

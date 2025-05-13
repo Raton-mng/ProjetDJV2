@@ -60,7 +60,10 @@ public class Pokemon : MonoBehaviour
 
     public void HealToMax()
     {
+        print("a");
+        print(CurrentHp);
         HpChange(baseHp);
+        print(CurrentHp);
     }
 
     public void BoostAttack(int incrementValue)
