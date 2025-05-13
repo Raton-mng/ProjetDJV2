@@ -4,7 +4,7 @@ using UnityEngine;
 public class PokemonCenter : MonoBehaviour
 {
     [SerializeField] private GameObject pokeCenterCanvas;
-    [SerializeField] private Transform respawnPoint;
+    public Transform respawnPoint;
     private bool _inDelay;
     private float _interactionDelay = 1f;
     

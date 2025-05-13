@@ -63,7 +63,7 @@ public class Player : Trainer
     {
         CheckTouchingGround();
         Vector2 moveValue = _moveAction.ReadValue<Vector2>();
-        if(!inTest) Move(moveValue, moveSpeed);
+        if(!inTest) Move(moveValue, moveSpeed);//Bad practice, but didn't find a workaround
         if (moveValue != Vector2.zero)
         {
             _isMoving = true;
