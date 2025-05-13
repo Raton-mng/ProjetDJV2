@@ -27,6 +27,8 @@ public class CombatSingleton : MonoBehaviour
     //cette fonction est lancée quand on sait qu'il y a suffisament de pokemon pas ko
     public void NewCombat(Enemy enemy, Player player)
     {
+        Cursor.visible = true;
+        
         Pokemon playerPoke = player.GetNonKoPokemon();
         Pokemon enemyPoke = enemy.GetNonKoPokemon();
         if (playerPoke == null)
@@ -39,7 +41,7 @@ public class CombatSingleton : MonoBehaviour
         currentCombat = Instantiate(combatManager);
         CombatUI currentUI = Instantiate(combatUI);
         
-        currentUI.Initialize(playerPoke, enemyPoke);
+        currentUI.Initialize(playerPoke, enemyPoke, player.items);
         currentCombat.Initialize(player, enemy, currentUI);
         
         StartCoroutine(currentCombat.CombatLoop());

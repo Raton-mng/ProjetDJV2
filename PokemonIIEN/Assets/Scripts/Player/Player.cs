@@ -47,13 +47,13 @@ public class Player : Trainer
             PokeItem itemType = item.Key;
             int itemAmount = item.Value;
             
-            if (Items.ContainsKey(itemType))
-                Items[itemType] += itemAmount;
+            if (items.ContainsKey(itemType))
+                items[itemType] += itemAmount;
             else
-                Items.Add(itemType, itemAmount);
+                items.Add(itemType, itemAmount);
         }
 
-        foreach (var item in Items)
+        foreach (var item in items)
         {
             print(item);
         }

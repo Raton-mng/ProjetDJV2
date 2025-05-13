@@ -1,33 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using Items;
 using UnityEngine;
 
-public class PokeBall : ItemOnEnemy
+namespace Items
 {
-    public int capturePower;
-
-    public override bool UseOnEnemy(Pokemon enemyPokemon)
+    [CreateAssetMenu(fileName = "PokeBall", menuName = "Game/ItemOnEnemy/Pokeball")]
+    public class PokeBall : ItemOnEnemy
     {
-        if (enemyPokemon.TryGetComponent(out WildPokemon pokemon))
+        public int capturePower;
+
+        public override bool UseOnEnemy(Pokemon enemyPokemon)
         {
-            CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
-            if (currentCombat != null)
+            Debug.Log(enemyPokemon);
+            Debug.Log(enemyPokemon.transform.parent);
+            if (enemyPokemon.transform.parent.TryGetComponent(out WildPokemon pokemon))
             {
-                (int, int) prob = pokemon.InverseCaptureRate();
-                if (Random.Range(0, prob.Item2) < prob.Item1)
+                CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
+                if (currentCombat != null)
                 {
-                    currentCombat.Player.AddNewPokemon(pokemon.GetNonKoPokemon());
+                    (int, int) prob = pokemon.CaptureRate(capturePower);
+                    if (Random.Range(0, prob.Item2) < prob.Item1)
+                    {
+                        Player player = currentCombat.Player;
+                        Pokemon newPartyMember = Instantiate(pokemon.GetNonKoPokemon(), player.transform);
+                        currentCombat.Player.AddNewPokemon(newPartyMember);
+                        newPartyMember.HealToMax();
+                        currentCombat.EndCombat();
+                    }
+                    return true;
                 }
-                return true;
+            
+            
+                Debug.Log("Can't Use Outside Combat !!");
+                return false;
             }
-            
-            
-            Debug.Log("Can't Use Outside Combat !!");
+        
+            Debug.Log("Can't Catch Trainer Pokemon !!");
             return false;
         }
-        
-        Debug.Log("Can't Catch Trainer Pokemon !!");
-        return false;
     }
 }

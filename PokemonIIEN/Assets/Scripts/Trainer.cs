@@ -18,7 +18,7 @@ public class Trainer : Enemy
         
         foreach (Pokemon pokemon in party)
         {
-            Pokemon instantiatedPokemon = Instantiate(pokemon);
+            Pokemon instantiatedPokemon = Instantiate(pokemon, transform);
             instantiatedPokemon.gameObject.SetActive(false);
             instantiatedParty.Add(instantiatedPokemon);
         }

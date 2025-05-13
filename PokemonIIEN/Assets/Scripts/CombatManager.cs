@@ -109,10 +109,10 @@ public class CombatManager : MonoBehaviour
             //add enemy's move
             _movesThisTurn.Add(GetEnemyMove());
             //add player's move
-            _ui.selectedMove = null;
-            _ui.ChooseMove();
-            yield return new WaitUntil(() => _ui.selectedMove != null);
-            _movesThisTurn.Add(_ui.selectedMove);
+            _ui.actionSelected = false; _ui.selectedMove = null;
+            _ui.ChooseAction();
+            yield return new WaitUntil(() => _ui.actionSelected);
+            if (_ui.selectedMove != null) _movesThisTurn.Add(_ui.selectedMove);
 
             int j = _movesThisTurn.Count;
             for (int i = 0; i < j; i++)
@@ -174,7 +174,7 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-    private void EndCombat()
+    public void EndCombat()
     {
         foreach (var pokemonsBuff in _pokemonOnField)
         {
@@ -186,7 +186,7 @@ public class CombatManager : MonoBehaviour
 
         if (_enemyPokemon == null)
         {
-            Player.AddItems(_enemy.Items);
+            Player.AddItems(_enemy.items);
 
             _enemy.OnDefeat();
         }
@@ -201,7 +201,8 @@ public class CombatManager : MonoBehaviour
         Destroy(_ui.gameObject);
         Destroy(gameObject);
         Time.timeScale = 1;
-        //pas fini
+        Cursor.visible = false;
+        //pas fini ?
     }
 
     private Move GetEnemyMove()

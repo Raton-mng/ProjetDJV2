@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe102a6972f571046a441e29cd31b8b0, type: 3}
   m_Name: HyperPotion
   m_EditorClassIdentifier: 
+  itemName: Hyper potion
   healValue: 50

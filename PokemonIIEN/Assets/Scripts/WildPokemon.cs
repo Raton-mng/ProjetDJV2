@@ -20,13 +20,12 @@ public class WildPokemon : Enemy
 
     public override void OnDefeat()
     {
-        Destroy(_mySelf.gameObject);
         Destroy(gameObject);
     }
 
-    public (int, int) InverseCaptureRate()
+    public (int, int) CaptureRate(int pokeballPower)
     {
-        //TODO Do the calculation
-        return (1, 1);
+        // (i, j) = CaptureRate(power) correspond à i chances sur j de reussir
+        return (pokeballPower, (int) _mySelf.HpPourcentage()); //on pourrait faire un meilleur calcul mais ceci fera l'affaire
     }
 }
