@@ -131,4 +131,9 @@ public class Pokemon : MonoBehaviour
     {
         return CurrentHp / (float) baseHp;
     }
+
+    public int GetBaseHp()
+    {
+        return baseHp;
+    }
 }

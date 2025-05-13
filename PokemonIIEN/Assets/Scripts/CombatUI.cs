@@ -27,8 +27,10 @@ public class CombatUI : MonoBehaviour
     //barres d'Hp
     [SerializeField] private GameObject playerHpParent;
     [SerializeField] private RectTransform playerHpBar;
+    [SerializeField] private TextMeshProUGUI playerHpNumber;
     [SerializeField] private GameObject enemyHpParent;
     [SerializeField] private RectTransform enemyHpBar; 
+    [SerializeField] private TextMeshProUGUI enemyHpNumber;
     
     //invetaire du joueur
     private Dictionary<PokeItem, int> _items;
@@ -104,11 +106,13 @@ public class CombatUI : MonoBehaviour
     private void UpdatePlayerHealth(float healthRatio)
     {
         playerHpBar.anchorMax = new(healthRatio, playerHpBar.anchorMax.y);
+        playerHpNumber.text = playerPokemon.CurrentHp + "/" + playerPokemon.GetBaseHp();
     }
     
     private void UpdateEnemyHealth(float healthRatio)
     {
-        enemyHpBar.anchorMax = new(healthRatio, playerHpBar.anchorMax.y);
+        enemyHpBar.anchorMax = new(healthRatio, enemyHpBar.anchorMax.y);
+        enemyHpNumber.text = enemyPokemon.CurrentHp + "/" + enemyPokemon.GetBaseHp();
     }
 
     public void ChooseAction()
