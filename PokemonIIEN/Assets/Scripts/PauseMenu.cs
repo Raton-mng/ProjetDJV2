@@ -29,6 +29,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        if(CombatSingleton.Instance.currentCombat != null) return;
+        Cursor.visible = true;
         if (pauseUI.activeSelf || settingsUI.activeSelf)
         {
             Unpause();
@@ -40,6 +42,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Unpause()
     {
+        Cursor.visible = false;
         pauseUI.SetActive(false);
         settingsUI.SetActive(false);
         Time.timeScale = 1;
