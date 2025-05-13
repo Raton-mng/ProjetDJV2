@@ -8,8 +8,8 @@ using UnityEngine.TestTools.Utils;
 
 public class MainTests
 {
-    private Player _character;
     private Player _characterPrefab;
+    private Player _character;
     private Trainer _trainerPrefab;
     private Trainer _trainer;
     private PokemonCenter _pokemonCenterPrefab;
@@ -77,9 +77,14 @@ public class MainTests
     {
         _pokemonCenter = GameObject.Instantiate(_pokemonCenterPrefab, _character.transform.position, Quaternion.identity);
         yield return new WaitForSecondsRealtime(0.1f);
+        
         GameObject pokemonCenterUI = GameObject.Find("PokeCenterUI");
         Time.timeScale = 1;
         Assert.That(pokemonCenterUI.activeSelf, Is.True);
         Assert.That(_character.respawnPoint, Is.EqualTo(_pokemonCenter.respawnPoint));
+        
+        _character.Respawn();
+        yield return null;
+        Assert.That(_character.transform.position, Is.EqualTo(_pokemonCenter.respawnPoint.position));
     }
 }
