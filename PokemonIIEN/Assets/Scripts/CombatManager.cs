@@ -103,7 +103,6 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator CombatLoop()
     {
-        //print("startLoop");
         while (_enemyPokemon.CurrentHp > 0 && _playerPokemon.CurrentHp > 0)
         {
             _movesThisTurn.Clear();
@@ -116,11 +115,9 @@ public class CombatManager : MonoBehaviour
             _movesThisTurn.Add(_ui.selectedMove);
 
             int j = _movesThisTurn.Count;
-            //print(j);
             for (int i = 0; i < j; i++)
             {
                 Move move = GetNextMoveToPlay();
-                //print(move);
                 if (move == null) continue;
                 move.DoSomething();
             }
@@ -140,8 +137,6 @@ public class CombatManager : MonoBehaviour
                 {
                     pokemonPassifs.Value.Remove(passif);
                 }
-                
-                //print(_enemyPokemon.CurrentHp);
             }
             //pas fini ?
             //throw new NotImplementedException();
@@ -150,9 +145,9 @@ public class CombatManager : MonoBehaviour
         if (_enemyPokemon.CurrentHp <= 0)
         {
             Pokemon nextEnemyPokemon = _enemy.GetNonKoPokemon();
-            //print(nextEnemyPokemon);
             if (nextEnemyPokemon != null) {
                 _pokemonOnField.Remove(_enemyPokemon); _pokemonOnField.Add(nextEnemyPokemon, new List<IPassiveMove>());
+                
                 _ui.UpdateEnemyPokemon(nextEnemyPokemon);
             }
             _enemyPokemon = nextEnemyPokemon;
@@ -160,10 +155,10 @@ public class CombatManager : MonoBehaviour
         if (_playerPokemon.CurrentHp <= 0)
         {
             Pokemon nextPlayerPokemon = Player.GetNonKoPokemon();
-            //print(nextPlayerPokemon);
             if (nextPlayerPokemon != null)
             {
                 _pokemonOnField.Remove(_playerPokemon); _pokemonOnField.Add(nextPlayerPokemon, new List<IPassiveMove>());
+                
                 _ui.UpdatePlayerPokemon(nextPlayerPokemon);
             }
             _playerPokemon = nextPlayerPokemon;
@@ -193,12 +188,13 @@ public class CombatManager : MonoBehaviour
         {
             Player.AddItems(_enemy.Items);
 
-            _enemy.wasBeaten = true;
+            _enemy.OnDefeat();
         }
-
         if (_playerPokemon == null)
         {
-            //TODO Respawn Player
+            Player.Respawn();
+            if (_enemy is Trainer trainer)
+                trainer.HealAllPokemons();
         }
             
             

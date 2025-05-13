@@ -29,9 +29,9 @@ public class CombatSingleton : MonoBehaviour
     {
         Pokemon playerPoke = player.GetNonKoPokemon();
         Pokemon enemyPoke = enemy.GetNonKoPokemon();
-        if (playerPoke == null || enemy.wasBeaten)
+        if (playerPoke == null)
         {
-            print("Can't Start");
+            print("Can't Start, shouldn't happen");
             return;
         }
         

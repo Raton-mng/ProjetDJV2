@@ -18,6 +18,12 @@ public class WildPokemon : Enemy
         return _mySelf;
     }
 
+    public override void OnDefeat()
+    {
+        Destroy(_mySelf.gameObject);
+        Destroy(gameObject);
+    }
+
     public (int, int) InverseCaptureRate()
     {
         //TODO Do the calculation

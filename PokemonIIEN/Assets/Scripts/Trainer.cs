@@ -8,7 +8,9 @@ public class Trainer : Enemy
     [SerializeField] private List<Pokemon> party;
     protected List<Pokemon> instantiatedParty;
 
-    private void Awake()
+    public bool wasBeaten;
+
+    private new void Awake()
     {
         base.Awake();
         
@@ -43,5 +45,10 @@ public class Trainer : Enemy
         {
             pokemon.HealToMax();
         }
+    }
+
+    public override void OnDefeat()
+    {
+        wasBeaten = true;
     }
 }

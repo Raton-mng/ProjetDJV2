@@ -10,8 +10,6 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected List<int> rewardsAmount; //Les 2 listes doivent être dans le même ordre, avec le même nombre d'élément évidemment
     public Dictionary<PokeItem, int> Items { get; private set; }
 
-    public bool wasBeaten;
-
     protected void Awake()
     {
         if (rewardsItems.Count != rewardsAmount.Count)
@@ -25,4 +23,6 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public abstract Pokemon GetNonKoPokemon();
+
+    public abstract void OnDefeat();
 }

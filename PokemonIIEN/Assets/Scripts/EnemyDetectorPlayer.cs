@@ -16,7 +16,7 @@ public class EnemyDetectorPlayer : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //print(other);
-        if (other.TryGetComponent(out Player player))
+        if (!_myTeam.wasBeaten && other.TryGetComponent(out Player player))
         {
             CombatSingleton.Instance.NewCombat(_myTeam, player);
         }

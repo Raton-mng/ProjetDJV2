@@ -13,6 +13,7 @@ public class PokemonCenter : MonoBehaviour
         if (other.gameObject.TryGetComponent<Player>(out var player) && !_inDelay)
         {
             Debug.Log("Pokemon Center");
+            if (respawnPoint != null) player.respawnPoint = respawnPoint;
             player.HealAllPokemons();
             pokeCenterCanvas.SetActive(true);
             Cursor.visible = true;
