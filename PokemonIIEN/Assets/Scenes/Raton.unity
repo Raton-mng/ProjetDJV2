@@ -1064,6 +1064,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e941b78d9792d8743a83e7ae14e8cc2c, type: 2}
   - {fileID: 11400000, guid: b0e97d658620b8b4da991f72a7223b57, type: 2}
   - {fileID: 11400000, guid: 52368cd9d96b4ac4da3a97ec8b18c7f5, type: 2}
+  - {fileID: 11400000, guid: 746c52af1af7de64596dc2fa4d9f24e4, type: 2}
+  - {fileID: 11400000, guid: 25723f9b0110e0f44a560b7a04be2833, type: 2}
   rewardsAmount: 010000000500000001000000
   party:
   - {fileID: 614550011255509660, guid: cf2edacfdcefa634ab66c10d421cc041, type: 3}
@@ -1328,68 +1330,6 @@ Transform:
   - {fileID: 71677446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1809043541
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1809043542}
-  - component: {fileID: 1809043543}
-  m_Layer: 0
-  m_Name: PotionButtons
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1809043542
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809043541}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2086730002}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: -1400, y: 600}
-  m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1809043543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809043541}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 50
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
-  m_ChildScaleWidth: 0
-  m_ChildScaleHeight: 0
-  m_ReverseArrangement: 0
 --- !u!1 &1825621942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1563,11 +1503,6 @@ Transform:
   - {fileID: 1054761167}
   m_Father: {fileID: 1754554538}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!224 &2086730002 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3941719464064295578, guid: 667776435b334384794ec2a5f2df834e, type: 3}
-  m_PrefabInstance: {fileID: 1974333929453425437}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2109735692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1789,30 +1724,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3782600641043545879, guid: 667776435b334384794ec2a5f2df834e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4730643992473895297, guid: 667776435b334384794ec2a5f2df834e, type: 3}
       propertyPath: m_Name
       value: PauseManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4730643992473895297, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8894570274919809270, guid: 667776435b334384794ec2a5f2df834e, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1526734927}
-    - target: {fileID: 8894570274919809270, guid: 667776435b334384794ec2a5f2df834e, type: 3}
-      propertyPath: prefabButton
-      value: 
-      objectReference: {fileID: 2039506256466634738, guid: c7bd46da8641c7a44ae6b50dd107f950, type: 3}
-    - target: {fileID: 8894570274919809270, guid: 667776435b334384794ec2a5f2df834e, type: 3}
-      propertyPath: potionButtonsParent
-      value: 
-      objectReference: {fileID: 1809043542}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3941719464064295578, guid: 667776435b334384794ec2a5f2df834e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1809043542}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 667776435b334384794ec2a5f2df834e, type: 3}
 --- !u!1001 &2333275521433127679

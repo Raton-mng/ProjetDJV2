@@ -48,7 +48,7 @@ public class UIPartyManager : MonoBehaviour
         MoveCursor(0);
 
         _items = player.items;
-        _potionButtons = new List<GameObject>();
+        if (_potionButtons == null) _potionButtons = new List<GameObject>();
         UpdateInventory();
     }
 
