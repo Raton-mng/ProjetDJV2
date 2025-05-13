@@ -192,12 +192,12 @@ public class CombatManager : MonoBehaviour
             Player.AddItems(_enemy.items);
 
             _enemy.OnDefeat();
-            onDefeat.Invoke();
+            onVictory.Invoke();
         }
         if (_playerPokemon == null)
         {
             Player.Respawn();
-            onVictory.Invoke();
+            onDefeat.Invoke();
             if (_enemy is Trainer trainer)
                 trainer.HealAllPokemons();
         }   
