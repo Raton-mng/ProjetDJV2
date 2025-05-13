@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Items;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
@@ -10,6 +12,16 @@ public class UIPartyManager : MonoBehaviour
     [SerializeField] private Player player;
     [SerializeField] private RectTransform cursor;
     private int currentCursorNumber;
+    
+    //invetaire du joueur
+    private Dictionary<PokeItem, int> _items;
+    
+    //liste des Items possible
+    [SerializeField] private Transform potionButtonsParent;
+    private List<GameObject> _potionButtons;
+    
+    //prefab à instacier
+    [SerializeField] private Button prefabButton;
 
     [SerializeField] private List<GameObject> pokemonButtonsGo; //jsp pk j'arrive pas à recuperer les go donc solutionn temporaire
 
@@ -34,6 +46,10 @@ public class UIPartyManager : MonoBehaviour
         }
         
         MoveCursor(0);
+
+        _items = player.items;
+        _potionButtons = new List<GameObject>();
+        UpdateInventory();
     }
 
     public void MoveCursor(int number)
@@ -55,5 +71,42 @@ public class UIPartyManager : MonoBehaviour
         
         currentCursorNumber = 0;
         cursor.anchoredPosition3D = new Vector3(cursor.anchoredPosition3D.x, 440 - 125 * currentCursorNumber, cursor.anchoredPosition3D.z); //à rendre meilleur
+    }
+    
+    private void UpdateInventory()
+    {
+        foreach (GameObject itemButton in _potionButtons)
+        {
+            Destroy(itemButton);
+        }
+        _potionButtons.Clear();
+        
+        foreach (var item in _items)
+        {
+            if (item.Key is Potion potion)
+            {
+                Button itemButton = Instantiate(prefabButton, potionButtonsParent);
+                itemButton.GetComponentInChildren<TextMeshProUGUI>().text = potion.itemName;
+                itemButton.onClick.AddListener(() => UsePotionOnSelected(potion));
+                _potionButtons.Add(itemButton.gameObject);
+            }
+        }
+    }
+
+    public void UsePotionOnSelected(Potion potion)
+    {
+        Pokemon selectedPokemon = player.GetTeam()[currentCursorNumber];
+        
+        bool useWorked = potion.UseOnAlly(selectedPokemon);
+        if (useWorked)
+        {
+            _items[potion] -= 1;
+            if (_items[potion] <= 0)
+            {
+                _items.Remove(potion);
+                UpdateInventory();
+            }
+            OverWorldUI.Instance.UpdateTeam();
+        }
     }
 }
