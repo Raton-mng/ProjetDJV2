@@ -16,7 +16,7 @@ public class Player : Trainer
 
     private void Start()
     {
-        respawnPoint = transform;// purely to avoid null reference exception
+        //respawnPoint = transform;// purely to avoid null reference exception
         Cursor.visible = false;
         _moveAction = InputSystem.actions.FindAction("Move");
         _rigidbody = GetComponent<Rigidbody>();

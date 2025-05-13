@@ -2043,6 +2043,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686064443}
   m_CullTransparentMesh: 1
+--- !u!4 &712285601 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9041274555704341386, guid: d2c496f3726334540b757186e517eb1b, type: 3}
+  m_PrefabInstance: {fileID: 2478172942411716691}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &728133264
 GameObject:
   m_ObjectHideFlags: 0
@@ -5195,6 +5200,67 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1719802403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2081783203
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 36949360999179337, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4730643992473895297, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: m_Name
+      value: PauseManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8894570274919809270, guid: 667776435b334384794ec2a5f2df834e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 418914761}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 667776435b334384794ec2a5f2df834e, type: 3}
 --- !u!1 &2094015501
 GameObject:
   m_ObjectHideFlags: 0
@@ -5343,6 +5409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1719802403}
     m_Modifications:
+    - target: {fileID: 882608371031279525, guid: d2c496f3726334540b757186e517eb1b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 26a21311a26514419a5c2fb49afee3d5, type: 2}
     - target: {fileID: 1500896173635350039, guid: d2c496f3726334540b757186e517eb1b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.227814
@@ -5386,6 +5456,10 @@ PrefabInstance:
     - target: {fileID: 5477433541725436841, guid: d2c496f3726334540b757186e517eb1b, type: 3}
       propertyPath: m_Name
       value: PokemonCenter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041274555704341386, guid: d2c496f3726334540b757186e517eb1b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.549
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5645,6 +5719,42 @@ PrefabInstance:
       propertyPath: m_ComponentOwner
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: respawnPoint
+      value: 
+      objectReference: {fileID: 712285601}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsAmount.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: e941b78d9792d8743a83e7ae14e8cc2c, type: 2}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: b0e97d658620b8b4da991f72a7223b57, type: 2}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 52368cd9d96b4ac4da3a97ec8b18c7f5, type: 2}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsAmount.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsAmount.Array.data[1]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4892793395827285352, guid: 2778226f7747149e98a416734b84f27c, type: 3}
+      propertyPath: rewardsAmount.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6257883788843612084, guid: 2778226f7747149e98a416734b84f27c, type: 3}
       propertyPath: m_ComponentOwner
       value: 
@@ -5830,3 +5940,4 @@ SceneRoots:
   - {fileID: 2141204491}
   - {fileID: 2653103401686361877}
   - {fileID: 496836721}
+  - {fileID: 2081783203}
