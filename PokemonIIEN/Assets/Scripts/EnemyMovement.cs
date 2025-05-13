@@ -27,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
         while (true)
         {
             SetRandomDestination();
-            yield return new WaitForSeconds(Random.Range(1, 3));
+            yield return new WaitForSeconds(Random.Range(3, 7));
         }
         // ReSharper disable once IteratorNeverReturns
         // Thanks rider for these automatic suggestions lol

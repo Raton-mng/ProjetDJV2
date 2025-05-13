@@ -12,8 +12,8 @@ public class CombatManager : MonoBehaviour
     
     //differentes sous-partie du plateau
     public Player Player { get; private set; }
-    public static UnityEvent onVictory;
-    public static UnityEvent onDefeat;
+    public static UnityEvent onVictory = new();
+    public static UnityEvent onDefeat = new();
     private Enemy _enemy;
 
     private Pokemon _playerPokemon;
