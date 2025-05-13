@@ -204,6 +204,10 @@ public class CombatManager : MonoBehaviour
         
         Destroy(gameObject);
         Destroy(_ui.gameObject);
+        
+        OverWorldUI overWorldUI = OverWorldUI.Instance;
+        overWorldUI.gameObject.SetActive(true);
+        overWorldUI.UpdateTeam();
         Time.timeScale = 1;
         Cursor.visible = false;
         //pas fini ?

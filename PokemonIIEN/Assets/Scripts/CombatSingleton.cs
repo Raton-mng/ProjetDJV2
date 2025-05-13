@@ -29,6 +29,7 @@ public class CombatSingleton : MonoBehaviour
     //cette fonction est lancée quand on sait qu'il y a suffisament de pokemon pas ko
     public void NewCombat(Enemy enemy, Player player)
     {
+        OverWorldUI.Instance.gameObject.SetActive(false);
         Cursor.visible = true;
         onCombatStart.Invoke();
         
