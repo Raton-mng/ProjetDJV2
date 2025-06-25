@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: BDE
   m_EditorClassIdentifier: 
   strongAgainst:
-  - {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
   - {fileID: 11400000}
   weakAgainst:
   - {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}

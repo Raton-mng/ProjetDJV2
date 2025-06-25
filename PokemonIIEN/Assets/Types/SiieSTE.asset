@@ -17,4 +17,3 @@ MonoBehaviour:
   weakAgainst:
   - {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
   - {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
-  - {fileID: 11400000}

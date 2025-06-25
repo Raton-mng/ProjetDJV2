@@ -12,10 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93ac29eb1b279c7438b66f4e54c7d304, type: 3}
   m_Name: I-TV
   m_EditorClassIdentifier: 
-  strongAgainst:
-  - {fileID: 11400000, guid: a2228d00f00135d4cbba2f344fef0662, type: 2}
-  - {fileID: 11400000}
-  - {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
-  weakAgainst:
-  - {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
-  - {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
+  strongAgainst: []
+  weakAgainst: []

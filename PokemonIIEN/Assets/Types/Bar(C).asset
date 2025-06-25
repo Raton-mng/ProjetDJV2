@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Bar(C)
   m_EditorClassIdentifier: 
   strongAgainst:
-  - {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
-  - {fileID: 11400000}
   - {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
   weakAgainst:
   - {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
-  - {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
+  - {fileID: 11400000}

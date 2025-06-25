@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: FiLiGRANe
   m_EditorClassIdentifier: 
   strongAgainst:
-  - {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
-  - {fileID: 11400000, guid: 1817d13560dd7164ea8f705ad12db106, type: 2}
-  weakAgainst:
   - {fileID: 11400000}
-  - {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
   - {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
+  weakAgainst:
+  - {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
