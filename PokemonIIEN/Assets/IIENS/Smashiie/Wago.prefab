@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseHp
-      value: 90
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: nickname
@@ -62,11 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseSpeed
-      value: 80
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
+      propertyPath: baseAttack
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseDefense
-      value: 95
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: types.Array.size

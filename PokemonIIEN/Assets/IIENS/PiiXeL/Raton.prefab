@@ -50,11 +50,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3765483597078796321, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: m_Name
-      value: Raton Variant
+      value: Raton
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseHp
-      value: 90
+      value: 85
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: nickname
@@ -62,15 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseSpeed
-      value: 90
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseAttack
-      value: 125
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseDefense
-      value: 80
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: types.Array.size

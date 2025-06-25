@@ -53,6 +53,10 @@ PrefabInstance:
       value: Pralii~~
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
+      propertyPath: baseHp
+      value: 95
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: nickname
       value: Pralii~~
       objectReference: {fileID: 0}
@@ -62,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseAttack
-      value: 105
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8895330732140474228, guid: 74658cb46d43f0848a2227c1ff38a67c, type: 3}
       propertyPath: baseDefense
