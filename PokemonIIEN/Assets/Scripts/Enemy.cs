@@ -22,6 +22,8 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+    public abstract List<Pokemon> GetTeam();
+
     public abstract Pokemon GetNonKoPokemon();
 
     public abstract void OnDefeat();

@@ -44,6 +44,9 @@ public class CombatManager : MonoBehaviour
             throw new ArgumentNullException();
         }
         
+        _ui.playerPokemonSwitched.AddListener((newcomer) => _playerPokemon = newcomer);
+        _ui.enemyPokemonSwitched.AddListener((newcomer) => _enemyPokemon = newcomer);
+        
         _movesThisTurn = new List<Move>();
     }
 
@@ -109,8 +112,10 @@ public class CombatManager : MonoBehaviour
         while (_enemyPokemon.CurrentHp > 0 && _playerPokemon.CurrentHp > 0)
         {
             _movesThisTurn.Clear();
+            
             //add enemy's move
             _movesThisTurn.Add(GetEnemyMove());
+            
             //add player's move
             _ui.actionSelected = false; _ui.selectedMove = null;
             _ui.ChooseAction();
@@ -122,7 +127,10 @@ public class CombatManager : MonoBehaviour
             {
                 Move move = GetNextMoveToPlay();
                 if (move == null) continue;
+                
+                //_ui.actionSelected = false;
                 move.DoSomething();
+                //yield return new WaitUntil(() => _ui.actionSelected);
             }
 
             foreach (var pokemonPassifs in _pokemonOnField)

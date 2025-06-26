@@ -28,4 +28,10 @@ public class WildPokemon : Enemy
         // (i, j) = CaptureRate(power) correspond à i chances sur j de reussir
         return (pokeballPower, (int) _mySelf.HpPourcentage() * 100); //on pourrait faire un meilleur calcul mais ceci fera l'affaire
     }
+
+    public override List<Pokemon> GetTeam()
+    {
+        List<Pokemon> l = new List<Pokemon>(); l.Add(_mySelf);
+        return l;
+    }
 }

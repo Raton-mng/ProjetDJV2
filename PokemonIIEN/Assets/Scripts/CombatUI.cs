@@ -11,20 +11,23 @@ using UnityEngine.UI;
 public class CombatUI : MonoBehaviour
 {
     //differents menus
+    [Header("Menus")]
     [SerializeField] private GameObject moveUI;
     [SerializeField] private GameObject mainUI;
     [SerializeField] private GameObject itemUI;
+    [SerializeField] private GameObject teamUI;
     [SerializeField] private GameObject itemOnAllyUI;
     [SerializeField] private GameObject itemOnEnemyUI;
     private GameObject _currentUI;
         
     //differentes sous-partie du plateau
     [HideInInspector] public Pokemon playerPokemon;
-    [SerializeField] private TextMeshProUGUI playerName;
+    [Space(10)] [Header("Sous-partie du plateau")] [SerializeField] private TextMeshProUGUI playerName;
     [HideInInspector] public Pokemon enemyPokemon;
     [SerializeField] private TextMeshProUGUI enemyName;
     
     //barres d'Hp
+    [Space(10)] [Header("Barres d'Hp")]
     [SerializeField] private GameObject playerHpParent;
     [SerializeField] private RectTransform playerHpBar;
     [SerializeField] private TextMeshProUGUI playerHpNumber;
@@ -34,6 +37,13 @@ public class CombatUI : MonoBehaviour
     
     //invetaire du joueur
     private Dictionary<PokeItem, int> _items;
+    private List<Pokemon> _playerTeam;
+    private List<GameObject> _teamButtons;
+    [Space(10)] [Header("Inventaire du joueur")]
+    [SerializeField] private Transform teamButtonsParent;
+    
+    //invetaire de l'ennemie
+    private List<Pokemon> _enemyTeam;
     
     //liste des Items possible
     [SerializeField] private Transform itemOnAllyButtonsParent;
@@ -41,18 +51,25 @@ public class CombatUI : MonoBehaviour
     private List<GameObject> _itemButtons;
     
     //liste des Move possible
+    [Space(10)] [Header("Liste des moves")]
     [SerializeField] private Transform moveButtonsParent;
     private List<GameObject> _moveButtons;
     public Move selectedMove;
     
     //prefab a instancier
+    [Space(10)] [Header("Prefab Boutton")]
     [SerializeField] private Button button;
     
     //pour finir le tour
-    public bool actionSelected;
+    [HideInInspector] public UnityEvent<Pokemon> playerPokemonSwitched;
+    [HideInInspector] public UnityEvent<Pokemon> enemyPokemonSwitched;
+    [HideInInspector] public bool actionSelected;
     
-    public void Initialize(Pokemon playerPoke, Pokemon enemyPoke, Dictionary<PokeItem, int> items)
+    public void Initialize(Player player, Enemy enemy, Dictionary<PokeItem, int> items)
     {
+        playerPokemonSwitched = new UnityEvent<Pokemon>();
+        enemyPokemonSwitched = new UnityEvent<Pokemon>();
+        
         _currentUI = mainUI;
         
         enemyName.gameObject.SetActive(true);
@@ -62,12 +79,16 @@ public class CombatUI : MonoBehaviour
         playerHpParent.gameObject.SetActive(true);
         
         _moveButtons = new List<GameObject>();
-        UpdateEnemyPokemon(enemyPoke);
-        UpdatePlayerPokemon(playerPoke);
+        UpdateEnemyPokemon(enemy.GetNonKoPokemon());
+        UpdatePlayerPokemon(player.GetNonKoPokemon());
 
         _items = items;
         _itemButtons = new List<GameObject>();
         UpdateInventory();
+
+        _playerTeam = player.GetTeam();
+        _teamButtons = new List<GameObject>();
+        _enemyTeam = enemy.GetTeam();
     }
     public void UpdateEnemyPokemon(Pokemon pokemon)
     {
@@ -197,6 +218,48 @@ public class CombatUI : MonoBehaviour
                 UpdateInventory();
             }
             actionSelected = true;
+        }
+    }
+
+    private void SwitchPlayerPokemon(Pokemon newcomer)
+    {
+        UpdatePlayerPokemon(newcomer);
+        playerPokemonSwitched.Invoke(newcomer);
+        
+        actionSelected = true;
+    }
+    
+    private void SwitchEnemyPokemon(Pokemon newcomer)
+    {
+        UpdateEnemyPokemon(newcomer);
+        enemyPokemonSwitched.Invoke(newcomer);
+        
+        actionSelected = true;
+    }
+    
+    public void ChoosePokemon()
+    {
+        CreateTeamUI();
+        _currentUI.SetActive(false);
+        teamUI.SetActive(true);
+        _currentUI = teamUI;
+    }
+    
+    private void CreateTeamUI()
+    {
+        foreach (GameObject pokeButton in _teamButtons)
+        {
+            Destroy(pokeButton);
+        }
+        _teamButtons.Clear();
+        
+        foreach (Pokemon pokemon in _playerTeam)
+        {
+            if (pokemon == playerPokemon || pokemon.CurrentHp <= 0) continue;
+            Button pokeButton = Instantiate(button, teamButtonsParent);
+            pokeButton.GetComponentInChildren<TextMeshProUGUI>().text = pokemon.nickname;
+            pokeButton.onClick.AddListener(() => SwitchPlayerPokemon(pokemon));
+            _teamButtons.Add(pokeButton.gameObject);
         }
     }
 }

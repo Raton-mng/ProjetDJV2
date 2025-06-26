@@ -9,7 +9,7 @@ public class CombatSingleton : MonoBehaviour
     public static CombatSingleton Instance;
     
     [SerializeField] private CombatManager combatManager;
-    [SerializeField] private CombatUI combatUI;
+    public CombatUI combatUI; // doit être mis via sérialiser
 
     public CombatManager currentCombat;
     public UnityEvent onCombatStart;
@@ -33,9 +33,7 @@ public class CombatSingleton : MonoBehaviour
         Cursor.visible = true;
         onCombatStart.Invoke();
         
-        Pokemon playerPoke = player.GetNonKoPokemon();
-        Pokemon enemyPoke = enemy.GetNonKoPokemon();
-        if (playerPoke == null)
+        if (player.GetNonKoPokemon() == null)
         {
             print("Can't Start, shouldn't happen");
             return;
@@ -45,7 +43,7 @@ public class CombatSingleton : MonoBehaviour
         currentCombat = Instantiate(combatManager);
         CombatUI currentUI = Instantiate(combatUI);
         
-        currentUI.Initialize(playerPoke, enemyPoke, player.items);
+        currentUI.Initialize(player, enemy, player.items);
         currentCombat.Initialize(player, enemy, currentUI);
         
         StartCoroutine(currentCombat.CombatLoop());

@@ -52,7 +52,7 @@ public class Trainer : Enemy
         wasBeaten = true;
     }
 
-    public List<Pokemon> GetTeam()
+    public override List<Pokemon> GetTeam()
     {
         return instantiatedParty;
     }
