@@ -20,6 +20,7 @@ namespace Moves
         public override void DoSomething()
         {
             CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
+            string moveText = AssignedPokemon.nickname + " used " + moveName + ".";
             foreach (TargetedBuffNumber buff in _buffsBeforeMove)
             {
                 List<Pokemon> beforeTargets = currentCombat.GetTargets(AssignedPokemon, buff.target);
@@ -32,7 +33,15 @@ namespace Moves
             List<Pokemon> attackTargets = currentCombat.GetTargets(AssignedPokemon, Targets);
             foreach (Pokemon target in attackTargets)
             {
-                target.DealDamage(Damage(target));
+                (float, float) attackContext = Damage(target);
+                int damageInflicted = target.DealDamage(attackContext.Item1);
+                moveText += " It dealt " + damageInflicted + " to " + target.nickname;
+                if (attackContext.Item2 > 1.05)
+                    moveText += " (super effective).";
+                if (attackContext.Item2 < 0.95)
+                    moveText += " (not very effective).";
+                else
+                    moveText += ".";
             }
             
             foreach (TargetedBuffNumber buff in _buffsAfterMove)
@@ -43,6 +52,8 @@ namespace Moves
                     currentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
                 }
             }
+            
+            CombatSingleton.Instance.currentUI.DisplayText(moveText);
         }
     }
 }

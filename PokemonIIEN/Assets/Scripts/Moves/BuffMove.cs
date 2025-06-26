@@ -11,6 +11,7 @@ namespace Moves
         public override void DoSomething()
         {
             CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
+            string moveText = AssignedPokemon.nickname + " used " + moveName + ".";
             foreach (TargetedBuffNumber buff in _buffs)
             {
                 List<Pokemon> buffTargets = currentCombat.GetTargets(AssignedPokemon, buff.target);
@@ -19,6 +20,7 @@ namespace Moves
                     currentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
                 }
             }
+            CombatSingleton.Instance.currentUI.DisplayText(moveText);
         }
 
         public BuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs, string thisMoveName)

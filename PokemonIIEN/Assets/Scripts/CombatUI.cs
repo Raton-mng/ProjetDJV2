@@ -18,7 +18,10 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private GameObject teamUI;
     [SerializeField] private GameObject itemOnAllyUI;
     [SerializeField] private GameObject itemOnEnemyUI;
-    private GameObject _currentUI;
+    [Header("Combat Text")]
+    [SerializeField] private GameObject moveText;
+    [SerializeField] private TextMeshProUGUI textToFill;
+    public GameObject _currentUI;
         
     //differentes sous-partie du plateau
     [HideInInspector] public Pokemon playerPokemon;
@@ -261,5 +264,20 @@ public class CombatUI : MonoBehaviour
             pokeButton.onClick.AddListener(() => SwitchPlayerPokemon(pokemon));
             _teamButtons.Add(pokeButton.gameObject);
         }
+    }
+
+    public void DisplayText(string text)
+    {
+        print(text);
+        _currentUI.SetActive(false);
+        moveText.SetActive(true);
+        textToFill.text = text;
+        _currentUI = moveText;
+    }
+
+    public void CloseText()
+    {
+        moveText.SetActive(false);
+        actionSelected = true;
     }
 }

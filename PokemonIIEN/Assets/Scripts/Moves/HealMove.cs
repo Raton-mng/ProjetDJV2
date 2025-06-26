@@ -20,6 +20,7 @@ namespace Moves
         public override void DoSomething()
         {
             CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
+            string moveText = AssignedPokemon.nickname + " used " + moveName + ".";
             foreach (TargetedHealNumber heal in Heals)
             {
                 int healValue = GetHealValue(heal);
@@ -29,6 +30,7 @@ namespace Moves
                     currentCombat.AddPassiveMove(target, new HealPassive(healValue, heal.turnsBeforeStart, heal.duration, target));
                 }
             }
+            CombatSingleton.Instance.currentUI.DisplayText(moveText);
         }
 
         protected int GetHealValue(HealNumber heal)

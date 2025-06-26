@@ -18,6 +18,7 @@ namespace Moves
         public override void DoSomething()
         {
             CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
+            string moveText = AssignedPokemon.nickname + " used " + moveName + ".";
             foreach (TargetedBuffHealNumber buffHeal in _buffsHeals)
             {
                 int healValue = GetHealValue(buffHeal);
@@ -28,6 +29,8 @@ namespace Moves
                     currentCombat.AddPassiveMove(target, new HealPassive(healValue, buffHeal.turnsBeforeStart, buffHeal.healDuration, target));
                 }
             }
+            
+            CombatSingleton.Instance.currentUI.DisplayText(moveText);
         }
         
         private int GetHealValue(BuffHealNumber heal)

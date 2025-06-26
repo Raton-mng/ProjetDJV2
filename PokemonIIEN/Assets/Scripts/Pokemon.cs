@@ -120,11 +120,14 @@ public class Pokemon : MonoBehaviour
         }
         //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostSpeed : " + _boostSpeed);
     }
-
-    public void DealDamage(float damage)
+    
+    //return the damage inflicted to the pokemon
+    public int DealDamage(float damage)
     {
-        CurrentHp = Mathf.Max(0,  Mathf.FloorToInt(CurrentHp - (damage /  (2.5f * CurrentDefense))));
+        int damageInflicted = Mathf.FloorToInt(damage /  (2.5f * CurrentDefense));
+        CurrentHp = Mathf.Max(0,  CurrentHp - damageInflicted);
         hpChanged.Invoke(HpPourcentage());
+        return damageInflicted;
     }
 
     public float HpPourcentage()

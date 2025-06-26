@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace Moves
@@ -20,14 +21,28 @@ namespace Moves
 
         public override void DoSomething()
         {
-            List<Pokemon> attackTargets = CombatSingleton.Instance.currentCombat.GetTargets(AssignedPokemon, Targets);
+            CombatSingleton combatSingleton = CombatSingleton.Instance;
+            
+            List<Pokemon> attackTargets = combatSingleton.currentCombat.GetTargets(AssignedPokemon, Targets);
+            string moveText = AssignedPokemon.nickname + " used " + moveName + ".";
             foreach (Pokemon target in attackTargets)
             {
-                target.DealDamage(Damage(target));
+                (float, float) attackContext = Damage(target);
+                int damageInflicted = target.DealDamage(attackContext.Item1);
+                moveText += " It dealt " + damageInflicted + " to " + target.nickname;
+                if (attackContext.Item2 > 1.05)
+                    moveText += " (super effective).";
+                if (attackContext.Item2 < 0.95)
+                    moveText += " (not very effective).";
+                else
+                    moveText += ".";
             }
+            
+            combatSingleton.currentUI.DisplayText(moveText);
         }
 
-        public float Damage(Pokemon target)
+        //return the damage, and the effiency of the attack
+        public (float, float) Damage(Pokemon target)
         {
             float avantage = 1;
             foreach (Type targetType in target.Types)
@@ -36,7 +51,7 @@ namespace Moves
                 else if (MoveType.weakAgainst.Contains(targetType)) avantage /= 2;
             }
             
-            return BasePower * AssignedPokemon.CurrentAttack * avantage;
+            return (BasePower * AssignedPokemon.CurrentAttack * avantage, avantage);
         }
     }
 }

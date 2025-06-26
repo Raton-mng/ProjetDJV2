@@ -9,9 +9,10 @@ public class CombatSingleton : MonoBehaviour
     public static CombatSingleton Instance;
     
     [SerializeField] private CombatManager combatManager;
-    public CombatUI combatUI; // doit être mis via sérialiser
+    [SerializeField] private CombatUI combatUI; // doit être mis via sérialiser
 
     public CombatManager currentCombat;
+    public CombatUI currentUI;
     public UnityEvent onCombatStart;
 
     private void Awake()
@@ -41,7 +42,7 @@ public class CombatSingleton : MonoBehaviour
         
         Time.timeScale = 0;
         currentCombat = Instantiate(combatManager);
-        CombatUI currentUI = Instantiate(combatUI);
+        currentUI = Instantiate(combatUI);
         
         currentUI.Initialize(player, enemy, player.items);
         currentCombat.Initialize(player, enemy, currentUI);

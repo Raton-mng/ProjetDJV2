@@ -128,9 +128,11 @@ public class CombatManager : MonoBehaviour
                 Move move = GetNextMoveToPlay();
                 if (move == null) continue;
                 
-                //_ui.actionSelected = false;
+                print(move.moveName);
+                _ui.actionSelected = false;
+                print(_ui._currentUI);
                 move.DoSomething();
-                //yield return new WaitUntil(() => _ui.actionSelected);
+                yield return new WaitUntil(() => _ui.actionSelected);
             }
 
             foreach (var pokemonPassifs in _pokemonOnField)
