@@ -22,7 +22,7 @@ MonoBehaviour:
     defenseBuff: 0
     speedBuff: 0
     target: 2
-  - isTransmissible: 0
+  - isTransmissible: 1
     turnsBeforeStart: 0
     duration: 2
     attackBuff: 0
