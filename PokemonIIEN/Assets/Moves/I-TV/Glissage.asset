@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5072cc121eefdd4b8166394c0ac4c97, type: 3}
+  m_Name: Glissage
+  m_EditorClassIdentifier: 
+  moveType: {fileID: 11400000, guid: b1e6d601515e8114aa4c5035f1fb0806, type: 2}
+  moveName: Glissage
+  targets: 1
+  power: 70
+  buffsBeforeMove: []
+  buffsAfterMove:
+  - isTransmissible: 1
+    turnsBeforeStart: 0
+    duration: 1
+    attackBuff: 0
+    defenseBuff: -1
+    speedBuff: 1
+    target: 0

@@ -10,6 +10,7 @@ namespace Moves
         private Move _associatedMove;
 
         private int _turnsBeforeStart;
+        private int _initialDuration;
         private int _duration;
         
         public HealPassive(int healValue, int turnsBeforeStart, int duration, Pokemon assignedPokemon, Move associatedMove, bool isTransmissible)
@@ -18,6 +19,7 @@ namespace Moves
             _healValue = healValue;
             
             _turnsBeforeStart = turnsBeforeStart;
+            _initialDuration = duration;
             _duration = duration;
 
             _associatedMove = associatedMove;
@@ -72,6 +74,12 @@ namespace Moves
             return false;
         }
 
-        public void Application() {} //does nothing
+        public void Application()
+        {
+            if (_turnsBeforeStart <= 0 && _initialDuration == _duration)
+            {
+                ApplyHeal();
+            }
+        }
     }
 }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdfb0e4866389834fbf7301876e98a4e, type: 3}
+  m_Name: Contrat
+  m_EditorClassIdentifier: 
+  moveType: {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
+  moveName: Contrat
+  buffs:
+  - isTransmissible: 1
+    turnsBeforeStart: 0
+    duration: 2
+    attackBuff: 0
+    defenseBuff: -2
+    speedBuff: 0
+    target: 1
