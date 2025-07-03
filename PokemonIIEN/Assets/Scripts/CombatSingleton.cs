@@ -44,9 +44,11 @@ public class CombatSingleton : MonoBehaviour
         currentCombat = Instantiate(combatManager);
         currentUI = Instantiate(combatUI);
         
-        currentUI.Initialize(player, enemy, player.items);
-        currentCombat.Initialize(player, enemy, currentUI);
+        Task t = new Task(currentCombat.CombatLoop(), false);
         
-        StartCoroutine(currentCombat.CombatLoop());
+        currentUI.Initialize(player, enemy, player.items, t);
+        currentCombat.Initialize(player, enemy, currentUI, t);
+        
+        t.Start();
     }
 }

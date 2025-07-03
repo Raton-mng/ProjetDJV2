@@ -52,11 +52,6 @@ public class Player : Trainer
             else
                 items.Add(itemType, itemAmount);
         }
-
-        foreach (var item in items)
-        {
-            print(item);
-        }
     }
     
     private void FixedUpdate()

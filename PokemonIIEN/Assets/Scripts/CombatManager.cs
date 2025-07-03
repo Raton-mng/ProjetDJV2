@@ -22,10 +22,12 @@ public class CombatManager : MonoBehaviour
     private CombatUI _ui;
     private List<Move> _movesThisTurn;
 
-    private bool _finishingCombat;
+    private Task _combatTask;
 
-    public void Initialize(Player player, Enemy enemyTrainer, CombatUI combatUI)
+    public void Initialize(Player player, Enemy enemyTrainer, CombatUI combatUI, Task combatTask)
     {
+        _combatTask = combatTask;
+        
         Player = player;
         _enemy = enemyTrainer;
         
@@ -66,7 +68,7 @@ public class CombatManager : MonoBehaviour
             {
                 if (buff.Equal(passive))
                 {
-                    print("Already in place");
+                    //print("Already in place");
                     return;
                 }
             }
@@ -137,9 +139,9 @@ public class CombatManager : MonoBehaviour
             _movesThisTurn.Add(GetEnemyMove());
             
             //add player's move
-            _ui.actionSelected = false; _ui.selectedMove = null;
+            _ui.selectedMove = null;
             _ui.ChooseAction();
-            yield return new WaitUntil(() => _ui.actionSelected);
+            yield return null; // to pause loop if needed
             if (_ui.selectedMove != null) _movesThisTurn.Add(_ui.selectedMove);
 
             int j = _movesThisTurn.Count;
@@ -148,12 +150,14 @@ public class CombatManager : MonoBehaviour
                 Move move = GetNextMoveToPlay();
                 if (move == null) continue;
                 
-                _ui.actionSelected = false;
                 move.DoSomething();
-                yield return new WaitUntil(() => _ui.actionSelected);
-                
-                Pokemon currentPokemon = move.AssignedPokemon;
-                List<IPassiveMove> currentPassives = _pokemonOnField[currentPokemon];
+                yield return null; // to pause loop if needed
+            }
+
+            foreach (var poke in _pokemonOnField)
+            {
+                Pokemon currentPokemon = poke.Key;
+                List<IPassiveMove> currentPassives = poke.Value;
                 List<IPassiveMove> toRemove = new List<IPassiveMove>();
                 foreach (IPassiveMove passif in currentPassives)
                 {
@@ -200,7 +204,7 @@ public class CombatManager : MonoBehaviour
 
         if (_enemyPokemon != null && _playerPokemon != null)
         {
-            StartCoroutine(CombatLoop());
+            _combatTask.Restart(CombatLoop());
         }
         else
         {
@@ -317,5 +321,24 @@ public class CombatManager : MonoBehaviour
         
         _pokemonOnField.Remove(previous); 
         _pokemonOnField.Add(newcomer, passives);
+    }
+
+    public bool IsPlayerPokemon(Pokemon pokemon)
+    {
+        return pokemon == _playerPokemon;
+    }
+
+    //temporaire, pour les moves de switch adverse
+    public Pokemon SwitchEnemyPokemon()
+    {
+        Pokemon nextEnemyPokemon = _enemy.GetNonKoPokemon();
+        if (nextEnemyPokemon != null) {
+            SwitchPokemon(_enemyPokemon, nextEnemyPokemon);
+            _enemyPokemon = nextEnemyPokemon;
+            _ui.UpdateEnemyPokemon(nextEnemyPokemon);
+            return _enemyPokemon;
+        }
+
+        return null;
     }
 }

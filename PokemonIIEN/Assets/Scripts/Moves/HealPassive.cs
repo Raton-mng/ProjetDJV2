@@ -51,6 +51,7 @@ namespace Moves
 
             if (_duration > 0)
             {
+                Debug.Log("Heal " + _assignedPokemon.nickname);
                 _duration -= 1;
                 ApplyHeal();
                 return false;

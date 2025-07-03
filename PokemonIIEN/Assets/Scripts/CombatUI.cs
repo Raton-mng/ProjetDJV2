@@ -68,13 +68,18 @@ public class CombatUI : MonoBehaviour
     [Space(10)] [Header("Prefab Boutton")]
     [SerializeField] private Button button;
     
+    //text pour le switch
+    private string _switchText = "";
+    
     //pour finir le tour
+    private Task _combatTask;
     [HideInInspector] public UnityEvent<Pokemon> playerPokemonSwitched;
     [HideInInspector] public UnityEvent<Pokemon> enemyPokemonSwitched;
-    [HideInInspector] public bool actionSelected;
     
-    public void Initialize(Player player, Enemy enemy, Dictionary<PokeItem, int> items)
+    public void Initialize(Player player, Enemy enemy, Dictionary<PokeItem, int> items, Task combatTask)
     {
+        _combatTask = combatTask;
+        
         playerPokemonSwitched = new UnityEvent<Pokemon>();
         enemyPokemonSwitched = new UnityEvent<Pokemon>();
         
@@ -153,6 +158,8 @@ public class CombatUI : MonoBehaviour
     {
         if (_currentUI == null) return; //fix de la fin de combat après capture pour pas se casser la tête
         
+        _combatTask.Pause();
+        
         _currentUI.SetActive(false);
         mainUI.SetActive(true);
         _currentUI = mainUI;
@@ -168,7 +175,7 @@ public class CombatUI : MonoBehaviour
     private void SelectMove(Move move)
     {
         selectedMove = move;
-        actionSelected = true;
+        _combatTask.Unpause();
     }
 
     public void ChooseItem()
@@ -230,7 +237,7 @@ public class CombatUI : MonoBehaviour
                 _items.Remove(item);
                 UpdateInventory();
             }
-            actionSelected = true;
+            _combatTask.Unpause();
         }
     }
 
@@ -239,19 +246,23 @@ public class CombatUI : MonoBehaviour
         UpdatePlayerPokemon(newcomer);
         playerPokemonSwitched.Invoke(newcomer);
         
-        actionSelected = true;
+        DisplayText(_switchText + newcomer.nickname + " entered the field.");
     }
     
-    private void SwitchEnemyPokemon(Pokemon newcomer)
+    public void SwitchEnemyPokemon(Pokemon newcomer)
     {
         UpdateEnemyPokemon(newcomer);
         enemyPokemonSwitched.Invoke(newcomer);
         
-        actionSelected = true;
+        _combatTask.Unpause();
     }
     
-    public void ChoosePokemon()
+    public void ChoosePokemon(string switchText = "")
     {
+        if (!_combatTask.Paused) _combatTask.Pause();
+
+        _switchText = switchText;
+        
         CreateTeamUI();
         _currentUI.SetActive(false);
         teamUI.SetActive(true);
@@ -278,6 +289,8 @@ public class CombatUI : MonoBehaviour
 
     public void DisplayText(string text)
     {
+        _combatTask.Pause();
+        
         _currentUI.SetActive(false);
         moveText.SetActive(true);
         textToFill.text = text;
@@ -287,7 +300,7 @@ public class CombatUI : MonoBehaviour
     public void CloseText()
     {
         moveText.SetActive(false);
-        actionSelected = true;
+        _combatTask.Unpause();
     }
 
     public void UpdateBoost(Pokemon target)

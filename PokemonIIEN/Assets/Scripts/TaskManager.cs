@@ -78,6 +78,14 @@ public class Task
 		task.Start();
 	}
 
+	public void Restart(IEnumerator c)
+	{
+		task.Stop();
+		task = TaskManager.CreateTask(c);
+		task.Finished += TaskFinished;
+		Start();
+	}
+
 	/// Discontinues execution of the coroutine at its next yield.
 	public void Stop()
 	{

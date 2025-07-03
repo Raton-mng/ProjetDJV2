@@ -35,7 +35,7 @@ public class Trainer : Enemy
             i++;
         }
 
-        print("no non-KO remaining Pokemon, what to do ?");
+        //print("no non-KO remaining Pokemon, what to do ?");
         return null;
     }
 

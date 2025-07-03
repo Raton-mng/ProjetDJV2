@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Moves
 {
@@ -8,9 +9,10 @@ namespace Moves
         
         public override void DoSomething()
         {
-            CombatSingleton combatSingleton = CombatSingleton.Instance;
+            CombatManager currentCombat = CombatSingleton.Instance.currentCombat;
+            CombatUI currentUI = CombatSingleton.Instance.currentUI;
             
-            List<Pokemon> attackTargets = combatSingleton.currentCombat.GetTargets(AssignedPokemon, Targets);
+            List<Pokemon> attackTargets = currentCombat.GetTargets(AssignedPokemon, Targets);
             string moveText = AssignedPokemon.nickname + " used " + moveName + ".";
             foreach (Pokemon target in attackTargets)
             {
@@ -22,10 +24,21 @@ namespace Moves
                 if (attackContext.Item2 < 0.95)
                     moveText += " (not very effective).";
                 else
-                    moveText += ".";
+                    moveText += ". ";
             }
-            
-            combatSingleton.currentUI.DisplayText(moveText);
+
+            if (currentCombat.IsPlayerPokemon(AssignedPokemon))
+            {
+                if (currentCombat.Player.GetNonKoPokemon() == AssignedPokemon) currentUI.DisplayText(moveText);
+                else currentUI.ChoosePokemon(moveText);
+            }
+
+            else
+            {
+                Pokemon newcomer = currentCombat.SwitchEnemyPokemon();
+                if (newcomer) moveText += newcomer.nickname + " entered the field.";
+                currentUI.DisplayText(moveText);
+            }
         }
     }
 }
