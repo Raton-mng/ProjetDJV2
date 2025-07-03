@@ -9,9 +9,9 @@ namespace Moves
         public bool isTransmissible;
         public int turnsBeforeStart;
         public int duration = 1;
-        [Range(-4, 4)] public int attackBuff;
-        [Range(-4, 4)] public int defenseBuff;
-        [Range(-4, 4)] public int speedBuff;
+        [Range(-10, 10)] public int attackBuff;
+        [Range(-10, 10)] public int defenseBuff;
+        [Range(-10, 10)] public int speedBuff;
     }
 
     [Serializable]

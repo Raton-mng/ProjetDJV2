@@ -15,7 +15,8 @@ MonoBehaviour:
   moveType: {fileID: 11400000, guid: 74d3048269a29364c9c92429a21eeb94, type: 2}
   moveName: Restock
   buffs:
-  - turnsBeforeStart: 0
+  - isTransmissible: 1
+    turnsBeforeStart: 0
     duration: 2
     attackBuff: 0
     defenseBuff: 1

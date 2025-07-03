@@ -15,5 +15,5 @@ MonoBehaviour:
   moveType: {fileID: 11400000, guid: a2228d00f00135d4cbba2f344fef0662, type: 2}
   moveName: Carte Piege
   priority: -2
-  power: 100
+  power: 90
   targets: 1

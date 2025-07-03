@@ -15,8 +15,9 @@ MonoBehaviour:
   moveType: {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
   moveName: Firewall
   buffs:
-  - turnsBeforeStart: 0
-    duration: 4
+  - isTransmissible: 1
+    turnsBeforeStart: 0
+    duration: 3
     attackBuff: 0
     defenseBuff: 1
     speedBuff: 0

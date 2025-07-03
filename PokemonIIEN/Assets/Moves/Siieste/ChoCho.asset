@@ -15,11 +15,13 @@ MonoBehaviour:
   moveType: {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
   moveName: ChoCho
   buffsHeals:
-  - turnsBeforeStart: 0
+  - isTransmissible: 1
+    turnsBeforeStart: 0
     duration: 1
     attackBuff: 0
     defenseBuff: 1
     speedBuff: 0
+    isHealTransmissible: 1
     turnsBeforeHealStart: 0
     healDuration: 0
     fixedValue: 0
@@ -28,16 +30,18 @@ MonoBehaviour:
     defensePercentage: 0
     speedPercentage: 0
     target: 0
-  - turnsBeforeStart: 0
+  - isTransmissible: 1
+    turnsBeforeStart: 1
     duration: 0
     attackBuff: 0
     defenseBuff: 0
     speedBuff: 0
+    isHealTransmissible: 0
     turnsBeforeHealStart: 0
     healDuration: 0
     fixedValue: 0
     hpPercentage: 0
-    attackPercentage: 100
+    attackPercentage: 50
     defensePercentage: 0
     speedPercentage: 0
     target: 0

@@ -27,7 +27,7 @@ public class Pokemon : MonoBehaviour
     private int _boostSpeed;
     public string actualBoostAttack = "ATK + 0";
     public string actualBoostDefense = "DEF + 0";
-    public string actualBoostSpeed = "ATK + 0";
+    public string actualBoostSpeed = "SPD + 0";
 
     [SerializeField] private List<Type> types;
     public List<Type> Types => types;

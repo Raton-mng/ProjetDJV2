@@ -16,14 +16,16 @@ MonoBehaviour:
   moveName: NJV
   priority: -1
   buffs:
-  - turnsBeforeStart: 0
+  - isTransmissible: 1
+    turnsBeforeStart: 0
     duration: 4
     attackBuff: 1
     defenseBuff: 0
     speedBuff: 0
     target: 2
-  - turnsBeforeStart: 0
-    duration: 2
+  - isTransmissible: 1
+    turnsBeforeStart: 0
+    duration: 3
     attackBuff: 0
     defenseBuff: 0
     speedBuff: 1

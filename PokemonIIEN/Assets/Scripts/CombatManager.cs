@@ -70,9 +70,9 @@ public class CombatManager : MonoBehaviour
                     return;
                 }
             }
-            _ui.UpdateBoost(target);
             currentList.Add(buff);
             buff.Application();
+            _ui.UpdateBoost(target);
         }
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }

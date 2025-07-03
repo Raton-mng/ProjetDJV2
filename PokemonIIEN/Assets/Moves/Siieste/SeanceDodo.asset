@@ -15,11 +15,13 @@ MonoBehaviour:
   moveType: {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
   moveName: Seance Dodo
   buffsHeals:
-  - turnsBeforeStart: 0
-    duration: 2
-    attackBuff: -4
+  - isTransmissible: 1
+    turnsBeforeStart: 0
+    duration: 3
+    attackBuff: -10
     defenseBuff: 0
-    speedBuff: 0
+    speedBuff: -3
+    isHealTransmissible: 1
     turnsBeforeHealStart: 0
     healDuration: 2
     fixedValue: 0
@@ -27,4 +29,4 @@ MonoBehaviour:
     attackPercentage: 0
     defensePercentage: 33
     speedPercentage: 0
-    target: 2
+    target: 0

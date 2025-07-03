@@ -18,7 +18,8 @@ MonoBehaviour:
   power: 40
   buffsBeforeMove: []
   buffsAfterMove:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 3
     attackBuff: 0
     defenseBuff: -1

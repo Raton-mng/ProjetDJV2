@@ -97,6 +97,9 @@ public class CombatUI : MonoBehaviour
         _playerTeam = player.GetTeam();
         _teamButtons = new List<GameObject>();
         _enemyTeam = enemy.GetTeam();
+        
+        UpdateBoost(playerPokemon);
+        UpdateBoost(enemyPokemon);
     }
     public void UpdateEnemyPokemon(Pokemon pokemon)
     {

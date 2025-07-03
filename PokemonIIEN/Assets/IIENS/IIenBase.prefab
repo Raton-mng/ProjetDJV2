@@ -49,8 +49,12 @@ MonoBehaviour:
   baseAttack: 100
   baseDefense: 100
   baseSpeed: 100
+  actualBoostAttack: ATK + 0
+  actualBoostDefense: DEF + 0
+  actualBoostSpeed: SPD + 0
   types:
   - {fileID: 0}
-  dropQuantities: 
-  drops: []
   movesDescription: []
+  hpChanged:
+    m_PersistentCalls:
+      m_Calls: []

@@ -17,14 +17,16 @@ MonoBehaviour:
   targets: 1
   power: 60
   buffsBeforeMove:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 1
     attackBuff: 0
     defenseBuff: -1
     speedBuff: 0
     target: 0
-  - turnsBeforeStart: 0
-    duration: 1
+  - isTransmissible: 0
+    turnsBeforeStart: 0
+    duration: 0
     attackBuff: 0
     defenseBuff: -1
     speedBuff: 0
