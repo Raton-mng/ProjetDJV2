@@ -43,9 +43,17 @@ public class CombatManager : MonoBehaviour
             print("ERROR IN STARTING COMBAT : no pokemon available");
             throw new ArgumentNullException();
         }
-        
-        _ui.playerPokemonSwitched.AddListener((newcomer) => _playerPokemon = newcomer);
-        _ui.enemyPokemonSwitched.AddListener((newcomer) => _enemyPokemon = newcomer);
+
+        _ui.playerPokemonSwitched.AddListener((newcomer) =>
+        {
+            SwitchPokemon(_playerPokemon, newcomer);
+            _playerPokemon = newcomer;
+        });
+        _ui.enemyPokemonSwitched.AddListener((newcomer) => 
+        {
+            SwitchPokemon(_enemyPokemon, newcomer);
+            _enemyPokemon = newcomer;
+        });
         
         _movesThisTurn = new List<Move>();
     }
@@ -53,7 +61,19 @@ public class CombatManager : MonoBehaviour
     public void AddPassiveMove(Pokemon target, IPassiveMove buff)
     {
         if (_pokemonOnField.TryGetValue(target, out List<IPassiveMove> currentList))
+        {
+            foreach (var passive in currentList)
+            {
+                if (buff.Equal(passive))
+                {
+                    print("Already in place");
+                    return;
+                }
+            }
+            _ui.UpdateBoost(target);
             currentList.Add(buff);
+            buff.Application();
+        }
         else print("somehow, this target doesn't exist on the battlefield : " + target);
     }
 
@@ -128,17 +148,14 @@ public class CombatManager : MonoBehaviour
                 Move move = GetNextMoveToPlay();
                 if (move == null) continue;
                 
-                print(move.moveName);
                 _ui.actionSelected = false;
-                print(_ui._currentUI);
                 move.DoSomething();
                 yield return new WaitUntil(() => _ui.actionSelected);
-            }
-
-            foreach (var pokemonPassifs in _pokemonOnField)
-            {
+                
+                Pokemon currentPokemon = move.AssignedPokemon;
+                List<IPassiveMove> currentPassives = _pokemonOnField[currentPokemon];
                 List<IPassiveMove> toRemove = new List<IPassiveMove>();
-                foreach (IPassiveMove passif in pokemonPassifs.Value)
+                foreach (IPassiveMove passif in currentPassives)
                 {
                     if (passif.DecrementDurations())
                     {
@@ -146,9 +163,13 @@ public class CombatManager : MonoBehaviour
                     }
                 }
 
-                foreach (IPassiveMove passif in toRemove)
+                if (toRemove.Count > 0)
                 {
-                    pokemonPassifs.Value.Remove(passif);
+                    _ui.UpdateBoost(currentPokemon);
+                    foreach (IPassiveMove passif in toRemove)
+                    {
+                        currentPassives.Remove(passif);
+                    }
                 }
             }
             //pas fini ?
@@ -159,7 +180,7 @@ public class CombatManager : MonoBehaviour
         {
             Pokemon nextEnemyPokemon = _enemy.GetNonKoPokemon();
             if (nextEnemyPokemon != null) {
-                _pokemonOnField.Remove(_enemyPokemon); _pokemonOnField.Add(nextEnemyPokemon, new List<IPassiveMove>());
+                SwitchPokemon(_enemyPokemon, nextEnemyPokemon);
                 
                 _ui.UpdateEnemyPokemon(nextEnemyPokemon);
             }
@@ -170,7 +191,7 @@ public class CombatManager : MonoBehaviour
             Pokemon nextPlayerPokemon = Player.GetNonKoPokemon();
             if (nextPlayerPokemon != null)
             {
-                _pokemonOnField.Remove(_playerPokemon); _pokemonOnField.Add(nextPlayerPokemon, new List<IPassiveMove>());
+                SwitchPokemon(_playerPokemon, nextPlayerPokemon);
                 
                 _ui.UpdatePlayerPokemon(nextPlayerPokemon);
             }
@@ -282,5 +303,19 @@ public class CombatManager : MonoBehaviour
         return healMoves[Random.Range(0, healMoves.Count)];
         
         //et enfin si ça marche pas c'est que le pokemon n'a pas d'attaque et donc est bugué
+    }
+
+    private void SwitchPokemon(Pokemon previous, Pokemon newcomer)
+    {
+        List<IPassiveMove> passives = _pokemonOnField[previous];
+        List<IPassiveMove> temp = new List<IPassiveMove>(passives);
+        
+        foreach (IPassiveMove passive in temp)
+        {
+            if (passive.TransmitPassive(newcomer)) passives.Remove(passive);
+        }
+        
+        _pokemonOnField.Remove(previous); 
+        _pokemonOnField.Add(newcomer, passives);
     }
 }

@@ -25,6 +25,9 @@ public class Pokemon : MonoBehaviour
     private int _boostAttack;
     private int _boostDefense;
     private int _boostSpeed;
+    public string actualBoostAttack = "ATK + 0";
+    public string actualBoostDefense = "DEF + 0";
+    public string actualBoostSpeed = "ATK + 0";
 
     [SerializeField] private List<Type> types;
     public List<Type> Types => types;
@@ -75,11 +78,13 @@ public class Pokemon : MonoBehaviour
         if (_boostAttack < 0)
         {
             int actualNegativeBoost = Mathf.Min(4, -_boostAttack);
+            actualBoostAttack = "ATK - " + actualNegativeBoost;
             CurrentAttack = Mathf.FloorToInt(baseAttack / (1 + 0.5f * actualNegativeBoost));
         }
         else
         {
             int actualPositiveBoost = Mathf.Min(4, _boostAttack);
+            actualBoostAttack = "ATK + " + actualPositiveBoost;
             CurrentAttack = Mathf.FloorToInt(baseAttack * (1 + 0.5f * actualPositiveBoost));
         }
         //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostAttack : " + _boostAttack);
@@ -93,11 +98,13 @@ public class Pokemon : MonoBehaviour
         if (_boostDefense < 0)
         {
             int actualNegativeBoost = Mathf.Min(4, -_boostDefense);
+            actualBoostDefense = "DEF - " + actualNegativeBoost;
             CurrentDefense = Mathf.FloorToInt(baseDefense / (1 + 0.5f * actualNegativeBoost));
         }
         else
         {
             int actualPositiveBoost = Mathf.Min(4, _boostDefense);
+            actualBoostDefense = "DEF + " + actualPositiveBoost;
             CurrentDefense = Mathf.FloorToInt(baseDefense * (1 + 0.5f * actualPositiveBoost));
         }
         //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostDefense : " + _boostDefense);
@@ -111,11 +118,13 @@ public class Pokemon : MonoBehaviour
         if (_boostSpeed < 0)
         {
             int actualNegativeBoost = Mathf.Min(4, -_boostSpeed);
+            actualBoostSpeed = "SPD - " + actualNegativeBoost;
             CurrentSpeed = Mathf.FloorToInt(baseSpeed / (1 + 0.5f * actualNegativeBoost));
         }
         else
         {
             int actualPositiveBoost = Mathf.Min(4, _boostSpeed);
+            actualBoostSpeed = "SPD + " + actualPositiveBoost;
             CurrentSpeed = Mathf.FloorToInt(baseSpeed * (1 + 0.5f * actualPositiveBoost));
         }
         //print("pokemon : " + nickname + "; increment : " + incrementValue + "; _boostSpeed : " + _boostSpeed);

@@ -4,19 +4,31 @@ namespace Moves
 {
     public class HealPassive : IPassiveMove
     {
+        private bool _isTransmissible;
         private int _healValue;
         private Pokemon _assignedPokemon;
+        private Move _associatedMove;
 
         private int _turnsBeforeStart;
         private int _duration;
         
-        public HealPassive(int healValue, int turnsBeforeStart, int duration, Pokemon assignedPokemon)
+        public HealPassive(int healValue, int turnsBeforeStart, int duration, Pokemon assignedPokemon, Move associatedMove, bool isTransmissible)
         {
             _assignedPokemon = assignedPokemon;
             _healValue = healValue;
             
             _turnsBeforeStart = turnsBeforeStart;
             _duration = duration;
+
+            _associatedMove = associatedMove;
+
+            _isTransmissible = isTransmissible;
+        }
+
+        public bool Equal(IPassiveMove other)
+        {
+            if (other is not HealPassive ohp) return false;
+            return (_associatedMove == ohp._associatedMove && _assignedPokemon == ohp._assignedPokemon && _healValue == ohp._healValue);
         }
         
         private void ApplyHeal()
@@ -27,7 +39,6 @@ namespace Moves
                 return;
             }
             _assignedPokemon.HpChange(_healValue);
-            Debug.Log("iiiiiiiiiiiiih");
         }
 
         public bool DecrementDurations()
@@ -41,7 +52,6 @@ namespace Moves
             if (_duration > 0)
             {
                 _duration -= 1;
-                Debug.Log(_duration);
                 ApplyHeal();
                 return false;
             }
@@ -50,5 +60,17 @@ namespace Moves
         }
 
         public void EndMove() {}
+        
+        public bool TransmitPassive(Pokemon newcomer)
+        {
+            EndMove();
+            
+            if (!_isTransmissible) return true;
+
+            _assignedPokemon = newcomer;
+            return false;
+        }
+
+        public void Application() {} //does nothing
     }
 }

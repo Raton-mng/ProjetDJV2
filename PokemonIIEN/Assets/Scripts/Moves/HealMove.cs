@@ -27,7 +27,7 @@ namespace Moves
                 List<Pokemon> buffTargets = currentCombat.GetTargets(AssignedPokemon, heal.target);
                 foreach (Pokemon target in buffTargets)
                 { 
-                    currentCombat.AddPassiveMove(target, new HealPassive(healValue, heal.turnsBeforeStart, heal.duration, target));
+                    currentCombat.AddPassiveMove(target, new HealPassive(healValue, heal.turnsBeforeStart, heal.duration, target, this, heal.isTransmissible));
                 }
             }
             CombatSingleton.Instance.currentUI.DisplayText(moveText);

@@ -6,6 +6,7 @@ namespace Moves
     [Serializable]
     public class BuffHealNumber : BuffNumber
     {
+        public bool isHealTransmissible;
         public int turnsBeforeHealStart;
         public int healDuration = 1;
         public int fixedValue;

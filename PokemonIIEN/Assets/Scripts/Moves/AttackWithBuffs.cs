@@ -26,7 +26,7 @@ namespace Moves
                 List<Pokemon> beforeTargets = currentCombat.GetTargets(AssignedPokemon, buff.target);
                 foreach (Pokemon target in beforeTargets)
                 {
-                    CombatSingleton.Instance.currentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
+                    CombatSingleton.Instance.currentCombat.AddPassiveMove(target, new BuffPassive(buff, target, this));
                 }
             }
             
@@ -49,7 +49,7 @@ namespace Moves
                 List<Pokemon> beforeTargets = currentCombat.GetTargets(AssignedPokemon, buff.target);
                 foreach (Pokemon target in beforeTargets)
                 {
-                    currentCombat.AddPassiveMove(target, new BuffPassive(buff, target));
+                    currentCombat.AddPassiveMove(target, new BuffPassive(buff, target, this));
                 }
             }
             

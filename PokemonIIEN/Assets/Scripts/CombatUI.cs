@@ -21,7 +21,7 @@ public class CombatUI : MonoBehaviour
     [Header("Combat Text")]
     [SerializeField] private GameObject moveText;
     [SerializeField] private TextMeshProUGUI textToFill;
-    public GameObject _currentUI;
+    [HideInInspector] public GameObject _currentUI;
         
     //differentes sous-partie du plateau
     [HideInInspector] public Pokemon playerPokemon;
@@ -37,6 +37,11 @@ public class CombatUI : MonoBehaviour
     [SerializeField] private GameObject enemyHpParent;
     [SerializeField] private RectTransform enemyHpBar; 
     [SerializeField] private TextMeshProUGUI enemyHpNumber;
+    
+    //boosts
+    [Space(10)] [Header("Boosts")]
+    [SerializeField] private TextMeshProUGUI playerBoost;
+    [SerializeField] private TextMeshProUGUI enemyBoost;
     
     //invetaire du joueur
     private Dictionary<PokeItem, int> _items;
@@ -101,6 +106,7 @@ public class CombatUI : MonoBehaviour
         enemyName.text = enemyPokemon.nickname;
         enemyPokemon.hpChanged.AddListener(UpdateEnemyHealth);
         UpdateEnemyHealth(enemyPokemon.HpPourcentage());
+        UpdateBoost(enemyPokemon);
     }
     
     public void UpdatePlayerPokemon(Pokemon pokemon)
@@ -125,6 +131,7 @@ public class CombatUI : MonoBehaviour
             moveButton.onClick.AddListener(() => SelectMove(move));
             _moveButtons.Add(moveButton.gameObject);
         }
+        UpdateBoost(playerPokemon);
     }
 
     private void UpdatePlayerHealth(float healthRatio)
@@ -268,7 +275,6 @@ public class CombatUI : MonoBehaviour
 
     public void DisplayText(string text)
     {
-        print(text);
         _currentUI.SetActive(false);
         moveText.SetActive(true);
         textToFill.text = text;
@@ -279,5 +285,17 @@ public class CombatUI : MonoBehaviour
     {
         moveText.SetActive(false);
         actionSelected = true;
+    }
+
+    public void UpdateBoost(Pokemon target)
+    {
+        if (target == playerPokemon)
+        {
+            playerBoost.text = playerPokemon.actualBoostAttack + " | " + playerPokemon.actualBoostDefense + " | " + playerPokemon.actualBoostSpeed;
+        }
+        else
+        {
+            enemyBoost.text = enemyPokemon.actualBoostAttack + " | " + enemyPokemon.actualBoostDefense + " | " + enemyPokemon.actualBoostSpeed;
+        }
     }
 }

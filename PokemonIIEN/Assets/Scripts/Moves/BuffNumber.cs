@@ -6,6 +6,7 @@ namespace Moves
     [Serializable]
     public class BuffNumber
     {
+        public bool isTransmissible;
         public int turnsBeforeStart;
         public int duration = 1;
         [Range(-4, 4)] public int attackBuff;

@@ -6,6 +6,7 @@ namespace Moves
     [Serializable]
     public class HealNumber
     {
+        public bool isTransmissible;
         public int turnsBeforeStart;
         public int duration;
         public int fixedValue;
