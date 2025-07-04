@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
   moveName: Seance Dodo
+  moveDescription: Min team's ATK and greatly reduce SPD, but heal for 33% of user's
+    DEF for 3 turns
   buffsHeals:
   - isTransmissible: 1
     turnsBeforeStart: 0
     duration: 3
     attackBuff: -10
     defenseBuff: 0
-    speedBuff: -3
+    speedBuff: -2
     isHealTransmissible: 1
     turnsBeforeHealStart: 0
     healDuration: 2

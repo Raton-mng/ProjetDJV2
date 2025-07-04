@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: b1e6d601515e8114aa4c5035f1fb0806, type: 2}
   moveName: Sketch
+  moveDescription: Increase user's ATK for 1 turn
   targets: 2
   power: 60
   buffsBeforeMove: []
   buffsAfterMove:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 1
     attackBuff: 1
     defenseBuff: 0

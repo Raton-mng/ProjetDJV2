@@ -65,10 +65,13 @@ public class CombatUI : MonoBehaviour
     public Move selectedMove;
     
     //prefab a instancier
-    [Space(10)] [Header("Prefab Boutton")]
+    [Space(10)] [Header("Prefab Button")]
     [SerializeField] private Button button;
+    [SerializeField] private MoveButton moveButtonPrefab;
     
     //text pour le switch
+    [Space(10)] [Header("Prefab SwitchButton")] 
+    [SerializeField] private GameObject returnSwitchButton;
     private string _switchText = "";
     
     //pour finir le tour
@@ -134,9 +137,9 @@ public class CombatUI : MonoBehaviour
         
         foreach (Move move in playerPokemon.Moves)
         {
-            Button moveButton = Instantiate(button, moveButtonsParent);
-            moveButton.GetComponentInChildren<TextMeshProUGUI>().text = move.moveName;
-            moveButton.onClick.AddListener(() => SelectMove(move));
+            MoveButton moveButton = Instantiate(moveButtonPrefab, moveButtonsParent);
+            moveButton.ButtonDisplay(move);
+            moveButton.button.onClick.AddListener(() => SelectMove(move));
             _moveButtons.Add(moveButton.gameObject);
         }
         UpdateBoost(playerPokemon);
@@ -256,11 +259,17 @@ public class CombatUI : MonoBehaviour
         
         _combatTask.Unpause();
     }
+
+    public void ChoosePokemon()
+    {
+        ChoosePokemon(true);
+    }
     
-    public void ChoosePokemon(string switchText = "")
+    public void ChoosePokemon(bool canReturnToMenu, string switchText = "")
     {
         if (!_combatTask.Paused) _combatTask.Pause();
-
+        returnSwitchButton.SetActive(canReturnToMenu);
+        
         _switchText = switchText;
         
         CreateTeamUI();

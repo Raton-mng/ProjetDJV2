@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
   moveName: ChoCho
+  moveDescription: Increase team's DEF for 1 turn, then heal current Iien for 50%
+    of user's ATK
   buffsHeals:
   - isTransmissible: 1
     turnsBeforeStart: 0

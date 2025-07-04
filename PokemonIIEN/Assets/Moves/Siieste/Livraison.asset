@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 58c06f5c4e3ce5648a9a961791eced27, type: 2}
   moveName: Livraison
+  moveDescription: Switch user if possible
   targets: 1
   power: 60

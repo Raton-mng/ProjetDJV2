@@ -7,7 +7,7 @@ namespace Moves
     {
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new PivotAttackMove(targets, moveType, power, assignedPokemon, moveName);
+            return new PivotAttackMove(targets, moveType, power, assignedPokemon, moveName, moveDescription);
         }
     }
 }

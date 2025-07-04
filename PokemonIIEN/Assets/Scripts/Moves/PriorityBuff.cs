@@ -12,7 +12,7 @@ namespace Moves
             return _priority;
         }
 
-        public PriorityBuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs, int priority, string thisMoveName) : base(assignedPokemon, type, buffs, thisMoveName)
+        public PriorityBuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs, int priority, string thisMoveName, string thisMoveDescription) : base(assignedPokemon, type, buffs, thisMoveName, thisMoveDescription)
         {
             _priority = priority;
         }

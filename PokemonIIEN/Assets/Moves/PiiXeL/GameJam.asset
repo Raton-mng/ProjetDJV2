@@ -14,14 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: acc23ef1891510741a4a3652ccd5c88e, type: 2}
   moveName: Game Jam
+  moveDescription: Greatly increase user's stats for 2 turns, then reduce stats for
+    1 turn
   buffs:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 2
     attackBuff: 2
     defenseBuff: 2
     speedBuff: 2
     target: 0
-  - turnsBeforeStart: 2
+  - isTransmissible: 0
+    turnsBeforeStart: 2
     duration: 1
     attackBuff: -1
     defenseBuff: -1

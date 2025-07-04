@@ -12,7 +12,7 @@ namespace Moves
             return _priority;
         }
 
-        public PriorityAttack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, int priority, string thisMoveName) : base(targets, type, power, assignedPokemon, thisMoveName)
+        public PriorityAttack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, int priority, string thisMoveName, string thisMoveDescription) : base(targets, type, power, assignedPokemon, thisMoveName, thisMoveDescription)
         {
             Targets = targets;
             MoveType = type;

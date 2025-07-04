@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 1817d13560dd7164ea8f705ad12db106, type: 2}
   moveName: Tournoi Serieux
+  moveDescription: Reduce user's DEF for 1 turn
   targets: 1
   power: 90
   buffsBeforeMove: []
   buffsAfterMove:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 1
     attackBuff: 0
     defenseBuff: -1

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
   moveName: Cash Prize
+  moveDescription: Increase user's ATK and SPD for 1 turn
   targets: 1
   power: 60
   buffsBeforeMove: []
   buffsAfterMove:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 1
     attackBuff: 1
     defenseBuff: 0

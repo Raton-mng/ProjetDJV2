@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 2551cf92499c8a449a85b16692407a7e, type: 2}
   moveName: 1v1 Shot
+  moveDescription: Temporaly increase user's DEF, then hit everyone
   targets: 2
   power: 100
   buffsBeforeMove:

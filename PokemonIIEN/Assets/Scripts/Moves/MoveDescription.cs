@@ -15,5 +15,7 @@ namespace Moves
         public Type moveType;
         public string moveName;
         public abstract Move CreateMove(Pokemon assignedPokemon);
+        
+        public string moveDescription;
     }
 }

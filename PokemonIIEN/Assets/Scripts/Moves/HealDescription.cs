@@ -10,7 +10,7 @@ namespace Moves
         
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new HealMove(assignedPokemon, moveType, heals, moveName);
+            return new HealMove(assignedPokemon, moveType, heals, moveName, moveDescription);
         }
     }
 }

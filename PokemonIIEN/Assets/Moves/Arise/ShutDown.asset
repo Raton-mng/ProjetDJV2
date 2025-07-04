@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: e779fc7d2f3653448b18c7de7a40a9da, type: 2}
   moveName: Shut Down
+  moveDescription: Reduce user's ATK and DEF for 2 turns
   targets: 1
   power: 100
   buffsBeforeMove: []
   buffsAfterMove:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 2
     attackBuff: -1
     defenseBuff: -1

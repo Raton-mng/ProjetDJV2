@@ -7,16 +7,17 @@ namespace Moves
 {
     public class Attack : Move
     {
-        protected int BasePower;
+        public int BasePower;
         protected PossibleTargets Targets;
         
-        public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, string thisMoveName)
+        public Attack(PossibleTargets targets, Type type, int power, Pokemon assignedPokemon, string thisMoveName, string thisMoveDescription)
         {
             moveName = thisMoveName;
             Targets = targets;
             MoveType = type;
             BasePower = power;
             AssignedPokemon = assignedPokemon;
+            moveDescription = thisMoveDescription;
         }
 
         public override void DoSomething()

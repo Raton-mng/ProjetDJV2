@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: b1e6d601515e8114aa4c5035f1fb0806, type: 2}
   moveName: Tournage
+  moveDescription: Does nothing more
   targets: 1
   power: 80

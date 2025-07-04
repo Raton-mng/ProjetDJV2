@@ -1952,7 +1952,7 @@ MonoBehaviour:
       - m_Target: {fileID: 660626594629396775}
         m_TargetAssemblyTypeName: CombatUI, PokemonDJV2
         m_MethodName: ChoosePokemon
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2830,7 +2830,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5659681968830346151
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4579,6 +4579,8 @@ MonoBehaviour:
   itemOnEnemyButtonsParent: {fileID: 5402410501195029250}
   moveButtonsParent: {fileID: 1076090360595204826}
   button: {fileID: 2039506256466634738, guid: c7bd46da8641c7a44ae6b50dd107f950, type: 3}
+  moveButtonPrefab: {fileID: 4052400332966900850, guid: 2a0705044da980d46b78db49913e1c43, type: 3}
+  returnSwitchButton: {fileID: 1796644124941404140}
   playerPokemonSwitched:
     m_PersistentCalls:
       m_Calls: []

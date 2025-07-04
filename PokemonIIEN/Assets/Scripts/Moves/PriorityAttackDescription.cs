@@ -9,7 +9,7 @@ namespace Moves
         public PossibleTargets targets;
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new PriorityAttack(targets, moveType, power, assignedPokemon, priority, moveName);
+            return new PriorityAttack(targets, moveType, power, assignedPokemon, priority, moveName, moveDescription);
         }
     }
 }

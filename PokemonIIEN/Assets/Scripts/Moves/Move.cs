@@ -4,7 +4,9 @@ namespace Moves
     {
          public string moveName;
          public Pokemon AssignedPokemon;
-         protected Type MoveType;
+         public Type MoveType;
+         
+         public string moveDescription;
      
          public abstract void DoSomething();
      }

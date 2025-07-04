@@ -10,7 +10,7 @@ namespace Moves
         
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new PriorityBuffMove(assignedPokemon, moveType, buffs, priority, moveName);
+            return new PriorityBuffMove(assignedPokemon, moveType, buffs, priority, moveName, moveDescription);
         }
     }
 }

@@ -23,13 +23,15 @@ namespace Moves
             CombatSingleton.Instance.currentUI.DisplayText(moveText);
         }
 
-        public BuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs, string thisMoveName)
+        public BuffMove(Pokemon assignedPokemon, Type type, List<TargetedBuffNumber> buffs, string thisMoveName, string thisMoveDescription)
         {
             AssignedPokemon = assignedPokemon;
             MoveType = type;
             
             _buffs = buffs;
             moveName = thisMoveName;
+
+            moveDescription = thisMoveDescription;
         }
     }
 }

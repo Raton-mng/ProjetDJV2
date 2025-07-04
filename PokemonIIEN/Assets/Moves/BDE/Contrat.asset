@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 40b537c0451799747aa781f612c9e2de, type: 2}
   moveName: Contrat
+  moveDescription: Greatly reduce target's DEF for 2 turns
   buffs:
   - isTransmissible: 1
     turnsBeforeStart: 0

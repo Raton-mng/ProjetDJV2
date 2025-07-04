@@ -11,7 +11,7 @@ namespace Moves
         
         public override Move CreateMove(Pokemon assignedPokemon)
         {
-            return new AttackWithBuffs(targets, moveType, power, assignedPokemon, buffsBeforeMove, buffsAfterMove, moveName);
+            return new AttackWithBuffs(targets, moveType, power, assignedPokemon, buffsBeforeMove, buffsAfterMove, moveName, moveDescription);
         }
     }
 }

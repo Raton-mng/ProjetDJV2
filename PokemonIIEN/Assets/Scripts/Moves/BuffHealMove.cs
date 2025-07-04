@@ -7,12 +7,13 @@ namespace Moves
     {
         private List<TargetedBuffHealNumber> _buffsHeals;
         
-        public BuffHealMove(Pokemon assignedPokemon, Type type, List<TargetedBuffHealNumber> buffsHeals, string thisMoveName)
+        public BuffHealMove(Pokemon assignedPokemon, Type type, List<TargetedBuffHealNumber> buffsHeals, string thisMoveName, string thisMoveDescription)
         {
             AssignedPokemon = assignedPokemon;
             MoveType = type;
             _buffsHeals = buffsHeals;
             moveName = thisMoveName;
+            moveDescription = thisMoveDescription;
         }
         
         public override void DoSomething()

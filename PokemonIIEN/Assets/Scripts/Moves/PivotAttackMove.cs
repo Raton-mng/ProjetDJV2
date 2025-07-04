@@ -5,7 +5,7 @@ namespace Moves
 {
     public class PivotAttackMove : Attack
     {
-        public PivotAttackMove(PossibleTargets targets, Type moveType, int power, Pokemon assignedPokemon, string moveName): base(targets, moveType, power, assignedPokemon, moveName) {}
+        public PivotAttackMove(PossibleTargets targets, Type moveType, int power, Pokemon assignedPokemon, string moveName, string thisMoveDescription): base(targets, moveType, power, assignedPokemon, moveName, thisMoveDescription) {}
         
         public override void DoSomething()
         {
@@ -30,7 +30,7 @@ namespace Moves
             if (currentCombat.IsPlayerPokemon(AssignedPokemon))
             {
                 if (currentCombat.Player.GetNonKoPokemon() == AssignedPokemon) currentUI.DisplayText(moveText);
-                else currentUI.ChoosePokemon(moveText);
+                else currentUI.ChoosePokemon(false, moveText);
             }
 
             else

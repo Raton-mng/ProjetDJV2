@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: 02fea25412ef55c4888ad9548ff1b0b4, type: 2}
   moveName: NJV
+  moveDescription: Increase everyone's ATK for 4 turns, and increase team's SPD for
+    3 turn
   priority: -1
   buffs:
   - isTransmissible: 1

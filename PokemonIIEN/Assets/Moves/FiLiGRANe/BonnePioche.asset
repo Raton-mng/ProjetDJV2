@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveType: {fileID: 11400000, guid: a2228d00f00135d4cbba2f344fef0662, type: 2}
   moveName: Bonne Pioche
+  moveDescription: Usualy move first, increase ATK and DEF for 1 turn
   priority: 2
   buffs:
-  - turnsBeforeStart: 0
+  - isTransmissible: 0
+    turnsBeforeStart: 0
     duration: 1
     attackBuff: 1
     defenseBuff: 1
